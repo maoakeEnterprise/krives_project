@@ -1,0 +1,27 @@
+lib: Contient tout le code source de votre application.
+core: Contient les éléments communs et réutilisables de l'application.
+data: Gère l'accès aux données (locales, distantes, modèles).
+datasources: Contient les sources de données (API, base de données locale, etc.).
+models: Définit les modèles de données utilisés par l'application.
+repositories: Implémente les interfaces de repository pour accéder aux données.
+domain: Contient la logique métier de l'application.
+entities: Définit les entités métier de l'application.
+repositories: Définit les interfaces de repository pour accéder aux données.
+usecases: Contient les cas d'utilisation de l'application.
+presentation: Gère l'affichage et l'interaction avec l'utilisateur.
+blocs: Contient les blocs BLoC pour la gestion de l'état.
+pages: Contient les pages de l'application.
+widgets: Contient les widgets réutilisables.
+routes: Définit les routes de navigation de l'application.
+utils: Contient les utilitaires et les fonctions d'assistance.
+extensions: Contient les extensions pour les classes existantes.
+helpers: Contient les fonctions d'assistance générales.
+features: Contient les fonctionnalités spécifiques de l'application, organisées par module.
+Chaque fonctionnalité suit la même structure que core (data, domain, presentation).
+main.dart: Le point d'entrée principal de l'application.
+Avantages de cette structure :
+Conseils :
+Adaptez cette structure à vos besoins spécifiques.
+Utilisez des noms de fichiers et de dossiers clairs et descriptifs.
+Suivez les conventions de nommage de Flutter.
+N'hésitez pas à me poser d'autres questions si vous souhaitez en savoir plus sur l'organisation de votre projet Flutter!
