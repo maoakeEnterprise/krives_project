@@ -16,6 +16,7 @@ class SourceLangage{
     ["Connecter","Sign in"],//12
     ["H","M"],//13
     ["F","W"],//14
+    ["Nouveau exercice","New exercise"],//15
   ];
 
   static var titleHeaderPageLangage = [
@@ -32,7 +33,7 @@ class SourceLangage{
   ];
 
   static var titleMenuLangage = [
-    ["Acceuil","Home"],//0
+    ["Accueil","Home"],//0
     ["Profil","Profil"],//1
     ["Exercice","Exercise"],//2
     ["Communeauté","Community"],//3

@@ -29,3 +29,4 @@ class ThemeCustom {
     [ThemesTextStyles.textTitleMenuWhite,],//10
   ];
 }
+

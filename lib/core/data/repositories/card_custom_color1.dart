@@ -10,6 +10,7 @@ class CardCustomColor1 extends StatelessWidget{
     @override
   Widget build(BuildContext context){
       return Container(
+        margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: ThemesColor.blackColor1,
@@ -30,7 +31,7 @@ class CardCustomColor1 extends StatelessWidget{
                 end: Alignment.bottomRight,
                 stops: [0.2,1]
             ),
-            color: ThemesColor.blackColor1.withOpacity(0.1)
+            color: ThemesColor.blackColor1.withOpacity(0.07)
           ),
           child: child,
         ),

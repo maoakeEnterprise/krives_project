@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'colors_custom.dart';
 
 class ThemesTextStyles {
+  //Text style dark Theme
+  //========================================================================
   static const TextStyle textDescription1 = TextStyle(fontSize: 10, fontFamily: "Arial", color: ThemesColor.grey1);
   static const TextStyle textLinkAndDescription = TextStyle(fontSize: 10, fontFamily: "Arial", color: ThemesColor.green1);
 
@@ -16,4 +18,25 @@ class ThemesTextStyles {
   static const TextStyle textBigBoldBlack = TextStyle(fontSize: 18, fontFamily: "Arial", color: ThemesColor.black, fontWeight: FontWeight.bold);
 
   static const TextStyle textTitleMenuWhite = TextStyle(fontSize: 20, fontFamily: "Arial", color: ThemesColor.white);
+  //========================================================================
+  //Text style white Theme
+  //========================================================================
+
+  //========================================================================
+  //Stock themes
+  //========================================================================
+  static var themes = [
+    [textDescription1],//0
+    [textLinkAndDescription],//1
+    [textNormalGreen],//2
+    [textNormalWhite],//3
+    [textNormalGrey],//4
+    [textBoldWhite],//5
+    [textBoldGreen],//6
+    [textBigWhite],//7
+    [textBigBoldWhite],//8
+    [textBigBoldBlack],//9
+    [textTitleMenuWhite],//10
+  ];
+
 }

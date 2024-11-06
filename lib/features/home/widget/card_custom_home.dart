@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/colors_custom.dart';
 import 'package:krives_project/core/data/datasrouces/text_styles_custom.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
+import 'package:krives_project/features/home/widget/mini_card_exercise.dart';
 
 class CardCustomHome extends StatelessWidget {
   const CardCustomHome({super.key});
@@ -14,6 +15,7 @@ class CardCustomHome extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 15, 15, 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -22,6 +24,28 @@ class CardCustomHome extends StatelessWidget {
                   Icon(Icons.settings,size: 24,color: ThemesColor.white,)
                 ],
               ),
+              SizedBox(height: 12,),
+              Row(
+                children: [
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                ],
+              ),
+              SizedBox(height: 9,),
+              Row(
+                children: [
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                  MiniCardExercise(),
+                  SizedBox(width: 13,),
+                ],
+              )
             ],
           ),
         )
