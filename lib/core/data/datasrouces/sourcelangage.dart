@@ -17,6 +17,10 @@ class SourceLangage{
     ["H","M"],//13
     ["F","W"],//14
     ["Nouveau exercice","New exercise"],//15
+    ["Nom exercice","Exercise name"],//16
+    ["Choisis le muscle principale","Choose the main muscle to train"],//17
+    ["Muscle secondaire","Secondary muscle"],//18
+    ["Commentaire","Commentary"],//19
   ];
 
   static var titleHeaderPageLangage = [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/features/home/widget/card_custom_home.dart';
 
-class WidgetScrollHome extends StatelessWidget {
+class WidgetScroll extends StatelessWidget {
   final double left;
   final double right;
   final double top;
@@ -10,7 +10,7 @@ class WidgetScrollHome extends StatelessWidget {
   final int itemCount;
   final Widget cardCustom;
 
-  const WidgetScrollHome({
+  const WidgetScroll({
     super.key,
     this.left = 0,
     this.right = 0,
