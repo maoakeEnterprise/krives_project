@@ -59,5 +59,19 @@ class SourceLangage{
     ["Fais attention", "Be careful"],//3
   ];
 
+  static var titleProfileLangage = [
+    ["Information générale","Basic data"],//0
+    ["Paramètres du comptes","Account settings"],//1
+    ["Design de l'application","App design"],//2
+    ["Termes du contrat","Contract terms"],//3
+    ["Information personnelles","Personal data"],//4
+    ["Information sportive, santé","sport,healthy data"],//5
+    ["Mot de passe et sécurité","Security and password"],//6
+    ["Information et liaison de comptes","link account and data"],//7
+    ["Abonnement","Subscription"],//8
+    ["Thème de l'application","app themes"],//9
+    ["Terme et confidentialité","Confidential and terms"],//10
+  ];
+
 }
 

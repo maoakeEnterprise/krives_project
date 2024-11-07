@@ -4,6 +4,7 @@ import 'package:krives_project/features/appbar/page/appbar_custom.dart';
 import 'package:krives_project/core/theme/theme.dart';
 import 'package:krives_project/features/create%20exercice/page/create_exercise_page.dart';
 import 'package:krives_project/features/menu/page/menu_page.dart';
+import 'package:krives_project/features/profil/page/profil_settings_page.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({super.key});
@@ -22,7 +23,7 @@ class _BasePageState extends State<BasePage> {
       appBar: AppBarCustom(title: SourceLangage.titleHeaderPageLangage[0][chooseLangage]),
       backgroundColor: ThemeCustom.colorThemes[1][chooseThemes],
       drawer: MenuPage(),
-      body: CreateExercisePage(),
+      body: ProfilSettingsPage(),
     );
   }
 }

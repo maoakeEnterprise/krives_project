@@ -1,5 +1,5 @@
-import '../data/datasrouces/colors_custom.dart';
-import '../data/datasrouces/text_styles_custom.dart';
+import '../data/datasrouces/themes_color.dart';
+import '../data/datasrouces/themes_text_styles.dart';
 
 class ThemeCustom {
   static var colorThemes =[

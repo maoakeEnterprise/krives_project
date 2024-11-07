@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/colors_custom.dart';
+import 'package:krives_project/core/data/datasrouces/themes_color.dart';
 
-import '../datasrouces/text_styles_custom.dart';
+import '../datasrouces/themes_text_styles.dart';
 
 class CustomButton1 extends StatelessWidget{
   final String? labelText;

@@ -3,7 +3,7 @@ import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
 import 'package:krives_project/core/data/repositories/custom_button1.dart';
 import 'package:krives_project/core/data/repositories/textfield_theme1.dart';
-import 'package:krives_project/core/data/datasrouces/text_styles_custom.dart';
+import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
 import 'package:krives_project/features/connexion/widget/cardview_logo_connection.dart';
 
 class ConnexionPage extends StatelessWidget {

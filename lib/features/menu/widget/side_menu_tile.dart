@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/colors_custom.dart';
-import 'package:krives_project/core/data/datasrouces/text_styles_custom.dart';
+import 'package:krives_project/core/data/datasrouces/themes_color.dart';
+import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
 
 class SideMenuTile extends StatelessWidget {
   const SideMenuTile({super.key});
