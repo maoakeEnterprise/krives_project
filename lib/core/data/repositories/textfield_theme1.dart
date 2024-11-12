@@ -5,15 +5,18 @@ import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
 
 class TextFieldTheme1 extends StatelessWidget {
-  final String? labelText;
-  const TextFieldTheme1({super.key,required this.labelText});
+  final String labelText;
+  const TextFieldTheme1({
+    super.key,
+    required this.labelText,
+  });
 
   @override
   Widget build(BuildContext context){
     int chooseLangage = 0;
     int randomIntForTrolling = Random().nextInt(SourceLangage.trollLangage.length);
 
-    return Padding(
+    return Container(
       padding: EdgeInsets.fromLTRB(41, 0, 41, 0),
       child: Container(
         margin: EdgeInsets.fromLTRB(0, 0, 0, 9),

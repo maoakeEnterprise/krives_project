@@ -12,6 +12,13 @@ class ThemesColor {
 
   static const Color black = Color.fromRGBO(0, 0, 0, 1); //#000000
   static const Color white = Color.fromRGBO(255, 255, 255, 1); //#FFFFFF
+
+  static const LinearGradient linearGradientCustom = LinearGradient(
+      colors: [ThemesColor.blackColor1,ThemesColor.green1],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      stops: [0.2,1]
+  );
   //========================================================================
   //Colors for white Theme
   //========================================================================
@@ -28,6 +35,10 @@ static var themes = [
   [red1],//5
   [black],//6
   [white],//7
+];
+
+static var themesGradient = [
+  [linearGradientCustom]//1
 ];
   //========================================================================
 

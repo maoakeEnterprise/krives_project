@@ -73,5 +73,27 @@ class SourceLangage{
     ["Terme et confidentialité","Confidential and terms"],//10
   ];
 
+  static var titleProgrammLangage = [
+    ["Séries","Series"],//0
+    ["Répétitions","Repeat"],//1
+    ["Muscle travaillé(s)","Working Muscles"],//2
+    ["Charge","Weight"],//3
+    ["Nouveau type de série","New types of series"]//4
+  ];
+
+  static var titleSeriesPage = [
+    ["L'exercice que tu choisis","Your exercise you need to choose"],//0
+    ["Nombre de séries","Number of series"],//1
+    ["Type de séries","Choose your type of series"],//2
+    ["Pendant tes séries","During your series"],//3
+    ["Rechercher","Search"],//4
+    ["Muscle","Muscle"],//5
+    ["Normal","Normal"],//6
+    ["Pyramidales","Pyramidal"],//7
+    ["Dégressive","Descending"],//8
+    ["Charge","Weight"],//9
+    ["Répétitions","Repeat"],//10
+  ];
+
 }
 

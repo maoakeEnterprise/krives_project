@@ -12,6 +12,7 @@ class CardCustomExercise extends StatelessWidget {
     return CardCustomColor1(
         width: 380,
         height: 170,
+        left: 19,
         child: Row(
           children: [
             SizedBox(width: 22,),

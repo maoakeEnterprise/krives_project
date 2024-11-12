@@ -37,7 +37,7 @@ class WidgetSettingsAccount extends StatelessWidget {
               SourceLangage.titleProfileLangage[8][langageChoice],
               style:  ThemesTextStyles.themes[3][themeChoice],
             ),
-            leading: Icon(Icons.keyboard_alt_outlined),
+            leading: Icon(Icons.credit_card),
             trailing: Icon(Icons.arrow_forward_ios),
             iconColor: ThemesColor.themes[7][themeChoice],
           ),

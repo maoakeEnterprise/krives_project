@@ -12,6 +12,7 @@ class CardCustomHome extends StatelessWidget {
     return CardCustomColor1(
         width: 250,
         height: 180,
+        left: 16,
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 15, 15, 20),
           child: Column(

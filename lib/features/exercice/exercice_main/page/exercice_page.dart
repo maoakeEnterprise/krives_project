@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/features/exercice/widget/card_custom_add_exercise.dart';
-import 'package:krives_project/features/exercice/widget/card_custom_exercise.dart';
+import 'package:krives_project/core/data/repositories/card_custom_add.dart';
+import 'package:krives_project/features/exercice/exercice_main/widget/card_custom_exercise.dart';
 
 class ExercicePage extends StatelessWidget {
   const ExercicePage({super.key});
@@ -15,7 +15,7 @@ class ExercicePage extends StatelessWidget {
         children: [
           CardCustomExercise(),
           SizedBox(height: 29,),
-          CardCustomAddExercise()
+          CardCustomAdd(height: 110,left: 20,)
         ],
       ),
     );

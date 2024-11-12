@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/theme/theme_data.dart';
 import 'package:krives_project/features/base/page/base_page.dart';
-import 'package:krives_project/features/home/pages/home_page.dart';
-import 'package:krives_project/testwidget.dart';
 
 void main() {
   runApp(const MyApp());
