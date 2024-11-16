@@ -22,7 +22,7 @@ class TextFieldCustomDuringSeries extends StatelessWidget {
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],
-        maxLength: 24,
+        maxLength: 6,
         cursorHeight: 14,
         style: ThemesTextStyles.themes[3][themeChoice],
         cursorColor: ThemesColor.themes[7][themeChoice],

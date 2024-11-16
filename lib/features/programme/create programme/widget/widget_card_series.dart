@@ -15,6 +15,7 @@ class WidgetCardSeries extends StatelessWidget {
       left: 41,
       right: 41,
       top: 36,
+      width: 0,
       height: 110,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

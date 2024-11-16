@@ -21,6 +21,7 @@ class SourceLangage{
     ["Choisis le muscle principale","Choose the main muscle to train"],//17
     ["Muscle secondaire","Secondary muscle"],//18
     ["Commentaire","Commentary"],//19
+    ["Rechercher","Search"],//20
   ];
 
   static var titleHeaderPageLangage = [
@@ -78,7 +79,10 @@ class SourceLangage{
     ["Répétitions","Repeat"],//1
     ["Muscle travaillé(s)","Working Muscles"],//2
     ["Charge","Weight"],//3
-    ["Nouveau type de série","New types of series"]//4
+    ["Nouveau type de série","New types of series"],//4
+    ["Séries","Series"],//5
+    ["Répétitions","Repeat"],//6
+    ["Type","Type"],//7
   ];
 
   static var titleSeriesPage = [

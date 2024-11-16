@@ -11,9 +11,9 @@ class CardCustomColor1 extends StatelessWidget{
   final double bottom;
   const CardCustomColor1({
     super.key,
-    required this.child,
-    this.width=0,
-    this.height=0,
+    this.child = const SizedBox(),
+    required this.width,
+    required this.height,
     this.left=0,
     this.top=0,
     this.right=0,
@@ -28,11 +28,7 @@ class CardCustomColor1 extends StatelessWidget{
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: ThemesColor.themes[0][themeChoice],
-          boxShadow: [BoxShadow(
-            offset: Offset(1,3),
-            blurRadius: 5,
-            color: Colors.black.withOpacity(0.7)
-          )]
+          boxShadow: [ThemesColor.boxShadowCustom]
         ),
         child: Container(
           width: width,

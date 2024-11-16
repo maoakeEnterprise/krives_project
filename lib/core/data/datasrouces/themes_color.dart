@@ -19,6 +19,18 @@ class ThemesColor {
       end: Alignment.bottomRight,
       stops: [0.2,1]
   );
+  static const LinearGradient linearGradientCustom1 = LinearGradient(
+      colors: [ThemesColor.blackColor1,ThemesColor.green1],
+      begin: Alignment(0,0),
+      end: Alignment(1,3.3),
+      stops: [0.2,1]
+  );
+
+  static BoxShadow boxShadowCustom = BoxShadow(
+    offset: Offset(1, 3),
+    blurRadius: 5,
+    color: Colors.black.withOpacity(0.7),
+  );
   //========================================================================
   //Colors for white Theme
   //========================================================================
@@ -38,7 +50,8 @@ static var themes = [
 ];
 
 static var themesGradient = [
-  [linearGradientCustom]//1
+  [linearGradientCustom],//0
+  [linearGradientCustom1],//1
 ];
   //========================================================================
 
