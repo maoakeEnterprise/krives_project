@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/features/appbar/page/appbar_custom.dart';
 import 'package:krives_project/core/theme/theme.dart';
+import 'package:krives_project/features/graphics/page/graphics_page.dart';
 import 'package:krives_project/features/home/pages/home_page.dart';
 import 'package:krives_project/features/hub_communautaire/page/hub_communautaire_page.dart';
 import 'package:krives_project/features/menu/page/menu_page.dart';
@@ -28,7 +29,7 @@ class _BasePageState extends State<BasePage> {
       appBar: AppBarCustom(title: SourceLangage.titleHeaderPageLangage[0][chooseLangage]),
       backgroundColor: ThemeCustom.colorThemes[1][chooseThemes],
       drawer: MenuPage(),
-      body: HubCommunautairePage(),
+      body: GraphicsPage(),
     );
   }
 }

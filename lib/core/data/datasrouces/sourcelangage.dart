@@ -99,5 +99,16 @@ class SourceLangage{
     ["Répétitions","Repeat"],//10
   ];
 
+  static var titleGraphicsPage = [
+    ["Charge","Weight"],//0
+    ["Répétitions","Repeat"],//1
+    ["Temps","Times"],//2
+    ["Filtre chronologique","Chronological filter"],//3
+    ["Mois","Months"],//4
+    ["Semaines","Weeks"],//5
+    ["Années","Years"],//6
+    ["Jours","Days"],//7
+  ];
+
 }
 

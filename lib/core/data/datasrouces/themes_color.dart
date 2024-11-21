@@ -25,6 +25,12 @@ class ThemesColor {
       end: Alignment(1,3.3),
       stops: [0.2,1]
   );
+  static const LinearGradient linearGradientCustom2 = LinearGradient(
+      colors: [ThemesColor.blackColor1,ThemesColor.green1],
+      begin: Alignment(0,0),
+      end: Alignment(0,10),
+      stops: [0.05,1]
+  );
 
   static BoxShadow boxShadowCustom = BoxShadow(
     offset: Offset(1, 3),
@@ -52,6 +58,7 @@ static var themes = [
 static var themesGradient = [
   [linearGradientCustom],//0
   [linearGradientCustom1],//1
+  [linearGradientCustom2],//1
 ];
   //========================================================================
 
