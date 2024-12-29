@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/circular_timer_painter.dart';
+import 'package:krives_project/features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
+import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
 import 'button_widget_timer.dart';
 
 class CircularTimer extends StatefulWidget {
@@ -32,6 +35,11 @@ class _CircularTimerState extends State<CircularTimer>
       duration: Duration(seconds: _remainingDuration),
     )..addListener(() {
       setState(() {
+        int seconds  = _remainingDuration * (1 - _controller.value).ceil();
+        if(seconds == 0){
+          context.read<CounterSeriesBloc>().add(CounterSerieIncremented());
+          context.read<TimerBloc>().add(TimerFinishedSeriesPressed());
+        }
       });
     });
 
@@ -55,7 +63,7 @@ class _CircularTimerState extends State<CircularTimer>
       if(_remainingDuration > seconds) {
         _remainingDuration = (_remainingDuration * (1 - _controller.value)).ceil() - seconds;
       } else {
-        _remainingDuration = 0;
+        _remainingDuration = 1;
       }
       _controller.stop();
       _controller.duration = Duration(seconds: _remainingDuration);

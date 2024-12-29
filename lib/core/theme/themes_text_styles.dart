@@ -19,6 +19,7 @@ class ThemesTextStyles {
 
   static const TextStyle textTitleMenuWhite = TextStyle(fontSize: 20, fontFamily: "Arial", color: ThemesColor.white);
   static const TextStyle textTitleTimerWidget = TextStyle(fontSize: 50, fontFamily: "Arial", color: ThemesColor.white, fontWeight: FontWeight.bold);
+  static const TextStyle textBoldGrey = TextStyle(fontSize: 12, fontFamily: "Arial", color: ThemesColor.grey1, fontWeight: FontWeight.bold);
   //========================================================================
   //Text style white Theme
   //========================================================================
@@ -39,6 +40,7 @@ class ThemesTextStyles {
     [textBigBoldBlack],//9
     [textTitleMenuWhite],//10
     [textTitleTimerWidget],//11
+    [textBoldGrey],//12
   ];
 
 }

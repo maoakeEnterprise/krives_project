@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_card_exo_before_playtime_workout.dart';
 
 class MiniWidgetCardExerciceBPW extends StatelessWidget {

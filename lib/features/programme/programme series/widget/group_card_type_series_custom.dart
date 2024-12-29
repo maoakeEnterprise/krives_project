@@ -10,9 +10,10 @@ class GroupCardTypeSeriesCustom extends StatelessWidget {
     int langageChoice = 0;
     return Column(
       children: [
-        CardTypeSeriesCustom(text: SourceLangage.titleSeriesPage[6][langageChoice],),
-        CardTypeSeriesCustom(text: SourceLangage.titleSeriesPage[7][langageChoice],),
-        CardTypeSeriesCustom(text: SourceLangage.titleSeriesPage[8][langageChoice],),
+        CardTypeSeriesCustom(text: "normal",langageChoice: langageChoice),
+        CardTypeSeriesCustom(text: "ascendante",langageChoice: langageChoice),
+        CardTypeSeriesCustom(text: "descendante",langageChoice: langageChoice),
+        CardTypeSeriesCustom(text: "degressive",langageChoice: langageChoice),
       ],
     );
   }

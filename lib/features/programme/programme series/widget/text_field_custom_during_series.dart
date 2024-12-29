@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:krives_project/core/data/datasrouces/themes_color.dart';
-import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class TextFieldCustomDuringSeries extends StatelessWidget {
   const TextFieldCustomDuringSeries({super.key});
@@ -10,8 +10,8 @@ class TextFieldCustomDuringSeries extends StatelessWidget {
   Widget build(BuildContext context) {
     int themeChoice = 0;
     return Container(
-      width: 247,
       height: 23,
+      margin: EdgeInsets.fromLTRB(30, 8, 20, 12),
       padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),

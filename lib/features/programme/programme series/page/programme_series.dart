@@ -8,6 +8,7 @@ import 'package:krives_project/features/programme/programme%20series/widget/grou
 import 'package:krives_project/features/programme/programme%20series/widget/number_series_widget.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/text_field_custom_series.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/title_widget_series.dart';
+import 'package:krives_project/features/programme/programme%20series/widget/widget_scroll_series.dart';
 
 class ProgrammeSeries extends StatelessWidget {
   const ProgrammeSeries({super.key});
@@ -20,14 +21,7 @@ class ProgrammeSeries extends StatelessWidget {
       children: [
         TitleWidgetSeries(title: SourceLangage.titleSeriesPage[0][langageChoice],top: 16,),
         TextFieldCustomSeries(),
-        WidgetScroll(
-          height: 222,
-          cardCustom: CardCustomExo(),
-          top: 10,
-          bottom: 32,
-          left: 8,
-          itemCount: 4,
-        ),
+        WidgetScrollSeries(),
         Row(
           children: [
             TitleWidgetSeries(title: SourceLangage.titleSeriesPage[1][langageChoice],),
@@ -43,6 +37,7 @@ class ProgrammeSeries extends StatelessWidget {
         TitleWidgetSeries(title: SourceLangage.titleSeriesPage[3][langageChoice],),
         SizedBox(height: 12,),
         CardDuringSerieCustom(),
+        SizedBox(height: 12,),
       ],
     );
   }

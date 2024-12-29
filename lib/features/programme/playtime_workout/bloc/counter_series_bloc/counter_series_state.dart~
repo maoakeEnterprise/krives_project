@@ -1,0 +1,10 @@
+part of 'counter_series_bloc.dart';
+
+@immutable
+class CounterSeriesState {
+  final int counter;
+  
+}
+
+
+

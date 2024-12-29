@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:krives_project/core/data/datasrouces/themes_color.dart';
-import 'package:krives_project/core/data/datasrouces/themes_graphic.dart';
-import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/core/theme/themes_graphic.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class GraphWidget extends StatefulWidget {
   const GraphWidget({super.key});

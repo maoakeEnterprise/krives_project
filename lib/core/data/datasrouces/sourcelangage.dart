@@ -22,6 +22,14 @@ class SourceLangage{
     ["Muscle secondaire","Secondary muscle"],//18
     ["Commentaire","Commentary"],//19
     ["Rechercher","Search"],//20
+    ["titre","title"],//21
+    ["Suppression","Delete"],//22
+    ["Valider","Confirm"],//23
+    ["Annuler","Cancel"],//24
+    ["Valider la suppression ?","Confirm the deletion ?"],//25
+    ["Répondre","Answer"],//26
+    ["Ajouter un commentaire...","Add a comment..."],//27
+    ["Valider la série ?","Confirm the serie ?"],//28
   ];
 
   static var titleHeaderPageLangage = [
@@ -39,12 +47,12 @@ class SourceLangage{
 
   static var titleMenuLangage = [
     ["Accueil","Home"],//0
-    ["Profil","Profil"],//1
+    ["Profil","Profile"],//1
     ["Exercice","Exercise"],//2
-    ["Communeauté","Community"],//3
-    ["IA Nutrition","Nutrition IA"],//4
-    ["IA Program","Program IA"],//5
-    ["Graphique","Graphics"],//6
+    ["Communauté","Community"],//3
+    ["IA Nutrition","Nutritive AI"],//4
+    ["IA Programme","Program AI"],//5
+    ["Suivi Graphique","Back Tracking"],//6
   ];
 
   static var titleHomePagesLangage = [
@@ -93,10 +101,14 @@ class SourceLangage{
     ["Rechercher","Search"],//4
     ["Muscle","Muscle"],//5
     ["Normal","Normal"],//6
-    ["Pyramidales","Pyramidal"],//7
-    ["Dégressive","Descending"],//8
-    ["Charge","Weight"],//9
+    ["Pyramidales ascendantes","Ascending Pyramids"],//7
+    ["Dégressive","Decreasing"],//8
+    ["Charge max"," Max weight"],//9
     ["Répétitions","Repeat"],//10
+    ["Pyramidale descendantes","Descending Pyramids"],//11
+    ["Série","Serie"],//12
+    ["Différence de charge entre les séries","The weight difference between the series"],//13
+    ["Différence de répétitions entre les séries","The repeat difference between the series"],//14
   ];
 
   static var titleGraphicsPage = [
@@ -108,6 +120,12 @@ class SourceLangage{
     ["Semaines","Weeks"],//5
     ["Années","Years"],//6
     ["Jours","Days"],//7
+  ];
+
+  static var titleRoutePage = [
+    ["Programme","Program"],//0
+    ["Exercice","Exercise"],//1
+    ["Série","Series"],//2
   ];
 
 }

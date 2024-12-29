@@ -3,8 +3,8 @@ import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
 import 'package:krives_project/core/data/repositories/custom_button1.dart';
 import 'package:krives_project/core/data/repositories/textfield_theme1.dart';
-import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
-import '../../../core/data/datasrouces/themes_color.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
+import '../../../core/theme/themes_color.dart';
 
 class SignUpPage extends StatefulWidget{
   const SignUpPage({super.key});

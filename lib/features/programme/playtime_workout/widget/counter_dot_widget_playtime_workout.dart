@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/themes_color.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
 
 class CounterDotWidgetPlaytimeWorkout extends StatelessWidget {
-  const CounterDotWidgetPlaytimeWorkout({super.key});
+  final bool isDone;
+  const CounterDotWidgetPlaytimeWorkout({
+    this.isDone = false,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +17,7 @@ class CounterDotWidgetPlaytimeWorkout extends StatelessWidget {
       height: 10,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: ThemesColor.themes[4][themeChoice]
+          color: ThemesColor.themes[4][themeChoice].withOpacity(isDone ? 1 : 0.5)
       ),
     );
   }

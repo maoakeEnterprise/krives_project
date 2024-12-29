@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/themes_color.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
 
 class WidgetPhotoUser extends StatelessWidget {
   const WidgetPhotoUser({super.key});

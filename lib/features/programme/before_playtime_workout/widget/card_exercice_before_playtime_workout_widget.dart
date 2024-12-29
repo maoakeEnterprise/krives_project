@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/data/datasrouces/themes_color.dart';
-import 'package:krives_project/core/data/datasrouces/themes_text_styles.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_card_exo_before_playtime_workout.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_widget_card_exercice_BPW.dart';
 
