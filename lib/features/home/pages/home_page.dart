@@ -8,7 +8,6 @@ import 'package:krives_project/features/home/widget/card_custom_home.dart';
 import 'package:krives_project/core/data/repositories/widget_scroll.dart';
 import 'package:krives_project/features/home/widget/title_widget_v2.dart';
 import 'package:krives_project/features/home/widget/title_wiget_v1.dart';
-import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/bloc/bloc_menu_widget/menu_widget_bloc.dart';
 
 class HomePage extends StatelessWidget {

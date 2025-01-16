@@ -21,7 +21,8 @@ class BasePage1 extends StatelessWidget {
     return Scaffold(
       appBar: AppBarCustom(
         title: title,
-        isCreateButton: arguments.isCreateButton,
+        isCreateExoButton: arguments.isCreateExoButton,
+        isCreateSeriesButton: arguments.isCreateSeriesButton,
         isProgramButton: arguments.isProgramButton,
       ),
       backgroundColor: ThemeCustom.colorThemes[1][chooseThemes],

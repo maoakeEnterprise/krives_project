@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/data/repositories/widget_scroll.dart';
-import 'package:krives_project/features/programme/programme%20series/widget/card_custom_exo.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/card_during_serie_custom.dart';
-import 'package:krives_project/features/programme/programme%20series/widget/card_type_series_custom.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/group_card_type_series_custom.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/number_series_widget.dart';
 import 'package:krives_project/features/programme/programme%20series/widget/text_field_custom_series.dart';
@@ -16,7 +13,7 @@ class ProgrammeSeries extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int langageChoice = 0;
-    int themeChoice = 0;
+    //int themeChoice = 0;
     return ListView(
       children: [
         TitleWidgetSeries(title: SourceLangage.titleSeriesPage[0][langageChoice],top: 16,),

@@ -6,10 +6,10 @@ import 'package:krives_project/features/connexion/page/connexion.dart';
 import 'package:krives_project/features/connexion/page/forgot_password_page.dart';
 import 'package:krives_project/features/connexion/page/new_password_page.dart';
 import 'package:krives_project/features/exercice/create%20exercice/page/create_exercise_page.dart';
-import 'package:krives_project/features/profil/page/profil_settings_page.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/page/before_playtime_workout_page.dart';
 import 'package:krives_project/features/programme/create%20programme/page/create_programme_page.dart';
 import 'package:krives_project/features/programme/playtime_workout/page/playtime_workout_page.dart';
+import 'package:krives_project/features/programme/program_user/page/programs_user.dart';
 import 'package:krives_project/features/programme/programme%20series/page/programme_series.dart';
 
 class RootApp extends StatelessWidget {
@@ -32,6 +32,7 @@ class RootApp extends StatelessWidget {
         '/connexion': (context) => const ConnexionPage(),
         '/forgot_password': (context) => const ForgotPasswordPage(),
         '/new_password': (context) => const NewPasswordPage(),
+        '/file_program': (context) => const BasePage1(child: ProgramsUser()),
       },
     );
   }

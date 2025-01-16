@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/features/home/widget/card_custom_home.dart';
 
 class WidgetScroll extends StatelessWidget {
   final double left;

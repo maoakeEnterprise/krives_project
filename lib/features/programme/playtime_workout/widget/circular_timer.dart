@@ -11,11 +11,11 @@ class CircularTimer extends StatefulWidget {
   final Color backgroundColor;
 
   const CircularTimer({
-    Key? key,
+    super.key,
     required this.initialDuration,
     this.color = Colors.blue,
     this.backgroundColor = Colors.grey,
-  }) : super(key: key);
+  });
 
   @override
   _CircularTimerState createState() => _CircularTimerState();

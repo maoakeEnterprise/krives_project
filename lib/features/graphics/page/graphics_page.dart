@@ -13,7 +13,7 @@ class GraphicsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int themeChoice = 0;
+    //int themeChoice = 0;
     int langageChoice = 0;
     return ListView(
       children: [

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/theme.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
-import 'package:krives_project/features/home/pages/home_page.dart';
 
 class TitleWidgetV2 extends StatelessWidget {
   final IconData icon;
