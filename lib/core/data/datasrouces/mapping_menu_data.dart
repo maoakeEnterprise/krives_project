@@ -4,6 +4,7 @@ class MappingMenuData{
 
   static Map<String,Icon> mapMenuData = {
     "Accueil": Icon(Icons.home),
+    "Tes Programmes": Icon(Icons.schema_rounded),
     "Profil": Icon(Icons.person),
     "Exercice": Icon(Icons.sports_handball),
     "Communauté": Icon(Icons.groups_rounded),

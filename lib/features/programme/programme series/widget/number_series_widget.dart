@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
-import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/programme%20series/bloc/number_series_widget/number_series_widget_bloc.dart';
 
 class NumberSeriesWidget extends StatelessWidget {

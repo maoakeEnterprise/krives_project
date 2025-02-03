@@ -10,7 +10,7 @@ class SourceLangage{
     ["Prénom","First name"],//6
     ["Numéro de téléphone","Phone number"],//7
     ["Inscription","Sign up"],//8
-    ["S'inscrire? ","Sign in? "],//9
+    ["S'inscrire? ","Sign up? "],//9
     ["Mot de passe oublié?","Forget password?"],//10
     ["Envoyer","Send"],//11
     ["Connecter","Sign in"],//12
@@ -47,12 +47,13 @@ class SourceLangage{
 
   static var titleMenuLangage = [
     ["Accueil","Home"],//0
-    ["Profil","Profile"],//1
-    ["Exercice","Exercise"],//2
-    ["Communauté","Community"],//3
-    ["IA Nutrition","Nutritive AI"],//4
-    ["IA Programme","Program AI"],//5
-    ["Suivi Graphique","Back Tracking"],//6
+    ["Tes Programmes","Your Programs"],//1
+    ["Profil","Profile"],//2
+    ["Exercice","Exercise"],//3
+    ["Communauté","Community"],//4
+    ["IA Nutrition","Nutritive AI"],//5
+    ["IA Programme","Program AI"],//6
+    ["Suivi Graphique","Back Tracking"],//7
   ];
 
   static var titleHomePagesLangage = [
@@ -126,6 +127,26 @@ class SourceLangage{
     ["Programme","Program"],//0
     ["Exercice","Exercise"],//1
     ["Série","Series"],//2
+  ];
+
+  static var titlePopUpFilterLangage = [
+    ["Filtre de recherche","Search filter"],//0
+    ["Trier par :","Sort by :"],//1
+    ["J'aime","Likes"],//2
+    ["Date de mise en ligne","Date of release"],//3
+    ["Nombre de commentaires","Number of comments"],//4
+    ["Afficher","Show"],//5
+  ];
+
+  static var titleProgramsUserLangageWithPopUp = [
+    ["Programmes de l'utilisateur","User programs"],//0
+    ["Enregistrer","Save"],//1
+    ["Créer un dossier","Create a folder"],//2
+    ["Ajouter un programme","Add a program"],//3
+    ["Créer un programme","Create a program"],//4
+    ["Titre du dossier","Folder title"],//5
+    ["Utilisateur","User"],//6
+    ["Enregistrer","Register"],//7
   ];
 
 }

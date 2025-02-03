@@ -5,6 +5,7 @@ import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo_bloc.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
+import 'package:krives_project/features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
 import 'package:krives_project/features/menu/bloc/side_menu_tile_bloc.dart';
 import 'package:krives_project/features/menu/widget/header_menu.dart';
 import 'package:krives_project/features/menu/widget/side_menu_tile.dart';
@@ -28,15 +29,17 @@ class MenuPage extends StatelessWidget {
     stateExercice() => context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());
     stateMenuButton(int index) => context.read<SideMenuTileBloc>().add(SideMenuTilePressed(index));
     stateInitEditExercice() => context.read<SwitchEditExoBloc>().add(SwitchEditExoEventInitPressed());
+    stateInitFilter() => context.read<SortByBloc>().add(SortByEventInitial());
 
     List<Function> onTap = [//list of functions who will be called when the user click on a menu item
           (){stateActionButton();onPageSelected(0);stateMenuButton(0);},
-          (){initialState();stateActionButton();onPageSelected(1);stateMenuButton(1);},
-          (){initialState();stateInitEditExercice();stateExercice();onPageSelected(2);stateMenuButton(2);},
-          (){initialState();stateActionButton();onPageSelected(3);stateMenuButton(3);},
-          (){initialState();stateActionButton();onPageSelected(0);stateMenuButton(4);},
+          (){stateActionButton();onPageSelected(1);stateMenuButton(1);},
+          (){initialState();stateActionButton();onPageSelected(2);stateMenuButton(2);},
+          (){initialState();stateInitEditExercice();stateExercice();onPageSelected(3);stateMenuButton(3);},
+          (){initialState();stateActionButton();stateInitFilter();onPageSelected(4);stateMenuButton(4);},
           (){initialState();stateActionButton();onPageSelected(0);stateMenuButton(5);},
-          (){initialState();stateActionButton();onPageSelected(4);stateMenuButton(6);},
+          (){initialState();stateActionButton();onPageSelected(0);stateMenuButton(6);},
+          (){initialState();stateActionButton();onPageSelected(5);stateMenuButton(7);},
     ];
 
     List<String> titleMenu = [
@@ -47,6 +50,7 @@ class MenuPage extends StatelessWidget {
       SourceLangage.titleMenuLangage[4][langageChoice],
       SourceLangage.titleMenuLangage[5][langageChoice],
       SourceLangage.titleMenuLangage[6][langageChoice],
+      SourceLangage.titleMenuLangage[7][langageChoice],
     ];
 
     return Drawer(
@@ -68,6 +72,7 @@ class MenuPage extends StatelessWidget {
           SideMenuTile(text: titleMenu[4],onTap: (){onTap[4]();},index: 4,),
           SideMenuTile(text: titleMenu[5],onTap: (){onTap[5]();},index: 5,),
           SideMenuTile(text: titleMenu[6],onTap: (){onTap[6]();},index: 6,),
+          SideMenuTile(text: titleMenu[7],onTap: (){onTap[7]();},index: 7,),
         ],
       ),
     );

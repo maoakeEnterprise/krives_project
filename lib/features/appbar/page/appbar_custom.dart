@@ -6,13 +6,15 @@ import 'package:krives_project/features/appbar/widget/action_button.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final String title;//title of the page
-  final bool isCreateButton;//false = edit, true = button check
+  final bool isCreateExoButton;//false = edit, true = button check
+  final bool isCreateSeriesButton;//false = edit, true = button check
   final bool isProgramButton;//false = nothing , true = button delete
 
   const AppBarCustom({
     super.key,
     required this.title,
-    this.isCreateButton = false,
+    this.isCreateExoButton = false,
+    this.isCreateSeriesButton = false,
     this.isProgramButton = false,
   });
 
@@ -25,12 +27,17 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title, style: ThemeCustom.textThemes[7][chooseThemes]),
       centerTitle: true,
       actions: [
+        if(isCreateSeriesButton)
+          ActionButton(iconName: 'check_series',),
+        if(isCreateExoButton)
+          ActionButton(iconName: 'check_exercice',),
+        if(isProgramButton)
+          ActionButton(iconName: 'check_program',),
+        if(!isCreateExoButton && !isCreateSeriesButton)
         BlocBuilder<ActionButtonBloc, ActionButtonState>(
           builder: (context, state) {
             String buttonName;
             buttonName = _getTheRightActionButton(context, state);
-            if(isCreateButton) buttonName = 'check';
-            if(isProgramButton) buttonName = 'delete';
             return buttonName != 'null' ? ActionButton(iconName: buttonName,) : Container();
           },
         ),

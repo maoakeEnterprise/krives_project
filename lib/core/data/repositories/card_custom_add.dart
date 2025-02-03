@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
-import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class CardCustomAdd extends StatelessWidget {
@@ -42,7 +41,7 @@ class CardCustomAdd extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(labelText!,style: ThemesTextStyles.themes[5][themeChoice],),
+            Text(labelText,style: ThemesTextStyles.themes[5][themeChoice],),
             SizedBox(width: 14,),
             Icon(Icons.add,color: ThemesColor.themes[7][themeChoice],)
           ],

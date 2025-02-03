@@ -7,9 +7,9 @@ class HeaderMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int choiceThemes = 0;
+    //int choiceThemes = 0;
 
-    return Container(
+    return SizedBox(
       height: 140,
       child: Row(
         children: [
