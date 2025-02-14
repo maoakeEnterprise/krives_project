@@ -18,11 +18,15 @@ import 'package:krives_project/features/programme/program_user/bloc/program_user
 import 'package:krives_project/features/programme/programme%20series/bloc/card_custom_exo/card_custom_exo_bloc.dart';
 import 'package:krives_project/features/programme/programme%20series/bloc/card_type_series/card_type_series_bloc.dart';
 import 'package:krives_project/features/programme/programme%20series/bloc/number_series_widget/number_series_widget_bloc.dart';
+import 'package:krives_project/features/signup/bloc/radio_button_gender_bloc.dart';
+import 'package:krives_project/firebase_options.dart';
 import 'package:krives_project/root_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -50,6 +54,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=> FilterBloc()),
         BlocProvider(create: (context)=> ExerciceBloc()),
         BlocProvider(create: (context)=> ProgramUserBloc()),
+        BlocProvider(create: (context)=> RadioButtonGenderBloc()),
       ],
   child: RootApp(),
 );

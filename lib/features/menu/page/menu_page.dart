@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/user_sport.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
@@ -12,9 +13,11 @@ import 'package:krives_project/features/menu/widget/side_menu_tile.dart';
 
 class MenuPage extends StatelessWidget {
   final Function(int) onPageSelected;
+  final UserSport userSport;
   const MenuPage({
     super.key,
-    required this.onPageSelected
+    required this.onPageSelected,
+    required this.userSport
   });
 
   @override
@@ -52,12 +55,11 @@ class MenuPage extends StatelessWidget {
       SourceLangage.titleMenuLangage[6][langageChoice],
       SourceLangage.titleMenuLangage[7][langageChoice],
     ];
-
     return Drawer(
       backgroundColor: ThemesColor.blackColor3,
       child: ListView(
         children: [
-          HeaderMenu(),
+          HeaderMenu(name: userSport.name, firstName: userSport.firstName,),
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             padding: EdgeInsets.fromLTRB(0, 0, 0, 21),

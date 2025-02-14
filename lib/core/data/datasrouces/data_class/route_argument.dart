@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/folders.dart';
-
 class RouteArgument {
   final int? idWordTitle;
   final String? titlePage;

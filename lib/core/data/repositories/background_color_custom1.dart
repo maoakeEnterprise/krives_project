@@ -20,7 +20,7 @@ class BackgroundColorCustom1 extends StatelessWidget {
             colors: [ThemesColor.blackColor1, ThemesColor.green1],
             stops: [0.1, 1],
           ),
-          color: ThemesColor.blackColor1.withOpacity(0.15),
+          color: ThemesColor.blackColor1.withValues(alpha: 0.15),
         ),
         child: child,
       ),

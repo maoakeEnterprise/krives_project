@@ -81,12 +81,14 @@ class CardCustomExercise extends StatelessWidget {
       ),
     );
   }
-  IconButton _switchEditExoButton(BuildContext context, SwitchEditExoState state) {
+
+  /*IconButton _switchEditExoButton(BuildContext context, SwitchEditExoState state) {
     return IconButton(
       onPressed: (){},
       icon: Icon(Icons.error),
     );
-  }
+  }*/
+
   bool _isEdit(SwitchEditExoState state){
     return state is SwitchEditExoOff;
   }

@@ -75,7 +75,7 @@ class _GraphWidgetState extends State<GraphWidget> {
               isStrokeCapRound: true,
               belowBarData: BarAreaData(
                 show: false,
-                color: ThemesColor.green1.withOpacity(0.01),
+                color: ThemesColor.green1.withValues(alpha: 0.01),
               )
             )
           ]

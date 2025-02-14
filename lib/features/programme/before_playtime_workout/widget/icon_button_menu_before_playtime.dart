@@ -4,7 +4,6 @@ import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/functions/function.dart';
 import 'package:krives_project/features/comment/page/comment_page.dart';
-import 'package:krives_project/features/programme/before_playtime_workout/bloc/bloc_like_program/like_program_bloc.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/bloc/register_program/register_program_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';

@@ -16,7 +16,7 @@ class CardCustomProfileSettings extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [BoxShadow(
           offset: Offset(0, 2),
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
           blurRadius: 5,
         )]
       ),

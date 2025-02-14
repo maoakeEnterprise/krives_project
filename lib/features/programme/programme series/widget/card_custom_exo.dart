@@ -77,7 +77,7 @@ class CardCustomExo extends StatelessWidget {
       color: ThemesColor.themes[0][themeChoice],
       boxShadow: [
         BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(alpha: 0.4),
             offset: Offset(1, 3),
             blurRadius: 5)
       ],

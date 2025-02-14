@@ -35,7 +35,7 @@ class CardCustomAdd extends StatelessWidget {
           boxShadow: [BoxShadow(
               offset: Offset(1,3),
               blurRadius: 5,
-              color: Colors.black.withOpacity(0.7)
+              color: Colors.black.withValues(alpha: 0.7)
           )]
         ),
         child: Row(

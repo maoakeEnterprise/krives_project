@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/theme/theme_data.dart';
+import 'package:krives_project/features/authentification/page/authentificationpage.dart';
 import 'package:krives_project/features/base/page/base_page.dart';
 import 'package:krives_project/features/base/page/base_page_1.dart';
-import 'package:krives_project/features/connexion/page/connexion.dart';
 import 'package:krives_project/features/connexion/page/forgot_password_page.dart';
 import 'package:krives_project/features/connexion/page/new_password_page.dart';
 import 'package:krives_project/features/exercice/create%20exercice/page/create_exercise_page.dart';
@@ -24,7 +24,7 @@ class RootApp extends StatelessWidget {
       theme: appTheme(),
       initialRoute: '/',
       routes: {
-        '/': (context) => const BasePage(),
+        '/': (context) => const Authentification(),
         '/sign_page': (context) => const SignUpPage(),
         '/exercise': (context) => const BasePage1(child: CreateExercisePage()),
         '/program': (context) => const BasePage1(child: CreateProgrammePage()),

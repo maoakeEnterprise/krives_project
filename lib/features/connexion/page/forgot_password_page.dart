@@ -17,12 +17,21 @@ class ForgotPasswordPage extends StatelessWidget{
 
     return Scaffold(
       body: BackgroundColorCustom1(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: emailController,),//Email
-            CustomButton1(labelText: SourceLangage.baseLangage[11][chooseLangage],textEditingController: textEditingControllers,)// Send
-          ]
+            Container(
+                margin: EdgeInsets.only(top: 40),
+                child: IconButton(onPressed: (){
+                  Navigator.pop(context);
+                }, icon: Icon(Icons.arrow_back,color: Colors.white,size: 30,))),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: emailController,),//Email
+                CustomButton1(labelText: SourceLangage.baseLangage[11][chooseLangage],textEditingController: textEditingControllers,)// Send
+              ]
+            ),
+          ],
         )
       ),
     );

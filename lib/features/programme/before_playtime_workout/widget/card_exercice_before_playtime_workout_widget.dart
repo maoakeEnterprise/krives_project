@@ -3,7 +3,7 @@ import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_card_exo_before_playtime_workout.dart';
-import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_widget_card_exercice_BPW.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_widget_card_exercice_before_playtime_workout.dart';
 
 class CardExerciceBeforePlaytimeWorkoutWidget extends StatelessWidget {
   const CardExerciceBeforePlaytimeWorkoutWidget({super.key});
@@ -28,7 +28,7 @@ class CardExerciceBeforePlaytimeWorkoutWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: ThemesColor.themesGradient[1][themeChoice],
-          color: ThemesColor.themes[0][themeChoice].withOpacity(0.3),
+          color: ThemesColor.themes[0][themeChoice].withValues(alpha: 0.3),
         ),
         child: Container(
           margin: EdgeInsets.fromLTRB(20, 20, 0, 20),
@@ -40,7 +40,7 @@ class CardExerciceBeforePlaytimeWorkoutWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MiniCardExoBeforePlaytimeWorkout(width: 70, height: 70,marginRight: 12,),
-                  MiniWidgetCardExerciceBPW(),
+                  MiniWidgetCardExerciceBeforePlaytimeWorkout(),
                   Spacer(),
                   Text("${SourceLangage.titleProgrammLangage[3][langageChoice]} : 15kg",style: ThemesTextStyles.themes[3][themeChoice],),
                   SizedBox(width: 20,),

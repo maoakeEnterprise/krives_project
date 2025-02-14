@@ -26,13 +26,14 @@ class ConnexionPage extends StatelessWidget {
         body: BackgroundColorCustom1(
           child: Column(
               children: [
+
                 CardViewLogoConnexion(),
                 TextFieldTheme1(labelText: SourceLangage.baseLangage[0][chooseLangage],controller: userNameController,),// Pseudo
                 TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: passwordController,),// Password
                 CustomButton1(labelText: SourceLangage.baseLangage[8][chooseLangage],textEditingController: controllers,),
                 Container(
                   constraints: BoxConstraints(
-                    maxWidth: 500
+                      maxWidth: 500
                   ),
                   margin: EdgeInsets.fromLTRB(55, 4, 41, 0),
                   child: Row(

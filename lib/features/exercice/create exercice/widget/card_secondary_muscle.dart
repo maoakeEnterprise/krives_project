@@ -17,7 +17,6 @@ class CardSecondaryMuscle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int them = 0;
     int langageChoice = 0;
     int themeChoice = 0;
     return BlocBuilder<ExerciceBloc, ExerciceState>(

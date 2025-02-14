@@ -17,7 +17,7 @@ class CounterDotWidgetPlaytimeWorkout extends StatelessWidget {
       height: 10,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: ThemesColor.themes[4][themeChoice].withOpacity(isDone ? 1 : 0.5)
+          color: ThemesColor.themes[4][themeChoice].withValues(alpha: isDone ? 1 : 0.5)
       ),
     );
   }

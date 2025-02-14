@@ -18,10 +18,10 @@ class CircularTimer extends StatefulWidget {
   });
 
   @override
-  _CircularTimerState createState() => _CircularTimerState();
+  CircularTimerState createState() => CircularTimerState();
 }
 
-class _CircularTimerState extends State<CircularTimer>
+class CircularTimerState extends State<CircularTimer>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late int _remainingDuration;

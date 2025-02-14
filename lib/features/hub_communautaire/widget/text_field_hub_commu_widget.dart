@@ -27,7 +27,7 @@ class TextFieldHubCommuWidget extends StatelessWidget {
                 BoxShadow(
                   offset: Offset(0, 5),
                   blurRadius: 5,
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: 0.3),
                 )
               ]
           ),

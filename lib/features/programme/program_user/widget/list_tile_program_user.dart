@@ -43,7 +43,7 @@ class ListTileProgramUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int langageChoice = 0;
-    int themeChoice = 0;
+    //int themeChoice = 0;
 
     String type = _getType(program, folder,typeDefault);
     String title = _getTitle(program, folder,typeDefault,langageChoice);
@@ -77,7 +77,6 @@ class ListTileProgramUser extends StatelessWidget {
         navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
       },
       "adding_program" : (){
-        print(program!.name);
         final arguments = ModalRoute.of(context)!.settings.arguments as RouteArgument?;
         context.read<ProgramUserBloc>().add(ButtonRegisterInFolder(program: program!, idUser: idUser, nameFolder: arguments!.nameFileProgram!));
         Navigator.of(context).pop();

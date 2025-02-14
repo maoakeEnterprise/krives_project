@@ -36,7 +36,7 @@ class CardCustomColor1 extends StatelessWidget{
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             gradient: ThemesColor.themesGradient[0][themeChoice],
-            color: ThemesColor.themes[0][themeChoice].withOpacity(0.07)
+            color: ThemesColor.themes[0][themeChoice].withValues(alpha: 0.07)
           ),
           child: child,
         ),
