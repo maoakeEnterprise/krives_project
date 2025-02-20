@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/profil/widget/widget_app_design.dart';
+import 'package:krives_project/features/profil/widget/widget_connexion.dart';
 import 'package:krives_project/features/profil/widget/widget_data_normal.dart';
 import 'package:krives_project/features/profil/widget/widget_settings_account.dart';
 import 'package:krives_project/features/profil/widget/widget_terms.dart';
@@ -26,7 +27,10 @@ class ProfilSettingsPage extends StatelessWidget {
           Text(SourceLangage.titleProfileLangage[2][langageChoice],style: ThemesTextStyles.themes[5][themeChoice],),
           WidgetAppDesign(),
           Text(SourceLangage.titleProfileLangage[3][langageChoice],style: ThemesTextStyles.themes[5][themeChoice],),
-          WidgetTerms()
+          WidgetTerms(),
+          //SizedBox(height: 20,),
+          Text(SourceLangage.titleProfileLangage[11][langageChoice],style: ThemesTextStyles.themes[5][themeChoice],),
+          WidgetConnexion(),
         ],
       ),
     );

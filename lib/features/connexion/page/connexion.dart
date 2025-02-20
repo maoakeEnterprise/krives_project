@@ -13,7 +13,7 @@ class ConnexionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int chooseLangage = 1;
+    int chooseLangage = 0;
     TextEditingController userNameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
@@ -28,9 +28,9 @@ class ConnexionPage extends StatelessWidget {
               children: [
 
                 CardViewLogoConnexion(),
-                TextFieldTheme1(labelText: SourceLangage.baseLangage[0][chooseLangage],controller: userNameController,),// Pseudo
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: userNameController,),// Pseudo
                 TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: passwordController,),// Password
-                CustomButton1(labelText: SourceLangage.baseLangage[8][chooseLangage],textEditingController: controllers,),
+                CustomButton1(labelText: SourceLangage.baseLangage[12][chooseLangage],textEditingController: controllers,),
                 Container(
                   constraints: BoxConstraints(
                       maxWidth: 500
@@ -60,4 +60,5 @@ class ConnexionPage extends StatelessWidget {
         ),
     );
   }
+
 }

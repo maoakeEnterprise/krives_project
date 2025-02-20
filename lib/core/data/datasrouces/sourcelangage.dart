@@ -81,6 +81,9 @@ class SourceLangage{
     ["Abonnement","Subscription"],//8
     ["Thème de l'application","app themes"],//9
     ["Terme et confidentialité","Confidential and terms"],//10
+    ["Gestion de compte","Account management"],//11
+    ["Se déconnecter","Disconnect"],//12
+    ["Suppression de compte ","Delete account"],//13
   ];
 
   static var titleProgrammLangage = [
