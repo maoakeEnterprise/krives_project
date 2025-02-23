@@ -29,7 +29,7 @@ class ConnexionPage extends StatelessWidget {
 
                 CardViewLogoConnexion(),
                 TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: userNameController,),// Pseudo
-                TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: passwordController,),// Password
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: passwordController,obscureText: true,),// Password
                 CustomButton1(labelText: SourceLangage.baseLangage[12][chooseLangage],textEditingController: controllers,),
                 Container(
                   constraints: BoxConstraints(

@@ -109,10 +109,12 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[1][chooseLangage],
               controller: passwordController,
+              obscureText: true,
             ), //Password
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[2][chooseLangage],
               controller: confirmPasswordController,
+              obscureText: true,
             ), //Re password
             ButtonSignUpValidate(
               labelText: SourceLangage.baseLangage[8][chooseLangage],

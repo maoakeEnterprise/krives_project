@@ -3,8 +3,8 @@ import 'package:krives_project/core/theme/theme_data.dart';
 import 'package:krives_project/features/authentification/page/authentificationpage.dart';
 import 'package:krives_project/features/base/page/base_page.dart';
 import 'package:krives_project/features/base/page/base_page_1.dart';
+import 'package:krives_project/features/connexion/page/connexion.dart';
 import 'package:krives_project/features/connexion/page/forgot_password_page.dart';
-import 'package:krives_project/features/connexion/page/new_password_page.dart';
 import 'package:krives_project/features/exercice/create%20exercice/page/create_exercise_page.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/page/before_playtime_workout_page.dart';
 import 'package:krives_project/features/programme/create%20programme/page/create_programme_page.dart';
@@ -25,6 +25,7 @@ class RootApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const Authentification(),
+        '/login': (context) => const ConnexionPage(),
         '/sign_page': (context) => const SignUpPage(),
         '/exercise': (context) => const BasePage1(child: CreateExercisePage()),
         '/program': (context) => const BasePage1(child: CreateProgrammePage()),
@@ -33,7 +34,6 @@ class RootApp extends StatelessWidget {
         '/before_workout_playtime': (context) => const BasePage1(child: BeforePlaytimeWorkoutPage()),
         '/home': (context) => const BasePage(),
         '/forgot_password': (context) => const ForgotPasswordPage(),
-        '/new_password': (context) => const NewPasswordPage(),
         '/file_program': (context) =>const BasePage1(child: ProgramsUser()),
       },
     );

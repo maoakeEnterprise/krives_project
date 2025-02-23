@@ -30,6 +30,7 @@ class SourceLangage{
     ["Répondre","Answer"],//26
     ["Ajouter un commentaire...","Add a comment..."],//27
     ["Valider la série ?","Confirm the serie ?"],//28
+    ["Entrer votre mot de passe","Enter your password"],//29
   ];
 
   static var titleHeaderPageLangage = [

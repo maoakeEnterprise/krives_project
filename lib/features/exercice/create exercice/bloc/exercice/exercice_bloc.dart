@@ -32,7 +32,7 @@ class ExerciceBloc extends Bloc<ExerciceEvent, ExerciceState> {
     });
     on<SuppressExercice>((event, emit) {
       // TODO: implement event handler
-      event.exercises.removeExerciseById(event.index);
+      //event.exercises.removeExerciseById(event.index);
       emit(ExerciceValidate(exercises: event.exercises));
     });
     on<ConfirmExercice>((event, emit) {
@@ -40,9 +40,9 @@ class ExerciceBloc extends Bloc<ExerciceEvent, ExerciceState> {
       exercice.name = event.nameExercice;
       exercice.video = event.commentaryExercice;
       if (event.index != null) {
-        event.exercises.modifyExercice(exercice, event.index!);
+        //event.exercises.modifyExercice(exercice, event.index!);
       } else {
-        event.exercises.addExercise(exercice);
+        //event.exercises.addExercise(exercice);
       }
       emit(ExerciceValidate(exercises: event.exercises));
     });

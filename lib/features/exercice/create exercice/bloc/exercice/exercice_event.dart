@@ -23,7 +23,7 @@ class ExerciceModifyItemPressed extends ExerciceEvent {
 }
 
 class ExerciceNewItem extends ExerciceEvent {
-  final Exercice exercice = Exercice("",muscleData[0],[],"");
+  final Exercice exercice = Exercice("",muscleData[0],[],"","","");
   final Exercises exercises;
   ExerciceNewItem(this.exercises);
 }

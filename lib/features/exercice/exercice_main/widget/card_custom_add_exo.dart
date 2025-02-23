@@ -8,8 +8,7 @@ import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice
 import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo_bloc.dart';
 
 class CardCustomAddExo extends StatelessWidget {
-  final Exercises exercises;
-  const CardCustomAddExo({super.key, required this.exercises});
+  const CardCustomAddExo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class CardCustomAddExo extends StatelessWidget {
         TextEditingController nameController = TextEditingController();
         TextEditingController videoController = TextEditingController();
         context.read<SwitchEditExoBloc>().add(SwitchEditExoEventInitPressed());
-        context.read<ExerciceBloc>().add(ExerciceNewItem(exercises));
+        //context.read<ExerciceBloc>().add(ExerciceNewItem(exercises));
         navigateToPage(context, 'exercise', RouteArgument(titlePage: "Nom Exercice",isCreateExoButton: true,controllerNameExercice: nameController,controllerCommentaryExercice: videoController ));
       },
     );

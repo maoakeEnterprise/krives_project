@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/user_sport.dart';
 import 'package:krives_project/core/data/datasrouces/mapping_root.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
+import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
 import 'package:krives_project/features/appbar/page/appbar_custom.dart';
 import 'package:krives_project/core/theme/theme.dart';
 import 'package:krives_project/features/menu/page/menu_page.dart';
@@ -39,6 +40,14 @@ class _BasePageState extends State<BasePage> {
       builder: (context, snapshot) {
         if(snapshot.hasData){
           var list = snapshot.data!.docs.map((doc) => doc.data()).toList();
+          if(list.isEmpty){
+            return Scaffold(
+              body: BackgroundColorCustom1(
+                  child: Center(
+                      child: CircularProgressIndicator())
+              ),
+            );
+          }
           UserSport userSport = UserSport.fromMap(list[0]);
 
           return Scaffold(

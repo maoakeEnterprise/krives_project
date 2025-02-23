@@ -1,15 +1,35 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/exercice.dart';
 
 class Exercises {
-  List<Exercice> listExercise = [];
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+  Future<List<Exercice>> getExercicesByIdUser(String idUser) async {
+    try{
+      final exercicesCollection = await _fireStore.collection('exercices').where('id_user', isEqualTo: idUser).get();
+      List<Map<String, dynamic>> exercises = exercicesCollection.docs.map((doc) => doc.data()).toList();
+      List<Exercice> listExercice = fromMap(exercises);
+      return listExercice;
+    }
+    catch(e){
+      log('$e');
+      rethrow;
+    }
 
-  Exercises(this.listExercise);
+  }
 
-  Exercises copyWith({List<Exercice>? listExercise}) => Exercises(listExercise ?? this.listExercise);
+  CollectionReference<Map<String, dynamic>> getDocExercices(){
+    return _fireStore.collection('exercices');
+  }
 
-  void addExercise(Exercice exercice) => listExercise.add(exercice);
-  void removeExerciseByExercice(Exercice exercice) => listExercise.remove(exercice);
-  void removeExerciseById(int index) => listExercise.remove(listExercise[index]);
-  void modifyExercice(Exercice exercice, int index) => listExercise[index] = exercice;
-  void replaceListExercice(List<Exercice> listExercice) => listExercise = listExercice;
+  static List<Exercice> fromMap(List<Map<String, dynamic>> map){
+    List<Exercice> listExercice = [];
+    Exercice exercice;
+    for(int i = 0; i < map.length; i++){
+      exercice = Exercice.fromMap(map[i]);
+      listExercice.add(exercice);
+    }
+    return  listExercice;
+  }
 }

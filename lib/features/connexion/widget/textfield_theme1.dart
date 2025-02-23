@@ -7,8 +7,10 @@ import 'package:krives_project/core/theme/themes_text_styles.dart';
 class TextFieldTheme1 extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
+  final bool obscureText;
   const TextFieldTheme1({
     super.key,
+    this.obscureText=false,
     required this.labelText,
     required this.controller,
   });
@@ -35,6 +37,8 @@ class TextFieldTheme1 extends StatelessWidget {
           ]
         ),
         child: TextField(
+          obscureText: obscureText,
+          obscuringCharacter: '•',
           controller: controller,
           style: ThemesTextStyles.textBigWhite,
           cursorColor: ThemesColor.white,
