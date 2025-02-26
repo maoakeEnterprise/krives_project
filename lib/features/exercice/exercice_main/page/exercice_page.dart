@@ -1,47 +1,40 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercice.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercices.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice/exercice_bloc.dart';
+import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/widget/card_custom_add_exo.dart';
 import 'package:krives_project/features/exercice/exercice_main/widget/card_custom_exercise.dart';
 
-class ExercicePage extends StatelessWidget {
+class ExercicePage extends StatefulWidget {
   const ExercicePage({super.key});
 
   @override
+  State<ExercicePage> createState() => _ExercicePageState();
+}
+
+class _ExercicePageState extends State<ExercicePage> {
+
+  @override
+  void initState(){
+    super.initState();
+    context.read<ExerciseServBloc>().add(LoadExercises());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<Exercice> exercises;
-    Exercises exercicesService = Exercises();
-    final exercicesDoc = exercicesService.getDocExercices();
-    final idUser = FirebaseAuth.instance.currentUser!.uid;
 
-
-    return BlocBuilder<ExerciceBloc, ExerciceState>(
-      builder: (context, state) {
-        return StreamBuilder(
-          stream: exercicesDoc.where('id_user',isEqualTo: idUser).snapshots(),
-          builder: (context, snapshot) {
-
-            if(snapshot.hasError){
-              return const Center(child: Text("Error"),);
-            }
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return const Center(child: CircularProgressIndicator(),);
-            }
-
-            final exercicesMap = snapshot.data!.docs.map((doc) => doc.data()).toList();
-            exercises = Exercises.fromMap(exercicesMap);
-
+    return BlocConsumer<ExerciseServBloc,ExerciseServState>(
+        builder: (context,state){
+          if(state is ExerciseLoading){
+            return const Center(child: CircularProgressIndicator(),);
+          }
+          if(state is ExerciseLoaded){
             return Container(
               width: 380,
-              constraints: BoxConstraints(maxWidth: 500),
-              margin: EdgeInsets.fromLTRB(0, 31, 25, 0),
+              constraints: BoxConstraints(maxWidth: 500), margin: EdgeInsets.fromLTRB(0, 31, 25, 0),
               child: ListView.builder(
-                itemCount: exercises.length + 1,
+                itemCount: state.exercises.length + 1,
                 itemBuilder: (context, index) {
-                  if (index == exercises.length) {
+                  if (index == state.exercises.length) {
                     return Column(
                       children: [
                         CardCustomAddExo(),
@@ -51,10 +44,7 @@ class ExercicePage extends StatelessWidget {
                   } else {
                     return Column(
                       children: [
-                        CardCustomExercise(
-                          exercice: exercises[index].copyWith(),
-                          index: index,
-                        ),
+                        CardCustomExercise(exercise: state.exercises[index],),
                         SizedBox(height: 14,),
                       ],
                     );
@@ -63,8 +53,10 @@ class ExercicePage extends StatelessWidget {
               ),
             );
           }
-        );
-      },
-    );
+          return Container();
+        },
+        listener: (context,state){
+
+        });
   }
 }

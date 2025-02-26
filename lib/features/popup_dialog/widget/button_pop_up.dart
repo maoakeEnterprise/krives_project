@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercices.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercises.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice/exercice_bloc.dart';
 
 class ButtonPopUp extends StatelessWidget {
   final bool isConfirmButton;
-  final bool isExerciceDelete;
-  final int index;
   final String text;
-  final Exercises? exercises;
+  final Exercise exercise;
   const ButtonPopUp({
     super.key,
     required this.text,
-    this.isExerciceDelete = false,
     this.isConfirmButton = false,
-    this.index = 0,
-    this.exercises,
+    required this.exercise,
   });
 
   @override
   Widget build(BuildContext context) {
     int chooseThemes = 0;
-    VoidCallback onTap = isConfirmButton ? (){
-      confirmDelete(context,isExerciceDelete,index,exercises);
-    } : (){closePopUp(context);};
     Color color = isConfirmButton ? ThemesColor.themes[5][chooseThemes] : ThemesColor.themes[1][chooseThemes];
     return GestureDetector(
-      onTap: onTap,
+      onTap: (){
+        ButtonActionServices.isConfirmDeleteOrCancelButtonExercise(context, exercise, isConfirmButton);
+      },
       child: Container(
         width: 150,
         height: 30,

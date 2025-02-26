@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/user_sport.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo_bloc.dart';
+import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
 import 'package:krives_project/features/menu/bloc/side_menu_tile_bloc.dart';
@@ -13,7 +13,7 @@ import 'package:krives_project/features/menu/widget/side_menu_tile.dart';
 
 class MenuPage extends StatelessWidget {
   final Function(int) onPageSelected;
-  final UserSport userSport;
+  final KrivesUser userSport;
   const MenuPage({
     super.key,
     required this.onPageSelected,

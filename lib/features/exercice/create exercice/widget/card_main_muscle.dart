@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
+import 'package:krives_project/core/services/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice/exercice_bloc.dart';
-class CardMainMuscle extends StatelessWidget {
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
+class CardMainMuscle extends StatefulWidget {
   final int index;
   final Muscle muscle;
 
@@ -15,27 +17,22 @@ class CardMainMuscle extends StatelessWidget {
   });
 
   @override
+  State<CardMainMuscle> createState() => _CardMainMuscleState();
+}
+
+class _CardMainMuscleState extends State<CardMainMuscle> {
+  int themeChoice = 0;
+  int langageChoice = 0;
+  bool isSelectedResponse = false;
+  @override
   Widget build(BuildContext context) {
-    int themeChoice = 0;
-    int langageChoice = 0;
-    return BlocBuilder<ExerciceBloc, ExerciceState>(
+
+    return BlocBuilder<PrintExerciseBloc, PrintExerciseState>(
       builder: (context, state) {
-        bool isSelectedResponse = isSelected(state);
+        isSelectedResponse = ChangeWidgetServices.isSelectedMainMuscle(state, widget.muscle);
         return GestureDetector(
           onTap: (){
-            if(state is ExerciceLoad){
-              context.read<ExerciceBloc>().add(ExerciceModifyItemPressed(
-                  exercises: state.exercises,
-                  exercice: state.exercice,
-                  muscle: muscle,
-                  index: state.index));
-            }
-            if(state is ExerciceTransfer){
-              context.read<ExerciceBloc>().add(ExerciceModifyItemPressed(exercises: state.exercises,
-                  exercice: state.exercice,
-                  muscle: muscle,
-                  index: state.index));
-            }
+            ButtonActionServices.modifyMainMuscle(state: state, muscle: widget.muscle, context: context);
             },
           child: Container(
             width: 180,
@@ -65,20 +62,14 @@ class CardMainMuscle extends StatelessWidget {
                       color: ThemesColor.themes[0][themeChoice],
                       borderRadius: BorderRadius.circular(7)
                   ),
-                  child: Image.asset(muscle.imageMuscle, fit: BoxFit.cover,),
+                  child: Image.asset(widget.muscle.imageMuscle, fit: BoxFit.cover,),
                 ),
-                Text(muscle.nameMuscle[langageChoice], style: ThemesTextStyles.themes[5][themeChoice],)
+                Text(widget.muscle.nameMuscle[langageChoice], style: ThemesTextStyles.themes[5][themeChoice],)
               ],
             ),
           ),
         );
       },
     );
-  }
-
-  bool isSelected(ExerciceState state) {
-    return state is ExerciceTransfer && state.exercice.mainMuscle == muscle
-    ||
-        state is ExerciceLoad && state.exercice.mainMuscle == muscle;
   }
 }

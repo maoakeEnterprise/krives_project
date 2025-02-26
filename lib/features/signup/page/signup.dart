@@ -18,23 +18,35 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   int chooseLangage = 0;
   final int _value = 1;
+  final TextEditingController _pseudoController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _pseudoController.dispose();
+    _emailController.dispose();
+    _nameController.dispose();
+    _firstNameController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController pseudoController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController firstNameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController confirmPasswordController = TextEditingController();
+
 
     Map<String, TextEditingController> controllers = {
-      'pseudo': pseudoController,
-      'email': emailController,
-      'name': nameController,
-      'firstName': firstNameController,
-      'password': passwordController,
-      'confirmPassword': confirmPasswordController,
+      'pseudo': _pseudoController,
+      'email': _emailController,
+      'name': _nameController,
+      'firstName': _firstNameController,
+      'password': _passwordController,
+      'confirmPassword': _confirmPasswordController,
     };
 
     return Scaffold(
@@ -57,19 +69,19 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[0][chooseLangage],
-              controller: pseudoController,
+              controller: _pseudoController,
             ), //Pseudo
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[3][chooseLangage],
-              controller: emailController,
+              controller: _emailController,
             ), //Email
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[5][chooseLangage],
-              controller: nameController,
+              controller: _nameController,
             ), //Name
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[6][chooseLangage],
-              controller: firstNameController,
+              controller: _firstNameController,
             ), //First Name
             Container(
               margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -108,12 +120,12 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[1][chooseLangage],
-              controller: passwordController,
+              controller: _passwordController,
               obscureText: true,
             ), //Password
             TextFieldTheme1(
               labelText: SourceLangage.baseLangage[2][chooseLangage],
-              controller: confirmPasswordController,
+              controller: _confirmPasswordController,
               obscureText: true,
             ), //Re password
             ButtonSignUpValidate(

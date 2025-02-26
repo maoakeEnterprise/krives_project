@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
+import 'package:krives_project/core/services/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice/exercice_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
 
 class CardSecondaryMuscle extends StatelessWidget {
   final int index;
@@ -19,27 +21,12 @@ class CardSecondaryMuscle extends StatelessWidget {
   Widget build(BuildContext context) {
     int langageChoice = 0;
     int themeChoice = 0;
-    return BlocBuilder<ExerciceBloc, ExerciceState>(
+    return BlocBuilder<PrintExerciseBloc, PrintExerciseState>(
       builder: (context, state) {
-        bool isSelectedResponse = _isInTheList(state);
+        bool isSelectedResponse = ChangeWidgetServices.isSelectedSecondaryMuscle(state, muscle);
         return GestureDetector(
           onTap: () {
-            if(state is ExerciceLoad){
-              context.read<ExerciceBloc>().add(ExerciceModifyItemPressed(
-                  exercice: state.exercice,
-                  exercises: state.exercises,
-                  muscle: muscle,
-                  index: state.index,
-                  listMuscle: true));
-            }
-            if(state is ExerciceTransfer){
-              context.read<ExerciceBloc>().add(ExerciceModifyItemPressed(
-                  exercice: state.exercice,
-                  exercises: state.exercises,
-                  muscle: muscle,
-                  index: state.index,
-                  listMuscle: true));
-            }
+            ButtonActionServices.modifySecondaryMuscle(state: state, muscle: muscle, context: context);
             },
           child: Container(
             width: 100,
@@ -77,12 +64,6 @@ class CardSecondaryMuscle extends StatelessWidget {
         );
       },
     );
-  }
-  bool _isInTheList(ExerciceState state){
-
-    return state is ExerciceTransfer && state.exercice.secondariesMuscles.contains(muscle)
-        ||
-        state is ExerciceLoad && state.exercice.secondariesMuscles.contains(muscle);
   }
 
 }

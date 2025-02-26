@@ -7,7 +7,7 @@ import 'package:krives_project/features/exercice/create%20exercice/widget/widget
 import 'package:krives_project/features/exercice/create%20exercice/widget/widget_scroll_secondary_muscle.dart';
 
 class CreateExercisePage extends StatelessWidget {
-  const CreateExercisePage({super.key,});
+  const CreateExercisePage({super.key});
 
   @override
   Widget build(BuildContext context) {

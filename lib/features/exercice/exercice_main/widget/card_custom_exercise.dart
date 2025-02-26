@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercice.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
-import 'package:krives_project/core/functions/function.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
+import 'package:krives_project/core/services/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo_bloc.dart';
-import 'package:krives_project/features/popup_dialog/page/pop_up_delete.dart';
+import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 
 class CardCustomExercise extends StatelessWidget {
-  final Exercice exercice;
-  final int index;
-  const CardCustomExercise({super.key, required this.exercice,required this.index});
+  final Exercise exercise;
+  const CardCustomExercise({super.key, required this.exercise});
 
   @override
   Widget build(BuildContext context) {
     int langageChoice = 0;
     int themeChoice = 0;
-    Image imgMuscle =Image.asset(exercice.mainMuscle.imageMuscle, fit: BoxFit.cover,);
+    Image imgMuscle =Image.asset(exercise.mainMuscle.imageMuscle, fit: BoxFit.cover,);
 
     return CardCustomColor1(
       width: 380,
@@ -47,9 +45,11 @@ class CardCustomExercise extends StatelessWidget {
                   Container(width: 150,),
                   BlocBuilder<SwitchEditExoBloc, SwitchEditExoState>(
                     builder: (context, state) {
-                      bool isEditResponse = _isEdit(state);
+                      bool isEditResponse = ChangeWidgetServices.isEditOrDeleteModeExercise(state);
                       return IconButton(
-                        onPressed: isEditResponse ? _settingsOnPressed(context) : _deleteOnPressed(context),
+                        onPressed: (){
+                          ButtonActionServices.isSettingOrDeleteExerciseFunction(context, state, exercise);
+                        },
                         icon: Icon(isEditResponse ? Icons.settings : Icons.delete,
                           size: 20,
                           color: ThemesColor.themes[7][themeChoice],),
@@ -58,13 +58,13 @@ class CardCustomExercise extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(exercice.name, style: ThemesTextStyles.themes[5][themeChoice],),
+              Text(exercise.name, style: ThemesTextStyles.themes[5][themeChoice],),
               SizedBox(height: 10,),
-              Text(exercice.mainMuscle.nameMuscle[langageChoice], style: ThemesTextStyles.themes[3][themeChoice],),
+              Text(exercise.mainMuscle.nameMuscle[langageChoice], style: ThemesTextStyles.themes[3][themeChoice],),
               SizedBox(
                 width: 190,
                 child: Text(
-                  exercice.video,
+                  exercise.video,
                   style: ThemesTextStyles.themes[4][themeChoice],
                   softWrap: true,
                   maxLines: 4,
@@ -77,29 +77,5 @@ class CardCustomExercise extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  bool _isEdit(SwitchEditExoState state){
-    return state is SwitchEditExoOff;
-  }
-  VoidCallback _settingsOnPressed(BuildContext context){
-    TextEditingController nameController = TextEditingController();
-    TextEditingController videoController = TextEditingController();
-    return (){
-      //context.read<ExerciceBloc>().add(ExerciceItemSelected(exercice: exercice,exercises: exercices,index: index));
-      navigateToPage(context, 'exercise', RouteArgument(
-          titlePage: exercice.name, isCreateExoButton: true,controllerNameExercice: nameController,controllerCommentaryExercice: videoController));
-    };
-  }
-  VoidCallback _deleteOnPressed(BuildContext context){
-    return (){
-      showDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context){
-            return PopUpDelete(isExerciceDelete: true,index: index,);
-          }
-      );
-    };
   }
 }

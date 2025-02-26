@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/services/change_widget_services.dart';
+import 'package:krives_project/core/services/function_services.dart';
 import 'dart:math';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/exercice/exercice_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
 
-class TextFieldNameExo extends StatelessWidget {
+class TextFieldNameExo extends StatefulWidget {
   final String labelText;
   const TextFieldNameExo({
     super.key,
@@ -15,12 +17,20 @@ class TextFieldNameExo extends StatelessWidget {
   });
 
   @override
+  State<TextFieldNameExo> createState() => _TextFieldNameExoState();
+}
+
+class _TextFieldNameExoState extends State<TextFieldNameExo> {
+  int chooseLangage = 0;
+  int randomIntForTrolling = Random().nextInt(SourceLangage.trollLangage.length);
+  RouteArgument _arguments = RouteArgument();
+  TextEditingController _nameController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context)?.settings.arguments as RouteArgument;
-    int chooseLangage = 0;
-    int randomIntForTrolling = Random().nextInt(
-        SourceLangage.trollLangage.length);
-    TextEditingController textEditingController = arguments.controllerNameExercice!;
+    _arguments = FunctionServices.getArgument(context);
+    _nameController = _arguments.controllerNameExercice!;
+
     return Container(
       padding: EdgeInsets.fromLTRB(41, 0, 41, 0),
       child: Container(
@@ -36,17 +46,15 @@ class TextFieldNameExo extends StatelessWidget {
               )
             ]
         ),
-        child: BlocBuilder<ExerciceBloc, ExerciceState>(
+        child: BlocBuilder<PrintExerciseBloc, PrintExerciseState>(
           builder: (context, state) {
-            textEditingController.text = state is ExerciceLoad ? state.exercice.name : textEditingController.text;
+            _nameController = ChangeWidgetServices.resetControllersExercise(state, _nameController);
             return TextField(
-              controller: textEditingController,
+              controller: _nameController,
               style: ThemesTextStyles.textBigWhite,
               cursorColor: ThemesColor.white,
               decoration: InputDecoration(
-                //suffixIcon: const Icon(Icons.clear_rounded),
-                //suffixIconColor: Colors.white,
-                  labelText: labelText,
+                  labelText: widget.labelText,
                   labelStyle: ThemesTextStyles.textBigWhite,
                   hintText: SourceLangage
                       .trollLangage[randomIntForTrolling][chooseLangage],
@@ -68,5 +76,4 @@ class TextFieldNameExo extends StatelessWidget {
       ),
     );
   }
-
 }

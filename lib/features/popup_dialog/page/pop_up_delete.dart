@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercices.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/popup_dialog/widget/button_pop_up.dart';
@@ -7,14 +7,10 @@ import 'package:krives_project/features/popup_dialog/widget/button_pop_up.dart';
 import '../../../core/theme/themes_text_styles.dart';
 
 class PopUpDelete extends StatelessWidget {
-  final bool isExerciceDelete;
-  final int index;
-  final Exercises? exercises;
+  final Exercise exercise;
   const PopUpDelete({
     super.key,
-    this.isExerciceDelete = false,
-    this.index = 0,
-    this.exercises,
+    required this.exercise,
   });
 
   @override
@@ -38,14 +34,12 @@ class PopUpDelete extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ButtonPopUp(text: SourceLangage.baseLangage[24][chooseLangage],),
+                ButtonPopUp(text: SourceLangage.baseLangage[24][chooseLangage],exercise: exercise,),
                 SizedBox(width: 18,),
                 ButtonPopUp(
                   isConfirmButton: true,
-                  isExerciceDelete: isExerciceDelete,
                   text: SourceLangage.baseLangage[23][chooseLangage],
-                  exercises: exercises,
-                  index: index,
+                  exercise: exercise,
                 ),
               ],
             )

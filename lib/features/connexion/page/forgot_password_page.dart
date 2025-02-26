@@ -4,15 +4,30 @@ import 'package:krives_project/core/data/repositories/background_color_custom1.d
 import 'package:krives_project/features/connexion/widget/custom_button1.dart';
 import 'package:krives_project/features/connexion/widget/textfield_theme1.dart';
 
-class ForgotPasswordPage extends StatelessWidget{
+class ForgotPasswordPage extends StatefulWidget{
   const ForgotPasswordPage({super.key});
+
+  @override
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+
+  int chooseLangage = 0;
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context){
-    int chooseLangage = 0;
-    TextEditingController emailController = TextEditingController();
+
 
     Map<String, TextEditingController> textEditingControllers = {
-      "email": emailController,
+      "email": _emailController,
     };
 
     return Scaffold(
@@ -27,7 +42,7 @@ class ForgotPasswordPage extends StatelessWidget{
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: emailController,),//Email
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: _emailController,),//Email
                 CustomButton1(labelText: SourceLangage.baseLangage[11][chooseLangage],textEditingController: textEditingControllers,)// Send
               ]
             ),

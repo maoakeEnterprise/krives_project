@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserSport {
+class KrivesUser {
   String id;
   String pseudo;
   String name;
@@ -17,7 +17,7 @@ class UserSport {
   String password;
   List<String> allergies;
 
-  UserSport({
+  KrivesUser({
     this.id="",
     required this.pseudo,
     required this.name,
@@ -38,7 +38,7 @@ class UserSport {
       'pseudo': pseudo,
       'name': name,
       'firstName': firstName,
-      'birthDate': birthDate,
+      'birthDate': Timestamp.fromDate(birthDate),
       'age': age,
       'sex': sex,
       'email': email,
@@ -49,8 +49,8 @@ class UserSport {
     };
   }
 
-  static UserSport fromMap(Map<String, dynamic> map){
-    return UserSport(
+  static KrivesUser fromMap(Map<String, dynamic> map){
+    return KrivesUser(
       id: map['id'],
       pseudo: map['pseudo'],
       name: map['name'],
@@ -66,28 +66,12 @@ class UserSport {
     );
   }
 
-  Future<void> createUserWithEmailAndPassword(UserSport newUser) async {
-    Map<String,String> mapError = {
-      'email-already-in-use': 'Email already use',
-      'invalid-email': 'Invalid email address',
-      'weak-password': 'The password is weak',
-    };
-    try {
-      final credentials = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: newUser.email, password: newUser.password,);
-      newUser.id = credentials.user!.uid;
-
-      final db = FirebaseFirestore.instance;
-
-      await db.collection('users').doc(newUser.id).set(newUser.toMap());
-    } on FirebaseAuthException catch (error){
-
-      if(error.code.contains(mapError.keys as Pattern) ){
-        log(mapError[error.code]!);
-      }
-    } catch (error) {
-      log(error.toString());
-    }
+  Future<void> createUserWithEmailAndPassword() async {
+    final credentials = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password,);
+    id = credentials.user!.uid;
+    final db = FirebaseFirestore.instance;
+    await db.collection('users').doc(id).set(toMap());
   }
   void logUserProperties() {
     log('User Properties:');
@@ -103,10 +87,9 @@ class UserSport {
     log('  Height: $height');
     log('  Password: $password');
     log('  Allergies: ${allergies.join(', ')}');
-
   }
 
-  UserSport copyWith({
+  KrivesUser copyWith({
     String? id,
     String? name,
     String? pseudo,
@@ -120,7 +103,7 @@ class UserSport {
     String? password,
     List<String>? allergies,
   }) {
-    return UserSport(
+    return KrivesUser(
       id: id ?? this.id,
       name: name ?? this.name,
       pseudo: pseudo ?? this.pseudo,
@@ -134,6 +117,24 @@ class UserSport {
       password: password ?? this.password,
       allergies: allergies ?? this.allergies,
     );
+  }
+
+  static String getGender(int genderSelected) {
+    return genderSelected == 1 ? "Man" : "Woman";
+  }
+
+  static KrivesUser createUser(Map<String, String> map, int genderSelected) {
+    KrivesUser user;
+    user = KrivesUser(
+      pseudo: map["pseudo"]!,
+      name: map["name"]!,
+      firstName: map["firstName"]!,
+      birthDate: DateTime.now(),
+      sex: KrivesUser.getGender(genderSelected),
+      email: map["email"]!,
+      password: map["password"]!,
+    );
+    return user;
   }
 
 

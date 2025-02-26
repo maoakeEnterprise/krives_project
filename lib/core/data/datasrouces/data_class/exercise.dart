@@ -1,7 +1,7 @@
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
 import 'package:krives_project/core/data/datasrouces/muscle_data.dart';
 
-class Exercice {
+class Exercise {
   String id;
   String idUser;
   String name = "";
@@ -9,21 +9,10 @@ class Exercice {
   List<Muscle> secondariesMuscles = [];
   String video ="";
 
-  Exercice(this.name, this.mainMuscle, this.secondariesMuscles, this.video,this.id,this.idUser);
+  Exercise(this.name, this.mainMuscle, this.secondariesMuscles, this.video,this.id,this.idUser);
 
-  Exercice copyWith({String? name, Muscle? mainMuscle, List<Muscle>? secondariesMuscles, String? video,String? id,String? idUser}) {
-    return Exercice(
-        name ?? this.name,
-        mainMuscle ?? this.mainMuscle,
-        secondariesMuscles ?? List.from(this.secondariesMuscles),
-        video ?? this.video,
-        id ?? this.id,
-        idUser ?? this.idUser
-    );
-  }
-
-    static Exercice fromMap(Map<String, dynamic> map){
-    Exercice exercice;
+    static Exercise fromMap(Map<String, dynamic> map){
+    Exercise exercice;
 
     Muscle mainMuscle = muscleData[map['main_muscle']];
 
@@ -32,7 +21,7 @@ class Exercice {
     for(int i = 0; i < map['secondary_muscle'].length; i++){
       secondaryMuscle.add(muscleData[map['secondary_muscle'][i]]);
     }
-    exercice = Exercice(
+    exercice = Exercise(
         map['name'],
         mainMuscle,
         secondaryMuscle,
@@ -43,14 +32,35 @@ class Exercice {
     return exercice;
   }
 
-
-
-
+  Map<String, dynamic> toMap(){
+    return {
+      'name': name,
+      'main_muscle': getMuscleIndex(mainMuscle),
+      'secondary_muscle': secondariesMuscles.map((e) => getMuscleIndex(e)).toList(),
+      'video': video,
+      'id': id,
+      'id_user': idUser
+    };
+  }
 
   bool isInTheList(Muscle muscle) {return secondariesMuscles.contains(muscle);}
 
   void addOrRemoveMuscle(Muscle muscle){
     isInTheList(muscle) ? secondariesMuscles.remove(muscle) : secondariesMuscles.add(muscle);
+  }
+
+  static int getMuscleIndex(Muscle muscle){
+    int index = 0;
+    for(int i = 0; i < muscleData.length; i++){
+      if(muscleData[i].nameMuscle == muscle.nameMuscle){
+        index = i;
+      }
+    }
+    return index;
+  }
+
+  static Exercise initExercise(){
+      return Exercise("",muscleData[0],[],"","","");
   }
 
 }

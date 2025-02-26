@@ -1,10 +1,6 @@
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/user_sport.dart';
-import 'package:krives_project/core/functions/function.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/signup/bloc/radio_button_gender_bloc.dart';
 import '../../../core/theme/themes_text_styles.dart';
@@ -21,12 +17,12 @@ class ButtonSignUpValidate extends StatelessWidget {
     return BlocBuilder<RadioButtonGenderBloc, RadioButtonGenderState>(
       builder: (context, state) {
         return InkWell(
-          onTap: () async {
+          onTap: () {
             int genderSelected = 1;
             if(state is RadioButtonGenderSelected){
               genderSelected = state.gender;
             }
-            await theGoodForm(textEditingController,genderSelected,context);
+            ButtonActionServices.signUp(textEditingController, genderSelected, context);
           },
           child: Ink(
             child: Container(
@@ -49,60 +45,5 @@ class ButtonSignUpValidate extends StatelessWidget {
         );
       },
     );
-  }
-  Future<void> theGoodForm(Map<String, TextEditingController> controller, int genderSelected,BuildContext context) async {
-    if (controller.length == 6) {
-      bool verifAllTextField = false;
-      bool verifPasswordResponse = false;
-      controller.forEach((key, element) {
-        verifAllTextField = verifEmptyTextField(element.text);
-        !verifEmptyTextField(element.text) ? log("incorrect way on the case $key") : null ;
-      });
-      if(verifAllTextField){
-        verifPasswordResponse = verifPassword(controller["password"]!.text, controller["confirmPassword"]!.text);
-        if(verifPasswordResponse){
-
-          UserSport user = UserSport(
-            pseudo: controller["pseudo"]!.text,
-            name: controller["name"]!.text,
-            firstName: controller["firstName"]!.text,
-            birthDate: DateTime.now(),
-            sex: getGender(genderSelected),
-            email: controller["email"]!.text,
-            password: controller["password"]!.text,
-          );
-
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          );
-          await user.createUserWithEmailAndPassword(user);
-          context.mounted ? Navigator.of(context).pop() : null;
-          context.mounted && FirebaseAuth.instance.currentUser != null ?
-          navigateToPage(context, "home",RouteArgument()) : null;
-
-        }
-      }
-    }
-  }
-
-  bool verifEmptyTextField(String text) {
-    if (text.trim().isEmpty || text.contains(RegExp(r'\s+'))) {
-      return false;
-    }
-    return true;
-  }
-  String getGender(int genderSelected) {
-    return genderSelected == 1 ? "Man" : "Woman";
-  }
-
-  bool verifPassword(String password, String confirmPassword) {
-    log("Password not the same");
-    return password == confirmPassword;
   }
 }

@@ -1,0 +1,24 @@
+import 'package:bloc/bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
+import 'package:krives_project/core/services/auth_services.dart';
+import 'package:meta/meta.dart';
+
+part 'data_user_event.dart';
+part 'data_user_state.dart';
+
+class DataUserBloc extends Bloc<DataUserEvent, DataUserState> {
+  DataUserBloc() : super(DataUserLoading()) {
+    on<LoadDataUser>(_onLoadDataUser);
+  }
+
+  Future<void> _onLoadDataUser(LoadDataUser event, Emitter<DataUserState> emit) async {
+    try{
+      KrivesUser? user = await AuthServices.getUserData();
+      emit(DataUserLoaded(user: user));
+    }
+    catch(error){
+      emit(DataUserError(message: "Error during the download : $error"));
+    }
+
+  }
+}

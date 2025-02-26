@@ -1,9 +1,9 @@
-import 'package:krives_project/core/data/datasrouces/data_class/exercice.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 
 class Series {
   final String idUser;
   final String idProgram;
-  Exercice exercice;
+  Exercise exercice;
   int numberSeries;
   String typeSeries;
   int maxKG;
@@ -39,7 +39,7 @@ class Series {
   Series copyWith({
     String? idUser,
     String? idProgram,
-    Exercice? exercice,
+    Exercise? exercice,
     int? numberSeries,
     String? typeSeries,
     int? maxKG,

@@ -12,7 +12,6 @@ class TextFieldDeleteAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int themeChoice = 0;
-    int langageChoice = 0;
     return Container(
       margin: EdgeInsets.only(left: 50, right: 50,),
       padding: EdgeInsets.only(left: 10, right: 10,top: 13,),

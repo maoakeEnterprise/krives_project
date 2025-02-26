@@ -1,9 +1,6 @@
-import 'dart:developer';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/user_service.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 
@@ -23,20 +20,9 @@ class ButtonPopUp extends StatelessWidget {
 
     return GestureDetector(
       onTap: isConfirmButton ?
-          () async {
-            if(controller!.text.isNotEmpty){
-              UserService userService = UserService();
-              try{
-                String userId = FirebaseAuth.instance.currentUser!.uid;
-                await userService.deleteAccount(userId, controller!.text, context);
-              }catch(e){
-                log('Error $e');
-              }
-            }
-
-          }
+          (){ButtonActionServices.deleteAccount(context);}
           :
-          (){Navigator.pop(context);},
+          (){ButtonActionServices.popClosed(context);},
       child: Container(
         width: 150,
         height: 30,

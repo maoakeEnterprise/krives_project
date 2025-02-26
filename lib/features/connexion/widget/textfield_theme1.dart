@@ -43,8 +43,6 @@ class TextFieldTheme1 extends StatelessWidget {
           style: ThemesTextStyles.textBigWhite,
           cursorColor: ThemesColor.white,
           decoration: InputDecoration(
-            //suffixIcon: const Icon(Icons.clear_rounded),
-            //suffixIconColor: Colors.white,
             labelText: labelText,
             labelStyle: ThemesTextStyles.textBigWhite,
             hintText: SourceLangage.trollLangage[randomIntForTrolling][chooseLangage],

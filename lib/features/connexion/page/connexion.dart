@@ -8,18 +8,32 @@ import 'package:krives_project/features/connexion/widget/textfield_theme1.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/connexion/widget/cardview_logo_connection.dart';
 
-class ConnexionPage extends StatelessWidget {
+class ConnexionPage extends StatefulWidget {
   const ConnexionPage({super.key});
 
   @override
+  State<ConnexionPage> createState() => _ConnexionPageState();
+}
+
+class _ConnexionPageState extends State<ConnexionPage> {
+  int chooseLangage = 0;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    int chooseLangage = 0;
-    TextEditingController userNameController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     Map<String,TextEditingController> controllers = {
-      'userName': userNameController,
-      'password': passwordController
+      'email': _emailController,
+      'password': _passwordController
     };
 
     return Scaffold(
@@ -28,8 +42,8 @@ class ConnexionPage extends StatelessWidget {
               children: [
 
                 CardViewLogoConnexion(),
-                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: userNameController,),// Pseudo
-                TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: passwordController,obscureText: true,),// Password
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[3][chooseLangage],controller: _emailController,),// Pseudo
+                TextFieldTheme1(labelText: SourceLangage.baseLangage[1][chooseLangage],controller: _passwordController,obscureText: true,),// Password
                 CustomButton1(labelText: SourceLangage.baseLangage[12][chooseLangage],textEditingController: controllers,),
                 Container(
                   constraints: BoxConstraints(
@@ -60,5 +74,4 @@ class ConnexionPage extends StatelessWidget {
         ),
     );
   }
-
 }

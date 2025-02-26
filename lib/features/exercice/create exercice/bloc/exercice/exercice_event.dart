@@ -4,7 +4,7 @@ part of 'exercice_bloc.dart';
 sealed class ExerciceEvent {}
 
 class ExerciceModifyItemPressed extends ExerciceEvent {
-  final Exercice exercice;
+  final Exercise exercice;
   final Exercises exercises;
   final Muscle? muscle;
   final String? commentary;
@@ -23,13 +23,13 @@ class ExerciceModifyItemPressed extends ExerciceEvent {
 }
 
 class ExerciceNewItem extends ExerciceEvent {
-  final Exercice exercice = Exercice("",muscleData[0],[],"","","");
+  final Exercise exercice = Exercise("",muscleData[0],[],"","","");
   final Exercises exercises;
   ExerciceNewItem(this.exercises);
 }
 
 class ExerciceItemSelected extends ExerciceEvent {
-  final Exercice exercice;
+  final Exercise exercice;
   final Exercises exercises;
   final int? index;
   ExerciceItemSelected({required this.exercice, required this.exercises,this.index});
@@ -38,7 +38,7 @@ class ExerciceItemSelected extends ExerciceEvent {
 class ConfirmExercice extends ExerciceEvent {
   final String nameExercice;
   final String commentaryExercice;
-  final Exercice exercice;
+  final Exercise exercice;
   final Exercises exercises;
   final int? index;
   ConfirmExercice({

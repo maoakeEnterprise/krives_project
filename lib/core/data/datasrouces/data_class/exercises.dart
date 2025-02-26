@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/exercice.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 
 class Exercises {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
-  Future<List<Exercice>> getExercicesByIdUser(String idUser) async {
+  Future<List<Exercise>> getExercicesByIdUser(String idUser) async {
     try{
       final exercicesCollection = await _fireStore.collection('exercices').where('id_user', isEqualTo: idUser).get();
       List<Map<String, dynamic>> exercises = exercicesCollection.docs.map((doc) => doc.data()).toList();
-      List<Exercice> listExercice = fromMap(exercises);
+      List<Exercise> listExercice = fromMap(exercises);
       return listExercice;
     }
     catch(e){
@@ -23,11 +23,11 @@ class Exercises {
     return _fireStore.collection('exercices');
   }
 
-  static List<Exercice> fromMap(List<Map<String, dynamic>> map){
-    List<Exercice> listExercice = [];
-    Exercice exercice;
+  static List<Exercise> fromMap(List<Map<String, dynamic>> map){
+    List<Exercise> listExercice = [];
+    Exercise exercice;
     for(int i = 0; i < map.length; i++){
-      exercice = Exercice.fromMap(map[i]);
+      exercice = Exercise.fromMap(map[i]);
       listExercice.add(exercice);
     }
     return  listExercice;

@@ -4,7 +4,6 @@ import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
-import 'package:krives_project/features/popup_dialog/page/pop_up_delete.dart';
 import 'package:krives_project/features/programme/create%20programme/bloc/edit_bloc.dart';
 
 class WidgetCardSeries extends StatelessWidget {
@@ -87,12 +86,6 @@ class WidgetCardSeries extends StatelessWidget {
   }
   
   void onTapDelete(BuildContext context){
-    showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context){
-          return PopUpDelete();
-        }
-    );
+
   }
 }

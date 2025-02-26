@@ -7,7 +7,7 @@ import 'package:krives_project/features/programme/program_user/page/programs_use
 
 
 class MappingRoot {
-  final List<Map<String, dynamic>> pages = [
+  static final List<Map<String, dynamic>> pages = [
     {"title":"Home","titre":"Accueil","body":HomePage()},
     {"title":"Your Programs","titre":"Tes Programmes","body":ProgramsUser()},
     {"title":"Profile","titre":"Profil","body":ProfilSettingsPage()},
