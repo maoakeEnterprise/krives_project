@@ -36,7 +36,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           children: [
             Container(
                 margin: EdgeInsets.only(top: 40),
-                child: IconButton(onPressed: (){
+                child: IconButton(
+                    onPressed: (){
                   Navigator.pop(context);
                 }, icon: Icon(Icons.arrow_back,color: Colors.white,size: 30,))),
             Column(

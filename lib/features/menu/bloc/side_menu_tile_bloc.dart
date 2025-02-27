@@ -5,7 +5,7 @@ part 'side_menu_tile_event.dart';
 part 'side_menu_tile_state.dart';
 
 class SideMenuTileBloc extends Bloc<SideMenuTileEvent, SideMenuTileState> {
-  SideMenuTileBloc() : super(SideMenuTileSelected(index: 0)) {
+  SideMenuTileBloc() : super(SideMenuTileSelected(index: 1)) {
     on<SideMenuTileEvent>((event, emit) {
       // TODO: implement event handler
     });

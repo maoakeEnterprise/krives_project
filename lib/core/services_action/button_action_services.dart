@@ -6,9 +6,9 @@ import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/mapping_root.dart';
 import 'package:krives_project/core/services/auth_services.dart';
-import 'package:krives_project/core/services/change_widget_services.dart';
+import 'package:krives_project/core/services_action/change_widget_services.dart';
 import 'package:krives_project/features/authentification/widget/bloc/auth_bloc.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 import 'package:krives_project/features/popup_dialog/page/pop_up_delete.dart';
@@ -91,24 +91,24 @@ class ButtonActionServices{
 
   static void addNewExercise(BuildContext context,TextEditingController name, TextEditingController video){
     context.read<SwitchEditExoBloc>().add(SwitchEditExoEventInitPressed());
-    context.read<PrintExerciseBloc>().add(NewExercise());
+    context.read<ExerciseBloc>().add(NewExercise());
     navigateToPage(context, 'exercise',
         RouteArgument(titlePage: "Exercise",isCreateExoButton: true,
             controllerNameExercice: name,
             controllerCommentaryExercice: video));
   }
 
-  static void modifySecondaryMuscle({required PrintExerciseState state, required Muscle muscle, required BuildContext context}){
+  static void modifySecondaryMuscle({required ExerciseState state, required Muscle muscle, required BuildContext context}){
     state.exercise.addOrRemoveMuscle(muscle);
-    context.read<PrintExerciseBloc>().add(ModifyItemPressed(exercise: state.exercise, isNewExercise: state.isNewExercise));
+    context.read<ExerciseBloc>().add(ModifyItemPressed(exercise: state.exercise, isNewExercise: state.isNewExercise));
   }
 
-  static void modifyMainMuscle({required PrintExerciseState state, required Muscle muscle, required BuildContext context}){
+  static void modifyMainMuscle({required ExerciseState state, required Muscle muscle, required BuildContext context}){
     state.exercise.mainMuscle = muscle;
-    context.read<PrintExerciseBloc>().add(ModifyItemPressed(exercise: state.exercise, isNewExercise: state.isNewExercise));
+    context.read<ExerciseBloc>().add(ModifyItemPressed(exercise: state.exercise, isNewExercise: state.isNewExercise));
   }
 
-  static void validateExercise(PrintExerciseState state, TextEditingController name, TextEditingController video, BuildContext context){
+  static void validateExercise(ExerciseState state, TextEditingController name, TextEditingController video, BuildContext context){
     state.exercise.name = name.text;
     state.exercise.video = video.text;
     context.read<ExerciseServBloc>().add(state.isNewExercise ? AddExercise(exercise: state.exercise) : ModifyExercise(exercise: state.exercise));
@@ -126,7 +126,7 @@ class ButtonActionServices{
             controllerNameExercice: name,
             controllerCommentaryExercice: video,
         ));
-    context.read<PrintExerciseBloc>().add(ExerciseItemSelected(exercise: exercise));
+    context.read<ExerciseBloc>().add(ExerciseItemSelected(exercise: exercise));
   }
 
   static void deleteExercise(BuildContext context, Exercise exercise){
@@ -152,5 +152,13 @@ class ButtonActionServices{
   static void isConfirmDeleteOrCancelButtonExercise(BuildContext context,Exercise exercise,bool isConfirmDelete){
     isConfirmDelete ? deleteExercise(context, exercise) : Navigator.of(context).pop();
   }
+
+  ///HomePageActionButton
+
+  static VoidCallback navigateInTheProgram(BuildContext context){
+    return () => navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
+  }
+
+  ///ProgramActionServices
 
 }

@@ -5,7 +5,7 @@ import 'package:krives_project/core/data/datasrouces/data_class/folders.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/functions/function.dart';
+import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/features/popup_add_prog_folder/page/pop_up_add_pf.dart';
 import 'package:krives_project/features/programme/program_user/bloc/program_user_bloc.dart';
 
@@ -53,10 +53,10 @@ class ListTileProgramUser extends StatelessWidget {
         if(program != null) {
           context.read<ProgramUserBloc>().add(ButtonProgramUser(program: program!, idUser: idUser));
         }
-        navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: title));
+        ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: title));
       },
       "folder": (){
-        navigateToPage(
+        ButtonActionServices.navigateToPage(
             context,
             'file_program',
             RouteArgument(titlePage: title,nameFileProgram: folder!.name),
@@ -71,10 +71,10 @@ class ListTileProgramUser extends StatelessWidget {
             });
       },
       "add_file": (){
-        navigateToPage(context, 'file_program', RouteArgument(titlePage: title,isAddingProgramButton: true,nameFileProgram: nameFolderAddProgram));
+        ButtonActionServices.navigateToPage(context, 'file_program', RouteArgument(titlePage: title,isAddingProgramButton: true,nameFileProgram: nameFolderAddProgram));
       },
       "create_file": (){
-        navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
+        ButtonActionServices.navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
       },
       "adding_program" : (){
         final arguments = ModalRoute.of(context)!.settings.arguments as RouteArgument?;

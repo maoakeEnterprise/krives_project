@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/functions/function.dart';
+import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/home/widget/card_custom_home.dart';
 import 'package:krives_project/core/data/repositories/widget_scroll.dart';
 import 'package:krives_project/features/home/widget/title_widget_v2.dart';
 import 'package:krives_project/features/home/widget/title_wiget_v1.dart';
-import 'package:krives_project/features/programme/before_playtime_workout/bloc/bloc_menu_widget/menu_widget_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final int chooseThemes = 0;
   final int chooseLangage = 0;
+  EdgeInsets widgetScrollIsWorkOut = EdgeInsets.fromLTRB(10, 10, 10, 24);
 
   @override
   Widget build(BuildContext context) {
 
     return ListView(
         children: [
+
+          ///This bloc manage the button to change icon if he want to have
+          /// an icon to edit his program or delete his program in the
+          ///CardCustomHome widget
           BlocBuilder<SwitchEditBloc, SwitchEditState>(
             builder: (context, state) {
               IconData icon;
@@ -28,37 +36,37 @@ class HomePage extends StatelessWidget {
               return TitleWidgetV2(text: SourceLangage.titleHomePagesLangage[0][chooseLangage], icon: icon);
               },
           ),
-          WidgetScroll(cardCustom: CardCustomHome(
-            onTap: (){
-              navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
-              },
-            onTap2: (){_onTap(context, 'before_workout_playtime', RouteArgument(titlePage: "Nom Programme"), true);},
-            isEdit: true,
-          ),
-            height: 214, itemCount: 4, left: 10, top: 10, right: 10, bottom: 24
-            ,),
+
+          ///Widget with the programs of the user
+          WidgetScroll(
+            cardCustom: CardCustomHome(
+              onTap: ButtonActionServices.navigateInTheProgram(context),
+              isCanBeEditByTheUserInTheHomePage: true,
+              isOwnedByTheUser: true,
+            ),
+            height: 214,
+            itemCount: 4,
+            padding: widgetScrollIsWorkOut,
+            ),
+
+          ///Widget with the favorite programs of the user
           TitleWidgetV1(text:SourceLangage.titleHomePagesLangage[1][chooseLangage]),
-          WidgetScroll(cardCustom: CardCustomHome(
-            onTap2: (){_onTap(context, 'before_workout_playtime', RouteArgument(titlePage: "Nom Programme"),true);},
+          WidgetScroll(
+            cardCustom: CardCustomHome(isOwnedByTheUser: true,),
+            height: 214,
+            itemCount: 3,
+            padding: widgetScrollIsWorkOut,
           ),
-            height: 214, itemCount: 3, left: 10, top: 10, right: 10, bottom: 24,),
+
+          ///Widget with the trending programs workout to the community
           TitleWidgetV1(text:SourceLangage.titleHomePagesLangage[2][chooseLangage]),
           WidgetScroll(cardCustom: CardCustomHome(
-            onTap2: (){_onTap(context, 'before_workout_playtime', RouteArgument(titlePage: "Nom Programme"),false);},
           ),
-            height: 214, itemCount: 9, left: 10, top: 10, right: 10, bottom: 24,),
+            height: 214,
+            itemCount: 9,
+            padding: widgetScrollIsWorkOut,
+          ),
         ],
       );
-  }
-
-  void _onTap(BuildContext context, String routeName, RouteArgument routeArgument, bool isUser) {
-    context.read<SwitchEditBloc>().add(SwitchEditEventInitPressed());
-    if(isUser){
-      context.read<MenuWidgetBloc>().add(MenuWidgetEventUserPressed());
-    }
-    else{
-      context.read<MenuWidgetBloc>().add(MenuWidgetEventHubPressed());
-    }
-    navigateToPage(context, routeName, routeArgument);
   }
 }

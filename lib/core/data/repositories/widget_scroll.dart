@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
 class WidgetScroll extends StatelessWidget {
-  final double left;
-  final double right;
-  final double top;
-  final double bottom;
+  static const EdgeInsets _defaultPadding = EdgeInsets.fromLTRB(0, 0, 0, 0);
+
+  final EdgeInsets padding;
   final double height;
   final int itemCount;
   final Widget cardCustom;
 
   const WidgetScroll({
     super.key,
-    this.left = 0,
-    this.right = 0,
-    this.top = 0,
-    this.bottom = 0,
+    this.padding = _defaultPadding,
     this.itemCount =5,
     required this.height,
     required this.cardCustom,
@@ -27,7 +23,7 @@ class WidgetScroll extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: itemCount,
-          padding: EdgeInsets.fromLTRB(left, top, right, bottom),
+          padding: padding,
           itemBuilder: (context, index){
             return cardCustom;
       }),

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/menu/widget/widget_photo_user.dart';
 
@@ -10,23 +11,35 @@ class HeaderMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //int choiceThemes = 0;
-    return SizedBox(
-        height: 140,
-        child: Row(
-          children: [
-            SizedBox(width: 31,),
-            WidgetPhotoUser(),
-            SizedBox(width: 19,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    int themesChoice = 0;
+    return Column(
+      children: [
+        SizedBox(
+            height: 140,
+            child: Row(
               children: [
-                SizedBox(height: 26,),
-                Text(firstName, style: ThemesTextStyles.themes[7][0],),
-                Text(name, style: ThemesTextStyles.themes[7][0])
+                SizedBox(width: 31,),
+                WidgetPhotoUser(),
+                SizedBox(width: 19,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 26,),
+                    Text(firstName, style: ThemesTextStyles.themes[7][0],),
+                    Text(name, style: ThemesTextStyles.themes[7][0])
+                  ],
+                )
               ],
-            )
-          ],
-        ));
+            ),
+        ),
+        Container(
+          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 21),
+          child: Divider(
+            color: ThemesColor.themes[1][themesChoice],
+          ),
+        ),
+      ],
+    );
   }
 }

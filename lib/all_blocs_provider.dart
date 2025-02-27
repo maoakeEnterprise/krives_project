@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/features/base/bloc/base_page/data_user_bloc.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
-
 import 'features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'features/authentification/widget/bloc/auth_bloc.dart';
-import 'features/exercice/create exercice/bloc/exercice/exercice_bloc.dart';
 import 'features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 import 'features/graphics/bloc/filter_bloc.dart';
 import 'features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
@@ -50,14 +48,13 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context)=> SortByBloc()),
         BlocProvider(create: (context)=> RegisterProgramBloc()),
         BlocProvider(create: (context)=> FilterBloc()),
-        BlocProvider(create: (context)=> ExerciceBloc()),
         BlocProvider(create: (context)=> ProgramUserBloc()),
         BlocProvider(create: (context)=> RadioButtonGenderBloc()),
         BlocProvider(create: (context)=> AuthBloc()),
         BlocProvider(create: (context)=> PopDeleteAccountBloc()),
         BlocProvider(create: (context)=> DataUserBloc()),
         BlocProvider(create: (context)=> ExerciseServBloc()),
-        BlocProvider(create: (context)=> PrintExerciseBloc()),
+        BlocProvider(create: (context)=> ExerciseBloc()),
       ],
       child: child,
     );

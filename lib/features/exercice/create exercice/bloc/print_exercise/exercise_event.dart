@@ -1,14 +1,14 @@
-part of 'print_exercise_bloc.dart';
+part of 'exercise_bloc.dart';
 
 @immutable
-sealed class PrintExerciseEvent {}
+sealed class ExerciseEvent {}
 
-class NewExercise extends PrintExerciseEvent {}
-class ExerciseItemSelected extends PrintExerciseEvent {
+class NewExercise extends ExerciseEvent {}
+class ExerciseItemSelected extends ExerciseEvent {
   final Exercise exercise;
   ExerciseItemSelected({required this.exercise});
 }
-class ModifyItemPressed extends PrintExerciseEvent {
+class ModifyItemPressed extends ExerciseEvent {
   final Exercise exercise;
   final bool isNewExercise;
   ModifyItemPressed({required this.exercise, required this.isNewExercise});

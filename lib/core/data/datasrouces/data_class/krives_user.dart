@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -72,51 +70,6 @@ class KrivesUser {
     id = credentials.user!.uid;
     final db = FirebaseFirestore.instance;
     await db.collection('users').doc(id).set(toMap());
-  }
-  void logUserProperties() {
-    log('User Properties:');
-    log('  ID: $id');
-    log('  Name: $name');
-    log('  Pseudo: $pseudo');
-    log('  First Name: $firstName');
-    log('  Sex: $sex');
-    log('  Birth Date: ${birthDate.toString()}');
-    log('  Age: $age');
-    log('  Email: $email');
-    log('  Weight: $weight');
-    log('  Height: $height');
-    log('  Password: $password');
-    log('  Allergies: ${allergies.join(', ')}');
-  }
-
-  KrivesUser copyWith({
-    String? id,
-    String? name,
-    String? pseudo,
-    String? firstName,
-    DateTime? birthDate,
-    double? age,
-    String? sex,
-    String? email,
-    double? weight,
-    double? height,
-    String? password,
-    List<String>? allergies,
-  }) {
-    return KrivesUser(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      pseudo: pseudo ?? this.pseudo,
-      firstName: firstName ?? this.firstName,
-      birthDate: birthDate ?? this.birthDate,
-      age: age ?? this.age,
-      sex: sex ?? this.sex,
-      email: email ?? this.email,
-      weight: weight ?? this.weight,
-      height: height ?? this.height,
-      password: password ?? this.password,
-      allergies: allergies ?? this.allergies,
-    );
   }
 
   static String getGender(int genderSelected) {

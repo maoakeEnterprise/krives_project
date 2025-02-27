@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/repositories/card_custom_add.dart';
-import 'package:krives_project/core/services/button_action_services.dart';
+import 'package:krives_project/core/services_action/button_action_services.dart';
 
 class CardCustomAddExo extends StatefulWidget {
   const CardCustomAddExo({super.key});

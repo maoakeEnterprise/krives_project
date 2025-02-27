@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
-import 'package:krives_project/core/services/change_widget_services.dart';
-import 'package:krives_project/core/services/function_services.dart';
+import 'package:krives_project/core/services_action/change_widget_services.dart';
+import 'package:krives_project/core/services_action/function_services.dart';
 import 'dart:math';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/print_exercise_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/exercise_bloc.dart';
 
 class TextFieldNameExo extends StatefulWidget {
   final String labelText;
@@ -46,7 +46,7 @@ class _TextFieldNameExoState extends State<TextFieldNameExo> {
               )
             ]
         ),
-        child: BlocBuilder<PrintExerciseBloc, PrintExerciseState>(
+        child: BlocBuilder<ExerciseBloc, ExerciseState>(
           builder: (context, state) {
             _nameController = ChangeWidgetServices.resetControllersExercise(state, _nameController);
             return TextField(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/functions/function.dart';
 import 'package:krives_project/core/data/repositories/card_custom_add.dart';
+import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/features/programme/create%20programme/widget/edit_button_program.dart';
 import 'package:krives_project/features/programme/create%20programme/widget/text_field_custom_program.dart';
 import 'package:krives_project/features/programme/create%20programme/widget/widget_card_series.dart';
@@ -33,14 +33,14 @@ class CreateProgrammePage extends StatelessWidget {
           child: ListView(
             children: [
               WidgetCardSeries(
-                onTap: (){navigateToPage(context, 'series', RouteArgument(titlePage: "Nom Série",isCreateSeriesButton: true));},
+                onTap: (){ButtonActionServices.navigateToPage(context, 'series', RouteArgument(titlePage: "Nom Série",isCreateSeriesButton: true));},
               ),
               SizedBox(height: 16,),
               CardCustomAdd(
                 onTap: (){
                   context.read<CardCustomExoBloc>().add(CardCustomExoInit());
                   context.read<CardTypeSeriesBloc>().add(CardTypeSeriesPressed(text: "normal"));
-                  navigateToPage(context, 'series', RouteArgument(titlePage: "Nom Série",isCreateSeriesButton: true));
+                  ButtonActionServices.navigateToPage(context, 'series', RouteArgument(titlePage: "Nom Série",isCreateSeriesButton: true));
                   },
                 height: 110,
                 left: 40,
