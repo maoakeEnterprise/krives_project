@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/fichier.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folders.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:meta/meta.dart';
@@ -41,7 +41,7 @@ class ProgramUserBloc extends Bloc<ProgramUserEvent, ProgramUserState> {
 
     });
     on<ButtonCreateFolder>((event, emit) {
-      Folder folderCreated = Folder(event.nameFolder,"");
+      Fichier folderCreated = Fichier(event.nameFolder,"");
       Folders folders = event.folders;
       if(!folders.containsFolder(event.nameFolder) && event.nameFolder != ""){
         folders.addExercice(folderCreated);

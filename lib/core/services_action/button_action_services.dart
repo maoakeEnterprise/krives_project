@@ -8,7 +8,7 @@ import 'package:krives_project/core/data/datasrouces/mapping_root.dart';
 import 'package:krives_project/core/services/auth_services.dart';
 import 'package:krives_project/core/services_action/change_widget_services.dart';
 import 'package:krives_project/features/authentification/widget/bloc/auth_bloc.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/exercise_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 import 'package:krives_project/features/popup_dialog/page/pop_up_delete.dart';

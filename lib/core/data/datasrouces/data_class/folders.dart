@@ -1,9 +1,9 @@
-import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/fichier.dart';
 
 class Folders {
-  List<Folder> folders;
+  List<Fichier> folders;
   Folders(this.folders);
 
-  void addExercice(Folder folder) => folders.add(folder);
+  void addExercice(Fichier folder) => folders.add(folder);
   bool containsFolder(String folderName) => folders.any((element) => element.name == folderName);
 }

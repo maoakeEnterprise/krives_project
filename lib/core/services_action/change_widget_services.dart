@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
-import 'package:krives_project/features/exercice/create%20exercice/bloc/print_exercise/exercise_bloc.dart';
+import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
 
 class ChangeWidgetServices {

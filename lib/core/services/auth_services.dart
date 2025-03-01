@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
+import 'package:krives_project/core/services/program_services.dart';
 
 import '../../firebase_options.dart';
 
@@ -32,6 +33,7 @@ class AuthServices {
 
   static Future<void> signUpWithEmailAndPassword(KrivesUser newUser) async {
     await newUser.createUserWithEmailAndPassword();
+    await ProgramServices.initFoldersPrograms(newUser.id);
   }
 
   static Future<void> sendPasswordResetEmail(String email) async {
@@ -42,6 +44,7 @@ class AuthServices {
     String idUser = currentUser!.uid;
     final DocumentReference  doc =  _fireStore.collection('users').doc(idUser);
     await doc.delete();
+    await ProgramServices.deleteAccountFolder(idUser);
     await currentUser!.delete();
     await signOut();
   }
