@@ -34,7 +34,7 @@ class RootApp extends StatelessWidget {
         '/before_workout_playtime': (context) => const BasePage1(child: BeforePlaytimeWorkoutPage()),
         '/home': (context) => const BasePage(),
         '/forgot_password': (context) => const ForgotPasswordPage(),
-        '/file_program': (context) =>const BasePage1(child: ProgramsUser()),
+        '/file_program': (context) =>const BasePage1(child: ProgramsUser(isInFolder: true,)),
       },
     );
   }

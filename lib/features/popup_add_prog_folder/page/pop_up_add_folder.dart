@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/folders.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/popup_add_prog_folder/widget/button_pop_up_folder.dart';
 import 'package:krives_project/features/popup_add_prog_folder/widget/text_field_name_folder.dart';
 
-class PopUpAddPf extends StatelessWidget {
-  final Folders folders;
-  const PopUpAddPf({
+class PopUpAddFolder extends StatelessWidget {
+  const PopUpAddFolder({
     super.key,
-    required this.folders,
   });
 
   @override
@@ -38,8 +35,8 @@ class PopUpAddPf extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ButtonPopUpFolder(isConfirmButton: true,nameController: nameController,folders: folders,),
-                ButtonPopUpFolder(),
+                ButtonPopUpFolder(isConfirmButton: true,nameController: nameController),
+                ButtonPopUpFolder(nameController: nameController,),
               ],
             ),
           ],

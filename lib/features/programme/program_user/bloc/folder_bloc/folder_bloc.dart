@@ -10,6 +10,7 @@ class FolderBloc extends Bloc<FolderEvent, FolderState> {
   FolderBloc() : super(FolderLoading()) {
 
     on<FolderInitial>(_folderInitial);
+    on<FolderAdd>(_folderAdd);
 
   }
 
@@ -19,6 +20,16 @@ class FolderBloc extends Bloc<FolderEvent, FolderState> {
       emit(FolderLoaded(folder: folder));
     }catch(error){
       emit(FolderError(message: "Not possible to get the folders : $error"));
+    }
+  }
+
+  Future<void> _folderAdd(FolderAdd event, Emitter<FolderState> emit) async {
+    emit(FolderLoading());
+    try{
+      await ProgramServices.addFolder(event.folder, event.name);
+      emit(FolderLoaded(folder: await ProgramServices.getDataFolders()));
+    }catch(error){
+      emit(FolderError(message: "Not possible to add the folder : $error"));
     }
   }
 }

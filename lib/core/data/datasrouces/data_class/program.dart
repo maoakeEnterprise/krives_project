@@ -1,84 +1,61 @@
-import 'package:krives_project/core/data/datasrouces/data_class/series.dart';
 
 class Program {
-
-  String idUserOwner;
-  List<String> likes;
-  List<String> registers;
+  String id;
+  String idUser;
   String name;
-  List<Series> series;
-  List<String> nameFolder;
-  Map<String,List<String>> nameFolderOtherUser;
+  List<String> inFolder;
+  List<String> registeredIn;
+  List<String> inFolderOtherUserWhoRegisteredIn;
+  List<String> idLiked;
+  List<String> idSeries;
 
   Program({
-    required this.idUserOwner,
-    List<String>? likes, // Utilisez un paramètre nullable
-    List<String>? registers, // Utilisez un paramètre nullable
-    this.name = "",
-    List<Series>? series, // Utilisez un paramètre nullable
-    List<String>? nameFolder,
-    Map<String,List<String>>? nameFolderOtherUser,
-  })  : likes = likes ?? [], // Attribuez la valeur par défaut
-        registers = registers ?? [], // Attribuez une liste vide par défaut
-        series = series ?? [], // Attribuez une liste vide par défaut
-        nameFolder = nameFolder ?? ["User"], // Attribuez une liste qui est initialiser avec User
-        nameFolderOtherUser = nameFolderOtherUser ?? {};
+    required this.id,
+    required this.idUser,
+    required this.name,
+    required this.inFolder,
+    required this.registeredIn,
+    required this.inFolderOtherUserWhoRegisteredIn,
+    required this.idLiked,
+    required this.idSeries,
+  });
 
-  void addOrRemoveLike(String userId){
-  likes.contains(userId) ? likes.remove(userId) : likes.add(userId);
-  }
-
-  void addOrRemoveRegister(String userId){
-    registers.contains(userId) ? registers.remove(userId) : registers.add(userId);
-  }
-
-  void addOrRemoveNameFolderOtherUser(String userId){
-    nameFolderOtherUser.containsKey(userId) ? nameFolderOtherUser.remove(userId) : nameFolderOtherUser[userId] = [];
-  }
-
-   bool isUserIsInTheFolderOtherUser(String userId){
-    return nameFolderOtherUser.containsKey(userId);
-  }
-
-  bool isInTheFolderOtherUser(String userId, String folderName){
-    return nameFolderOtherUser.containsKey(userId) && nameFolderOtherUser[userId]!.contains(folderName);
-  }
-
-  void addInFolderOtherUser(String userId, String folderName){
-    nameFolderOtherUser[userId]!.add(folderName);
-  }
-
-  void addInFolder(String folderName){
-    nameFolder.add(folderName);
-  }
-
-  void removeInFolder(String folderName){
-    nameFolder.remove(folderName);
-  }
-  void addSeries(Series series) => this.series.add(series);
-  void removeSeries(Series series) => this.series.remove(series);
-
-  bool isInTheLikes(String userId) => likes.contains(userId);
-  bool isInTheRegisters(String userId) => registers.contains(userId);
-
-  Program copyWith({
-    String? idUserOwner,
-    List<String>? likes,
-    List<String>? registers,
-    String? name,
-    List<Series>? series,
-    List<String>? nameFolder,
-    Map<String,List<String>>? nameFolderOtherUser,
-  }) {
+  static Program initClass(){
     return Program(
-      idUserOwner: idUserOwner ?? this.idUserOwner,
-      likes: likes ?? List.from(this.likes),
-      registers: registers ?? List.from(this.registers),
-      name: name ?? this.name,
-      series: series ?? List.from(this.series),
-      nameFolder: nameFolder ?? List.from(this.nameFolder),
-      nameFolderOtherUser: nameFolderOtherUser ?? this.nameFolderOtherUser.map(
-            (key, value) => MapEntry(key, List<String>.from(value)), // Copie profonde pour la Map
-      ),
-    );}
+      id: '',
+      idUser: '',
+      name: 'Programme',
+      inFolder: ['Utilisateur', 'Enregistrer'],
+      registeredIn: [],
+      inFolderOtherUserWhoRegisteredIn: [],
+      idLiked: [],
+      idSeries: [],
+    );
+  }
+
+  static fromMap(Map<String, dynamic> map){
+    return Program(
+      id: map['id'],
+      idUser: map['idUser'],
+      name: map['name'],
+      inFolder: List<String>.from(map['inFolder']),
+      registeredIn: List<String>.from(map['registeredIn']),
+      inFolderOtherUserWhoRegisteredIn: List<String>.from(map['inFolderOtherUserWhoRegisteredIn']),
+      idLiked: List<String>.from(map['idLiked']),
+      idSeries: List<String>.from(map['idSeries']),
+    );
+  }
+
+  static Map<String, dynamic> toMap(Program program){
+    return {
+      'id': program.id,
+      'idUser': program.idUser,
+      'name': program.name,
+      'inFolder': program.inFolder,
+      'registeredIn': program.registeredIn,
+      'inFolderOtherUserWhoRegisteredIn': program.inFolderOtherUserWhoRegisteredIn,
+      'idLiked': program.idLiked,
+      'idSeries': program.idSeries,
+    };
+  }
 }

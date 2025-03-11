@@ -42,11 +42,19 @@ class AuthServices {
 
   static Future<void> deleteAccount() async {
     String idUser = currentUser!.uid;
+    await deleteAllDataUser(idUser).whenComplete(() {
+      currentUser!.delete().whenComplete((){
+        signOut();
+      });
+    });
+  }
+  
+  static Future<void> deleteAllDataUser(idUser) async {
     final DocumentReference  doc =  _fireStore.collection('users').doc(idUser);
-    await doc.delete();
-    await ProgramServices.deleteAccountFolder(idUser);
-    await currentUser!.delete();
-    await signOut();
+    await Future.any([
+      ProgramServices.deleteAccountFolder(idUser),
+      doc.delete(),
+    ]);
   }
 
   static bool verifEmptyTextField(String text) {

@@ -1,5 +1,5 @@
 class Folder{
-  final List<String> folders;
+  List<String> folders;
 
   Folder({required this.folders});
 
@@ -15,9 +15,11 @@ class Folder{
     );
   }
 
-  Map<String, dynamic> toMap(){
+  static Map<String, dynamic> toMap(Folder folder){
     return {
-      'folders': folders,
+      'folders': folder.folders,
     };
   }
+
+  void addFolder(String name) => folders.add(name);
 }

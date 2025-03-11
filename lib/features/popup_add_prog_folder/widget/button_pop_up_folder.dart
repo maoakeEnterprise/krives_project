@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/folders.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
+import 'package:krives_project/core/services_action/program_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
-import 'package:krives_project/features/programme/program_user/bloc/program_user_bloc.dart';
+import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
 
 class ButtonPopUpFolder extends StatelessWidget {
+
   final bool isConfirmButton;
-  final Folders? folders;
-  final TextEditingController? nameController;
+  final TextEditingController nameController;
 
   const ButtonPopUpFolder({
     super.key,
-    this.nameController,
-    this.folders,
+    required this.nameController,
     this.isConfirmButton = false
   });
 
@@ -23,8 +22,10 @@ class ButtonPopUpFolder extends StatelessWidget {
   Widget build(BuildContext context) {
     int langageChoice = 0;
     int themeChoice = 0;
+    return BlocBuilder<FolderBloc, FolderState>(
+  builder: (context, state) {
     return GestureDetector(
-      onTap: isConfirmButton ? () => _confirmName(context) : () => _closePopUp(context),
+      onTap: ProgramActionServices.getRightAction(isConfirmButton, context , nameController,state),
       child: Container(
         width: 150,
         height: 30,
@@ -40,16 +41,10 @@ class ButtonPopUpFolder extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
-
-  void _closePopUp(BuildContext context) {
-    Navigator.of(context).pop();
-  }
-
-  void _confirmName(BuildContext context) {
-    context.read<ProgramUserBloc>().add(ButtonCreateFolder(folders: folders!,nameFolder: nameController!.text));
-    Navigator.of(context).pop();
-  }
+  
 
   String _getText(int index,int langageChoice) {
     return SourceLangage.baseLangage[index][langageChoice];

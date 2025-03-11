@@ -7,7 +7,6 @@ import 'package:krives_project/features/comment/page/comment_page.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/bloc/register_program/register_program_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
-import 'package:krives_project/features/programme/program_user/bloc/program_user_bloc.dart';
 
 class IconButtonMenuBeforePlaytime extends StatelessWidget {
   static Map<String,IconData> iconMap = {
@@ -33,9 +32,8 @@ class IconButtonMenuBeforePlaytime extends StatelessWidget {
     int langageChoice=0;
 
     void onLikeTap(Program program, String idUser){
-      context.read<ProgramUserBloc>().add(ButtonLikeProgramUser(program: program, idUser: idUser));
     }
-    void onRegisterTap(Program program, String idUser){context.read<ProgramUserBloc>().add(ButtonRegisterProgramUser(program: program, idUser: idUser));}
+    void onRegisterTap(Program program, String idUser){}
 
     Map<String,VoidCallback> onTapMap = {
       "like":(){},
@@ -53,37 +51,7 @@ class IconButtonMenuBeforePlaytime extends StatelessWidget {
         context.read<TimerBloc>().add(TimerFinishedSeriesPressed());
       }
     };
-    Icon icon;
-    VoidCallback? onTap = onTapMap[buttonName];
-    if(["like", "liked", "bookmark", "bookmarked"].contains(buttonName)){
-      return BlocBuilder<ProgramUserBloc, ProgramUserState>(
-        builder: (context, state) {
-          if(state is ProgramUserLoaded){
-            onTap =["like","liked"].contains(buttonName) ?
-                () => onLikeTap(state.program, state.idUser) :
-                () => onRegisterTap(state.program, state.idUser);
-          }
-          icon = _getIcon(state, buttonName);
-          return IconButton(onPressed: (onTap), icon: icon);
-        },
-      );
-    }
-    icon = buttonName=="play" ? Icon(iconMap[buttonName],color: Colors.green,size: 60,) : Icon(iconMap[buttonName],color: Colors.white,size: 30,);
-    return IconButton(onPressed: (onTap), icon: icon);
+    return Container();
 
-  }
-
-  Icon _getIcon(ProgramUserState state, String buttonName){
-    Icon iconLiked;
-    Icon iconBookmarked;
-
-    bool isIconLiked = ["like", "liked"].contains(buttonName);
-    bool isIconBookmarked = ["bookmark", "bookmarked"].contains(buttonName);
-    bool isProgramLiked = state is ProgramUserLoaded && state.isProgramLiked;
-    bool isProgramRegister = state is ProgramUserLoaded && state.isProgramRegistered;
-
-    iconLiked = Icon(iconMap[isProgramLiked ? "liked" : "like"]!,color: isProgramLiked ? Colors.red : Colors.white,size: 30,);
-    iconBookmarked = Icon(iconMap[isProgramRegister ? "bookmarked" : "bookmark"]!,color: Colors.white,size: 30,);
-    return isIconLiked ? iconLiked : isIconBookmarked ? iconBookmarked : Icon(iconMap[buttonName],color: Colors.white,size: 30,);
   }
 }

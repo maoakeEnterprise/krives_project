@@ -18,7 +18,6 @@ import 'features/programme/before_playtime_workout/bloc/register_program/registe
 import 'features/programme/create programme/bloc/edit_bloc.dart';
 import 'features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
 import 'features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
-import 'features/programme/program_user/bloc/program_user_bloc.dart';
 import 'features/programme/programme series/bloc/card_custom_exo/card_custom_exo_bloc.dart';
 import 'features/programme/programme series/bloc/card_type_series/card_type_series_bloc.dart';
 import 'features/programme/programme series/bloc/number_series_widget/number_series_widget_bloc.dart';
@@ -48,7 +47,6 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => SortByBloc()),
         BlocProvider(create: (context) => RegisterProgramBloc()),
         BlocProvider(create: (context) => FilterBloc()),
-        BlocProvider(create: (context) => ProgramUserBloc()),
         BlocProvider(create: (context) => RadioButtonGenderBloc()),
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => PopDeleteAccountBloc()),
