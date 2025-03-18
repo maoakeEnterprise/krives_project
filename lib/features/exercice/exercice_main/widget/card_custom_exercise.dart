@@ -6,7 +6,7 @@ import 'package:krives_project/core/services_action/change_widget_services.dart'
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
+import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 
 class CardCustomExercise extends StatelessWidget {
   final Exercise exercise;
@@ -43,7 +43,7 @@ class CardCustomExercise extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(width: 150,),
-                  BlocBuilder<SwitchEditExoBloc, SwitchEditExoState>(
+                  BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
                     builder: (context, state) {
                       bool isEditResponse = ChangeWidgetServices.isEditOrDeleteModeExercise(state);
                       return IconButton(

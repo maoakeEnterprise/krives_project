@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/core/services_action/app_bar_button_services.dart';
 import 'package:krives_project/core/theme/theme.dart';
-import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
-import 'package:krives_project/features/appbar/widget/action_button.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final String title;//title of the page
-  final bool isCreateExoButton;//false = edit, true = button check
-  final bool isCreateSeriesButton;//false = edit, true = button check
-  final bool isProgramButton;//false = nothing , true = button delete
+  final bool isCreateExoButton;///this bool is here to confirm if we are in the page Exercise
+  final bool isCreateSeriesButton;///this bool is here to confirm if we are in the page Series
+  final bool isProgramButton;/// this bool is here to confirm if we are the in page program or not
+  final bool isEditProgramsButton; /// this bool is here to verify if we are in a folder with programs or not
 
   const AppBarCustom({
     super.key,
@@ -16,6 +15,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     this.isCreateExoButton = false,
     this.isCreateSeriesButton = false,
     this.isProgramButton = false,
+    this.isEditProgramsButton = false,
   });
 
   @override
@@ -26,31 +26,8 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       elevation: 5,
       title: Text(title, style: ThemeCustom.textThemes[7][chooseThemes]),
       centerTitle: true,
-      actions: [
-        if(isCreateSeriesButton)
-          ActionButton(iconName: 'check_series',),
-        if(isCreateExoButton)
-          ActionButton(iconName: 'check_exercice',),
-        if(isProgramButton)
-          ActionButton(iconName: 'check_program',),
-        if(!isCreateExoButton && !isCreateSeriesButton)
-        BlocBuilder<ActionButtonBloc, ActionButtonState>(
-          builder: (context, state) {
-            String buttonName;
-            buttonName = _getTheRightActionButton(context, state);
-            return buttonName != 'null' ? ActionButton(iconName: buttonName,) : Container();
-          },
-        ),
-      ],
+      actions: AppBarButtonServices.getTheRightActionButton(context, isCreateExoButton, isCreateSeriesButton, isProgramButton,isEditProgramsButton),
     );
-  }
-
-  String _getTheRightActionButton(BuildContext context, ActionButtonState state) {
-    if(state is ActionButtonEdit) {return 'edit';}
-    else if(state is ActionButtonDelete) {return 'delete';}
-    else if(state is ActionButtonValidate) {return 'check';}
-    return 'null';
-    
   }
   @override
   Size get preferredSize => const Size.fromHeight(60);

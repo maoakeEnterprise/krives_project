@@ -14,6 +14,8 @@ class ActionButtonBloc extends Bloc<ActionButtonEvent, ActionButtonState> {
 
     on<ActionButtonExercicePressed>((event, emit) => emit(ActionButtonEdit()));
 
+    on<ActionButtonProgramsPageWithFoldersPressed>((event, emit) => emit(ActionButtonEditProgram()));
+
     on<ActionButtonProgramPressed>((event, emit) => emit(ActionButtonDelete()));
 
     on<ActionButtonCreatePressed>((event, emit) => emit(ActionButtonValidate()));

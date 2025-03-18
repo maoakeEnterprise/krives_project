@@ -1,12 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/services_action/app_bar_button_services.dart';
 import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/core/services_action/function_services.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
+import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
+import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
 
 class ActionButton extends StatelessWidget {
   final String iconName;
@@ -28,8 +27,6 @@ class ActionButton extends StatelessWidget {
         builder: (context,state){
           return IconButton(
               onPressed: (){
-                log(name.text);
-                log(video.text);
                 ButtonActionServices.validateExercise(state ,name ,video ,context);
                 AppBarButtonServices.onTapMap[iconName]!(context);
                 },
@@ -47,12 +44,23 @@ class ActionButton extends StatelessWidget {
       );
     }
     if(iconName == "edit"){
-
-      return BlocBuilder<SwitchEditExoBloc, SwitchEditExoState>(
+      /// its the button edit he is here to put an edit on some object on the page.
+      /// he is here to add the button delete on the card present in the page
+      return BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
         builder: (context, state) {
           return IconButton(
               onPressed: (){AppBarButtonServices.onTapMap[iconName]!(context);},
-              icon: state is SwitchEditExoOff ? AppBarButtonServices.iconMap[iconName]! : AppBarButtonServices.iconMap["back"]!
+              icon: state is EditOff ? AppBarButtonServices.iconMap[iconName]! : AppBarButtonServices.iconMap["back"]!
+          );
+        },
+      );
+    }
+    if(iconName == "edit_programs"){
+      return BlocBuilder<SwitchEditProgramsBloc, SwitchEditProgramsState>(
+        builder: (context, state) {
+          return IconButton(
+              onPressed: (){AppBarButtonServices.onTapMap[iconName]!(context);},
+              icon: state is ProgramsEditOff ? AppBarButtonServices.iconMap[iconName]! : AppBarButtonServices.iconMap["back"]!
           );
         },
       );

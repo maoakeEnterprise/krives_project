@@ -4,8 +4,7 @@ class Program {
   String idUser;
   String name;
   List<String> inFolder;
-  List<String> registeredIn;
-  List<String> inFolderOtherUserWhoRegisteredIn;
+  List<Map<String, dynamic>> registeredIn;
   List<String> idLiked;
   List<String> idSeries;
 
@@ -15,7 +14,6 @@ class Program {
     required this.name,
     required this.inFolder,
     required this.registeredIn,
-    required this.inFolderOtherUserWhoRegisteredIn,
     required this.idLiked,
     required this.idSeries,
   });
@@ -27,7 +25,6 @@ class Program {
       name: 'Programme',
       inFolder: ['Utilisateur', 'Enregistrer'],
       registeredIn: [],
-      inFolderOtherUserWhoRegisteredIn: [],
       idLiked: [],
       idSeries: [],
     );
@@ -39,8 +36,7 @@ class Program {
       idUser: map['idUser'],
       name: map['name'],
       inFolder: List<String>.from(map['inFolder']),
-      registeredIn: List<String>.from(map['registeredIn']),
-      inFolderOtherUserWhoRegisteredIn: List<String>.from(map['inFolderOtherUserWhoRegisteredIn']),
+      registeredIn: List<Map<String, dynamic>>.from(map['registeredIn']),
       idLiked: List<String>.from(map['idLiked']),
       idSeries: List<String>.from(map['idSeries']),
     );
@@ -53,7 +49,6 @@ class Program {
       'name': program.name,
       'inFolder': program.inFolder,
       'registeredIn': program.registeredIn,
-      'inFolderOtherUserWhoRegisteredIn': program.inFolderOtherUserWhoRegisteredIn,
       'idLiked': program.idLiked,
       'idSeries': program.idSeries,
     };

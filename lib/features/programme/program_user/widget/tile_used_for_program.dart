@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/core/services_action/program_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
+import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
 
 enum TileType{
   folder,
@@ -41,11 +41,18 @@ class TileFolder implements TileUsedForProgram{
   Widget build(BuildContext context){
     return ListTile(
       leading: Icon(Icons.folder_sharp,color: ThemesColor.themes[3][themeChoice],),
+
+      trailing: BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
+        builder: (context, state) {
+          return ProgramActionServices.confirmIfThisFolderCanBeDelete(state, name) ? IconButton(
+            onPressed: ProgramActionServices.actionToDeleteFolder(context),
+            icon: Icon(Icons.do_not_disturb_on_rounded,color: ThemesColor.themes[5][themeChoice],),)
+          : SizedBox.shrink();
+        },),
+
       title: Text(name,
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: (){
-        ButtonActionServices.navigateToPage(context, 'file_program', RouteArgument(titlePage: name));
-      },
+      onTap: ProgramActionServices.actionToGoInTheFolder(context,name),
     );
   }
 }
@@ -59,7 +66,16 @@ class TileProgram implements TileUsedForProgram{
       leading: Icon(Icons.sticky_note_2_sharp,color: ThemesColor.themes[3][themeChoice],),
       title: Text(name,
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: (){},
+
+      trailing: BlocBuilder<SwitchEditProgramsBloc, SwitchEditProgramsState>(
+        builder: (context, state) {
+          return state is ProgramsEditOn ? IconButton(
+            onPressed: ProgramActionServices.actionToDeleteProgram(context),
+            icon: Icon(Icons.do_not_disturb_on_rounded,color: ThemesColor.themes[5][themeChoice],),)
+          : SizedBox.shrink();
+          },),
+
+      onTap: ProgramActionServices.actionToGoInProgram(context),
     );
   }
 }
@@ -88,7 +104,7 @@ class TileCreateProgram implements TileUsedForProgram{
       title: Text(
         SourceLangage.titleProgramsUserLangageWithPopUp[4][langageChoice],
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: (){},
+      onTap: ProgramActionServices.actionToCreateProgram(context),
     );
   }
 }
@@ -102,7 +118,7 @@ class TileAddProgramInFolder implements TileUsedForProgram{
       leading: Icon(Icons.add_box_outlined,color: ThemesColor.themes[3][themeChoice],),
       title: Text(SourceLangage.titleProgramsUserLangageWithPopUp[3][langageChoice],
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: (){},
+      onTap: ProgramActionServices.actionToAddProgramInTheActualFolder(context),
     );
   }
 }

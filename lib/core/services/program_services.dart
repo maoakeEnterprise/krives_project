@@ -55,28 +55,53 @@ class ProgramServices{
 
   ///We send a query : he get the programs with the idUser or the idUser in the array registeredIn
   static Future<List<Program>> getDataPrograms(String nameFolder) async {
+
     List<Program> programs = [];
     String idUser = _auth.currentUser!.uid;
+    QuerySnapshot<Map<String, dynamic>> snapshot;
+    Map<String, String> mapToFind = {"idUser" : idUser};
     final  connectionServerDbPrograms =  _fireStore.collection('programs');
-    final query = connectionServerDbPrograms.where(
+
+    final queryAnyFolder = connectionServerDbPrograms.where(
       Filter.or(
         Filter.and(
           Filter('idUser', isEqualTo: idUser),
           Filter('inFolder', arrayContains: nameFolder),
         ),
-      Filter.and(
-        Filter('registeredIn', arrayContains: idUser),
-        Filter('inFolderOtherUserWhoRegisteredIn', arrayContains: nameFolder),
-      ),
+        Filter('registeredIn', arrayContains: mapToFind),
     ),);
 
-    final snapshot = await query.get();
+    final queryUserFolder  = connectionServerDbPrograms.where('idUser', isEqualTo: idUser);
+
+    final queryRegisterFolder = connectionServerDbPrograms.where('registeredIn',arrayContains: mapToFind);
+
+    if(nameFolder == "Utilisateur"){
+      snapshot = await queryUserFolder.get();
+    }else if(nameFolder == "Enregistrer"){
+      snapshot = await queryRegisterFolder.get();
+    }
+    else{
+      snapshot = await queryAnyFolder.get();
+    }
     List<Map<String, dynamic>> listProgramFromData = snapshot.docs.map((doc) => doc.data()).toList();
 
     for (var element in listProgramFromData) {
       programs.add(Program.fromMap(element));
     }
     return programs;
+  }
+
+  static int getTheRightLengthListProgram(String nameFolder, int initLength){
+    //int length = 0;
+    if(nameFolder == "Enregistrer"){
+      return initLength;
+    }
+    if(nameFolder == "Utilisateur"){
+      return initLength+1;
+    }
+    else{
+      return  initLength+2;
+    }
   }
 
   static Future<void> addProgram(Program program) async {
@@ -103,4 +128,5 @@ class ProgramServices{
     Map<String, dynamic> map = Program.toMap(program);
     await docRef.update(map);
   }
+
 }

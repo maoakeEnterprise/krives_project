@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 
@@ -20,6 +21,9 @@ class TextFieldNameFolder extends StatelessWidget {
         style: ThemesTextStyles.textBigWhite,
         cursorColor: ThemesColor.white,
         textAlignVertical: TextAlignVertical.top, // Aligns the text vertically to the top
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_]')),
+        ],
         decoration: InputDecoration(
           // The decoration provides visual styling for the TextField.
           labelStyle: ThemesTextStyles.textBigWhite, // Style for the label

@@ -7,7 +7,7 @@ class RouteArgument {
   final bool isExoButtonEdit;
   final bool isProgramButton;
   final bool isAddingProgramButton;
-  final bool isEditProgramsButton;
+  final bool isInTheFolderProgramsOrFolders;
   final String? nameFileProgram;
   final TextEditingController? controllerNameExercice;
   final TextEditingController? controllerCommentaryExercice;
@@ -17,7 +17,7 @@ class RouteArgument {
     this.controllerNameExercice,
     this.controllerCommentaryExercice,
     this.isCreateExoButton=false,
-    this.isEditProgramsButton=false,
+    this.isInTheFolderProgramsOrFolders=false,
     this.isExoButtonEdit=false,
     this.isCreateSeriesButton=false,
     this.isProgramButton=false,

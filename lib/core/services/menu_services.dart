@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
+import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/page/exercice_page.dart';
 import 'package:krives_project/features/graphics/page/graphics_page.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
@@ -38,8 +38,8 @@ class MenuServices {
     ///Page who contains all your program created or register
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
-    },
+      initButtonAppBarEditProgramsFolders(context);
+      },
     ///Page setting or profile whatever its the page where you manage your profile : data / settings
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
@@ -48,9 +48,8 @@ class MenuServices {
     ///Page with your exercise created by the user
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());///To send a state to the appBar to print the right button
-      context.read<SwitchEditExoBloc>().add(SwitchEditExoEventInitPressed());///Init the bloc with the switch edit state in the appBar
-    },
+      initButtonAppBarEditExercise(context);
+      },
     ///Page who contains the programs of the community the print will be calculate with an algorithm
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
@@ -91,4 +90,14 @@ class MenuServices {
     resetStateBlocMenuPage(context);
     colorTheRightButtonMenuPressed(context, index);
   }
+
+  static void initButtonAppBarEditExercise(BuildContext context){
+    context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());///To send a state to the appBar to print the right button
+    context.read<SwitchEditAppBarBloc>().add(InitEventEdit());///Init the bloc with the switch edit state in the appBar
+  }
+  static void initButtonAppBarEditProgramsFolders(BuildContext context){
+    context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());///To send a state to the appBar to print the right button
+    context.read<SwitchEditAppBarBloc>().add(InitEventEdit());///Init the bloc with the switch edit state in the appBar
+  }
+
 }

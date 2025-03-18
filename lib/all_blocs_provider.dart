@@ -6,9 +6,11 @@ import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercis
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
+import 'package:krives_project/features/programme/program_user/bloc/program_bloc/program_bloc.dart';
+import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
 import 'features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'features/authentification/widget/bloc/auth_bloc.dart';
-import 'features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
+import 'features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'features/graphics/bloc/filter_bloc.dart';
 import 'features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
 import 'features/menu/bloc/side_menu_tile_bloc.dart';
@@ -43,7 +45,7 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => CardCustomExoBloc()),
         BlocProvider(create: (context) => NumberSeriesWidgetBloc()),
         BlocProvider(create: (context) => CardTypeSeriesBloc()),
-        BlocProvider(create: (context) => SwitchEditExoBloc()),
+        BlocProvider(create: (context) => SwitchEditAppBarBloc()),
         BlocProvider(create: (context) => SortByBloc()),
         BlocProvider(create: (context) => RegisterProgramBloc()),
         BlocProvider(create: (context) => FilterBloc()),
@@ -54,6 +56,8 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => ExerciseServBloc()),
         BlocProvider(create: (context) => ExerciseBloc()),
         BlocProvider(create: (context) => FolderBloc()),
+        BlocProvider(create: (context) => ProgramBloc()),
+        BlocProvider(create: (context) => SwitchEditProgramsBloc()),
       ],
       child: child,
     );

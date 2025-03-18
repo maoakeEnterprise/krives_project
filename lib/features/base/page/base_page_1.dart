@@ -24,6 +24,7 @@ class BasePage1 extends StatelessWidget {
         isCreateExoButton: arguments.isCreateExoButton,
         isCreateSeriesButton: arguments.isCreateSeriesButton,
         isProgramButton: arguments.isProgramButton,
+        isEditProgramsButton: arguments.isEditProgramsButton,
       ),
       backgroundColor: ThemeCustom.colorThemes[1][chooseThemes],
       body: child,

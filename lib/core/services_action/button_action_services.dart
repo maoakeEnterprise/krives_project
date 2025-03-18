@@ -10,7 +10,7 @@ import 'package:krives_project/core/services_action/change_widget_services.dart'
 import 'package:krives_project/features/authentification/widget/bloc/auth_bloc.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
-import 'package:krives_project/features/exercice/exercice_main/bloc/switch_edit_exo/switch_edit_exo_bloc.dart';
+import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'package:krives_project/features/popup_dialog/page/pop_up_delete.dart';
 import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
 
@@ -90,7 +90,7 @@ class ButtonActionServices{
    *////
 
   static void addNewExercise(BuildContext context,TextEditingController name, TextEditingController video){
-    context.read<SwitchEditExoBloc>().add(SwitchEditExoEventInitPressed());
+    context.read<SwitchEditAppBarBloc>().add(InitEventEdit());
     context.read<ExerciseBloc>().add(NewExercise());
     navigateToPage(context, 'exercise',
         RouteArgument(titlePage: "Exercise",isCreateExoButton: true,
@@ -144,7 +144,7 @@ class ButtonActionServices{
     );
   }
 
-  static void isSettingOrDeleteExerciseFunction(BuildContext context,SwitchEditExoState state,Exercise exercise){
+  static void isSettingOrDeleteExerciseFunction(BuildContext context,SwitchEditAppBarState state,Exercise exercise){
     ChangeWidgetServices.isEditOrDeleteModeExercise(state) ?
         settingsExercise(context, exercise) : isPopUpDeleteExercise(context, exercise);
   }

@@ -17,6 +17,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
   }
 
   Future<void> _programInitial(ProgramInitial event, Emitter<ProgramState> emit) async{
+    emit(ProgramsLoading());
     try{
       List<Program> programs = await ProgramServices.getDataPrograms(event.nameFolder);
       emit(ProgramsLoaded(programs: programs, nameFolder: event.nameFolder));
