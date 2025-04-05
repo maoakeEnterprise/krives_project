@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
 import 'package:krives_project/features/hub_communautaire/widget/grid_view_vertical_hub_commu.dart';
-import 'package:krives_project/features/programme/before_playtime_workout/bloc/bloc_menu_widget/menu_widget_bloc.dart';
 
 class CardWidgetScrollWidgetVerticalHubCommu extends StatelessWidget {
   const CardWidgetScrollWidgetVerticalHubCommu({super.key});
@@ -15,7 +13,6 @@ class CardWidgetScrollWidgetVerticalHubCommu extends StatelessWidget {
     int themeChoice = 0;
     return GestureDetector(
       onTap: (){
-        context.read<MenuWidgetBloc>().add(MenuWidgetEventHubPressed());
         ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: "Nom Programme"));
       },
       child: CardCustomColor1(

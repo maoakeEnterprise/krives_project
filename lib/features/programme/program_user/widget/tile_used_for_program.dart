@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/services_action/program_action_services.dart';
+import 'package:krives_project/features/programme/program_user/services/program_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
@@ -17,10 +18,10 @@ enum TileType{
 
 abstract class TileUsedForProgram{
   Widget build(BuildContext context);
-  factory TileUsedForProgram(TileType type,String name){
+  factory TileUsedForProgram(TileType type,String name,Folder folder){
     switch(type){
       case TileType.folder:
-        return TileFolder(name);
+        return TileFolder(name,folder);
       case TileType.program:
         return TileProgram(name);
       case TileType.createFolder:
@@ -35,8 +36,9 @@ abstract class TileUsedForProgram{
 
 class TileFolder implements TileUsedForProgram{
   final String name;
+  final Folder folder;
   int themeChoice = 0;
-  TileFolder(this.name);
+  TileFolder(this.name,this.folder);
   @override
   Widget build(BuildContext context){
     return ListTile(
@@ -45,7 +47,7 @@ class TileFolder implements TileUsedForProgram{
       trailing: BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
         builder: (context, state) {
           return ProgramActionServices.confirmIfThisFolderCanBeDelete(state, name) ? IconButton(
-            onPressed: ProgramActionServices.actionToDeleteFolder(context),
+            onPressed: ProgramActionServices.actionToDeleteFolder(context,name,folder),
             icon: Icon(Icons.do_not_disturb_on_rounded,color: ThemesColor.themes[5][themeChoice],),)
           : SizedBox.shrink();
         },),
@@ -75,7 +77,7 @@ class TileProgram implements TileUsedForProgram{
           : SizedBox.shrink();
           },),
 
-      onTap: ProgramActionServices.actionToGoInProgram(context),
+      onTap: ProgramActionServices.actionToGoInProgram(context,name),
     );
   }
 }

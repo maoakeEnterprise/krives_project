@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
-import 'package:krives_project/core/services_action/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
+import 'package:krives_project/features/exercice/services/exercise_action_services.dart';
+import 'package:krives_project/features/exercice/services/exercise_function_services.dart';
 
 class CardSecondaryMuscle extends StatelessWidget {
   final int index;
@@ -23,11 +23,9 @@ class CardSecondaryMuscle extends StatelessWidget {
     int themeChoice = 0;
     return BlocBuilder<ExerciseBloc, ExerciseState>(
       builder: (context, state) {
-        bool isSelectedResponse = ChangeWidgetServices.isSelectedSecondaryMuscle(state, muscle);
+        bool isSelectedResponse = ExerciseFunctionServices.isSelectedSecondaryMuscle(state, muscle);
         return GestureDetector(
-          onTap: () {
-            ButtonActionServices.modifySecondaryMuscle(state: state, muscle: muscle, context: context);
-            },
+          onTap: ExerciseActionServices.modifySecondaryMuscle(state: state, muscle: muscle, context: context),
           child: Container(
             width: 100,
             height: 100,

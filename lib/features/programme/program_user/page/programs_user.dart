@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
-import 'package:krives_project/core/services/program_services.dart';
-import 'package:krives_project/core/services_action/program_action_services.dart';
+import 'package:krives_project/features/programme/services/program_function_services.dart';
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/program_bloc/program_bloc.dart';
 
@@ -49,7 +48,7 @@ class _ProgramsUserState extends State<ProgramsUser> {
           return ListView.builder(
             itemCount: folder.folders.length + 1,
             itemBuilder: (context, index) {
-              return ProgramActionServices.getTheRightTilesInFolder(
+              return ProgramFunctionServices.getTheRightTilesInFolder(
                   folder, state, index).build(context);
             },
           );
@@ -70,9 +69,9 @@ class _ProgramsUserState extends State<ProgramsUser> {
         }
         if(state is ProgramsLoaded){
           return ListView.builder(
-            itemCount: ProgramServices.getTheRightLengthListProgram(state.nameFolder, state.programs.length),
+            itemCount: ProgramFunctionServices.getTheRightLengthListProgram(state.nameFolder, state.programs.length),
               itemBuilder: (context,index){
-                return ProgramActionServices.getTheRightTilesInProgram(state, index).build(context);
+                return ProgramFunctionServices.getTheRightTilesInProgram(state, index).build(context);
               }
           );
         }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/signup/bloc/radio_button_gender_bloc.dart';
+import 'package:krives_project/features/signup/services/sign_up_action_services.dart';
 import '../../../core/theme/themes_text_styles.dart';
 
 class ButtonSignUpValidate extends StatelessWidget {
@@ -17,13 +17,7 @@ class ButtonSignUpValidate extends StatelessWidget {
     return BlocBuilder<RadioButtonGenderBloc, RadioButtonGenderState>(
       builder: (context, state) {
         return InkWell(
-          onTap: () {
-            int genderSelected = 1;
-            if(state is RadioButtonGenderSelected){
-              genderSelected = state.gender;
-            }
-            ButtonActionServices.signUp(textEditingController, genderSelected, context);
-          },
+          onTap: SignUpActionServices.signUp(textEditingController,state,context),
           child: Ink(
             child: Container(
               margin: EdgeInsets.fromLTRB(41, 0, 41, 0),

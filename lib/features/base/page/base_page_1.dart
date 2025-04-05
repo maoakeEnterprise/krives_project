@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
+import 'package:krives_project/core/services/function_services.dart';
 import 'package:krives_project/core/theme/theme.dart';
 import 'package:krives_project/features/appbar/page/appbar_custom.dart';
 
@@ -16,7 +17,8 @@ class BasePage1 extends StatelessWidget {
     int chooseThemes = 0;
     int chooseLangage = 0;
     String title;
-    final arguments = ModalRoute.of(context)?.settings.arguments as RouteArgument;
+    final arguments = FunctionServices.getArgument(context);
+
     title = _getTitlePage(arguments,chooseLangage);
     return Scaffold(
       appBar: AppBarCustom(

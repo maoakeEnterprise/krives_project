@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/services/berfore_playtime_services.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/icon_button_menu_before_playtime.dart';
 
 class MenuBarBeforePlaytimeWorkout extends StatelessWidget {
@@ -13,29 +14,18 @@ class MenuBarBeforePlaytimeWorkout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: children,
-    ),
+      ),
     );
   }
 
-  List<Widget> _getMenuDependUser(BuildContext context){
-    List<Widget> children = [
-      IconButtonMenuBeforePlaytime(buttonName: "like"),
-      IconButtonMenuBeforePlaytime(buttonName: "comment"),
-      IconButtonMenuBeforePlaytime(buttonName: "share"),
-    ];
-    if(false){
-      if(true){
-        children.add(IconButtonMenuBeforePlaytime(buttonName: "settingsProgram"));
-        children.add(IconButtonMenuBeforePlaytime(buttonName: "play"));
-      }
-      else{
-        children.add(IconButtonMenuBeforePlaytime(buttonName: "bookmark"));
-        if(false) {
-          children.add(IconButtonMenuBeforePlaytime(buttonName: "play"));
-        }
-      }
+  List<Widget> _getMenuDependUser(BuildContext context) {
+    List<Widget> children = [];
+
+    for (var type in BeforePlaytimeServices.listMenu[OwnerOrNot.notOwnerNotRegister]!) {
+      children.add(
+        IconButtonMenuBeforePlaytime(buttonName: type),
+      );
     }
     return children;
   }
-
 }

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
-import '../../../../core/services/auth_services.dart';
+import '../../services/auth_server_services.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -14,7 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthLoading()) {
 
     _authStateSubscription =
-        AuthServices.authInstance.authStateChanges().listen((user) {
+        AuthServerServices.authInstance.authStateChanges().listen((user) {
           //check if the user is connected or not
           add(user != null ? AuthStarted():AuthInitSignOut());
     });
@@ -36,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onAuthStarted(AuthStarted event, Emitter<AuthState> emit) async {
 
-    final user = AuthServices.currentUser; // check if the user is connected or not
+    final user = AuthServerServices.currentUser; // check if the user is connected or not
     emit(user != null ? AuthSuccess(user: user) : AuthNotConnected());
   }
 
@@ -45,7 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onAuthSignedOut(AuthSignedOut event, Emitter<AuthState> emit) async {
-    await AuthServices.signOut();
+    await AuthServerServices.signOut();
     emit(AuthNotConnected());
   }
 
@@ -53,11 +53,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     String email = event.email;
     String password = event.password;
 
-    if(AuthServices.verifEmptyTextField(email) && AuthServices.verifEmptyTextField(password)){
+    if(AuthServerServices.verifEmptyTextField(email) && AuthServerServices.verifEmptyTextField(password)){
       try{
         emit(AuthLoading());
-        await AuthServices.signInWithEmailAndPassword(email, password);
-        emit(AuthSuccess(user: AuthServices.currentUser!));
+        await AuthServerServices.signInWithEmailAndPassword(email, password);
+        emit(AuthSuccess(user: AuthServerServices.currentUser!));
       }catch(error){
         emit(AuthError(errorMessages: '$error'));
 
@@ -72,8 +72,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onAuthResetEmail(AuthResetEmail event, Emitter<AuthState> emit) async {
     String email = event.email;
      try{
-       AuthServices.verifEmptyTextField(email) ?
-       await AuthServices.sendPasswordResetEmail(email)
+       AuthServerServices.verifEmptyTextField(email) ?
+       await AuthServerServices.sendPasswordResetEmail(email)
            :
        emit(AuthError(errorMessages: "There is a text field empty or not in a correct format"));
        event.context.mounted ? Navigator.pop(event.context) : null;
@@ -89,7 +89,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try{
       await newUser.createUserWithEmailAndPassword();
       event.context.mounted ? Navigator.pop(event.context) : null;
-      emit(AuthSuccess(user: AuthServices.currentUser!));
+      emit(AuthSuccess(user: AuthServerServices.currentUser!));
     }
     catch(error){
       emit(AuthError(errorMessages: '$error'));
@@ -99,7 +99,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _onAuthDeleted(AuthDeleted event, Emitter<AuthState> emit) async {
     try{
       emit(AuthLoading());
-      await AuthServices.deleteAccount();
+      await AuthServerServices.deleteAccount();
       emit(AuthNotConnected());
     }
     catch(error){

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
-import 'package:krives_project/core/services/auth_services.dart';
+import 'package:krives_project/features/authentification/services/auth_server_services.dart';
 import 'package:meta/meta.dart';
 
 part 'data_user_event.dart';
@@ -13,7 +13,7 @@ class DataUserBloc extends Bloc<DataUserEvent, DataUserState> {
 
   Future<void> _onLoadDataUser(LoadDataUser event, Emitter<DataUserState> emit) async {
     try{
-      KrivesUser? user = await AuthServices.getUserData();
+      KrivesUser? user = await AuthServerServices.getUserData();
       emit(DataUserLoaded(user: user));
     }
     catch(error){

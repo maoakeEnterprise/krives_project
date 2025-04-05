@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
-import 'package:krives_project/core/services/program_services.dart';
+import 'package:krives_project/features/programme/services/program_server_services.dart';
 import 'package:meta/meta.dart';
 
 part 'program_event.dart';
@@ -19,7 +19,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
   Future<void> _programInitial(ProgramInitial event, Emitter<ProgramState> emit) async{
     emit(ProgramsLoading());
     try{
-      List<Program> programs = await ProgramServices.getDataPrograms(event.nameFolder);
+      List<Program> programs = await ProgramServerServices.getDataPrograms(event.nameFolder);
       emit(ProgramsLoaded(programs: programs, nameFolder: event.nameFolder));
     }catch(error){
       emit(ProgramsError(message: "Not possible to get the programs : $error"));

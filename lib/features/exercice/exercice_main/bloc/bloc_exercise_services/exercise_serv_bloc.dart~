@@ -1,0 +1,60 @@
+import 'package:bloc/bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/features/exercice/services/exercise_services.dart';
+import 'package:meta/meta.dart';
+
+part 'exercise_serv_event.dart';
+part 'exercise_serv_state.dart';
+
+class ExerciseServBloc extends Bloc<ExerciseServEvent, ExerciseServState> {
+
+
+  ExerciseServBloc() : super(ExerciseLoading()) {
+    on<LoadExercises>(_loadExercises);
+    on<AddExercise>(_addExercise);
+    on<ModifyExercise>(_modifyExercise);
+    on<DeleteExercise>(_deleteExercise);
+  }
+
+  Future<void> _loadExercises(LoadExercises event, Emitter<ExerciseServState> emit) async {
+    try{
+      List<Exercise> exercises = await ExerciseServices.getExercises();
+      emit(ExerciseLoaded(exercises: exercises));
+    }catch(error){
+      emit(ExerciseError(message: "Not possible to get the exercises : $error"));
+    }
+  }
+
+  Future<void> _addExercise(AddExercise event, Emitter<ExerciseServState> emit) async {
+    emit(ExerciseLoading());
+    try{
+      Exercise newExercise = event.exercise;
+      await ExerciseServices.add(newExercise);
+      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+    }catch(error){
+      emit(ExerciseError(message: "Not possible to add the exercise : $error"));
+    }
+  }
+  Future<void> _modifyExercise(ModifyExercise event, Emitter<ExerciseServState> emit) async {
+    emit(ExerciseLoading());
+    try{
+      Exercise updatedExercise = event.exercise;
+      await ExerciseServices.modify(updatedExercise);
+      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+    }catch(error){
+      emit(ExerciseError(message: "Not possible to modify the exercise : $error"));
+    }
+  }
+  Future<void> _deleteExercise(DeleteExercise event, Emitter<ExerciseServState> emit) async {
+    emit(ExerciseLoading());
+    try{
+      String id = event.exercise.id;
+      await ExerciseServices.delete(id);
+      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+    }catch(error){
+      emit(ExerciseError(message: "Not possible to delete the exercise : $error"));
+    }
+
+  }
+
+}

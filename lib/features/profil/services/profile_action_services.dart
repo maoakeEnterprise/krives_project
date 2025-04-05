@@ -1,0 +1,35 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/features/authentification/widget/bloc/auth_bloc.dart';
+import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
+
+class ProfileActionServices{
+
+  static VoidCallback signOut(BuildContext context){
+    return (){
+      context.read<AuthBloc>().add(AuthSignedOut());
+    };
+  }
+
+  static VoidCallback popUpDeleteAccount(BuildContext context){
+    return (){
+      context.read<PopDeleteAccountBloc>().add(PopIsUp());
+    };
+  }
+
+  static VoidCallback popClosed(BuildContext context){
+    return(){
+      context.read<PopDeleteAccountBloc>().add(PopClosed());
+      Navigator.of(context).pop();
+    };
+  }
+
+  static VoidCallback deleteAccount(BuildContext context){
+    return(){
+      context.read<AuthBloc>().add(AuthDeleted());
+      context.read<PopDeleteAccountBloc>().add(PopClosed());
+      Navigator.of(context).pop();
+    };
+  }
+}

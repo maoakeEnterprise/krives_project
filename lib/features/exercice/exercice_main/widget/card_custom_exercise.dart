@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
-import 'package:krives_project/core/services_action/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
+import 'package:krives_project/features/exercice/services/exercise_action_services.dart';
+import 'package:krives_project/features/exercice/services/exercise_function_services.dart';
 
 class CardCustomExercise extends StatelessWidget {
   final Exercise exercise;
@@ -45,12 +45,9 @@ class CardCustomExercise extends StatelessWidget {
                   Container(width: 150,),
                   BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
                     builder: (context, state) {
-                      bool isEditResponse = ChangeWidgetServices.isEditOrDeleteModeExercise(state);
                       return IconButton(
-                        onPressed: (){
-                          ButtonActionServices.isSettingOrDeleteExerciseFunction(context, state, exercise);
-                        },
-                        icon: Icon(isEditResponse ? Icons.settings : Icons.delete,
+                        onPressed: ExerciseActionServices.isSettingOrDeleteExerciseFunction(context, state, exercise),
+                        icon: Icon(ExerciseFunctionServices.isEditOrDeleteExerciseIconData(state),
                           size: 20,
                           color: ThemesColor.themes[7][themeChoice],),
                       );

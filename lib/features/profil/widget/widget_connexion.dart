@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/profil/services/profile_action_services.dart';
 import 'package:krives_project/features/profil/widget/card__custom_profiles_settings.dart';
 
 class WidgetConnexion extends StatelessWidget {
@@ -16,9 +16,7 @@ class WidgetConnexion extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            onTap: (){
-              ButtonActionServices.signOut(context);
-            },
+            onTap: ProfileActionServices.signOut(context),
             title: Text(
               SourceLangage.titleProfileLangage[12][langageChoice],
               style: ThemesTextStyles.themes[3][themeChoice],
@@ -27,9 +25,7 @@ class WidgetConnexion extends StatelessWidget {
             iconColor: ThemesColor.themes[5][themeChoice],
           ),
           ListTile(
-            onTap: () {
-              ButtonActionServices.popUpDeleteAccount(context);
-            },
+            onTap: ProfileActionServices.popUpDeleteAccount(context),
             title: Text(
               SourceLangage.titleProfileLangage[13][langageChoice],
               style: ThemesTextStyles.themes[3][themeChoice],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/features/connexion/services/connexion_action_services.dart';
 import '../../../core/theme/themes_text_styles.dart';
 
 class CustomButton1 extends StatelessWidget {
@@ -13,12 +13,10 @@ class CustomButton1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        ButtonActionServices.connexionOrResetPassword(
-            textEditingController.map((key, value) => MapEntry(key, value.text)),
-            context
-        );
-      },
+      onTap: ConnexionActionServices.connexionOrResetPassword(
+          textEditingController.map((key, value) => MapEntry(key, value.text)),
+          context
+      ),
       child: Ink(
         child: Container(
           margin: EdgeInsets.fromLTRB(41, 0, 41, 0),

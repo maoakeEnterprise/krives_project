@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
-import 'package:krives_project/core/services_action/change_widget_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
+import 'package:krives_project/features/exercice/services/exercise_action_services.dart';
+import 'package:krives_project/features/exercice/services/exercise_function_services.dart';
 class CardMainMuscle extends StatefulWidget {
   final int index;
   final Muscle muscle;
@@ -29,11 +29,9 @@ class _CardMainMuscleState extends State<CardMainMuscle> {
 
     return BlocBuilder<ExerciseBloc, ExerciseState>(
       builder: (context, state) {
-        isSelectedResponse = ChangeWidgetServices.isSelectedMainMuscle(state, widget.muscle);
+        isSelectedResponse = ExerciseFunctionServices.isSelectedMainMuscle(state, widget.muscle);
         return GestureDetector(
-          onTap: (){
-            ButtonActionServices.modifyMainMuscle(state: state, muscle: widget.muscle, context: context);
-            },
+          onTap: ExerciseActionServices.modifyMainMuscle(state: state, muscle: widget.muscle, context: context),
           child: Container(
             width: 180,
             height: 180,

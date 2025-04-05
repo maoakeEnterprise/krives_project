@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
-import 'package:krives_project/core/services/exercise_services.dart';
+import 'package:krives_project/features/exercice/services/exercise_server_services.dart';
 import 'package:meta/meta.dart';
 
 part 'exercise_serv_event.dart';
@@ -18,7 +18,7 @@ class ExerciseServBloc extends Bloc<ExerciseServEvent, ExerciseServState> {
 
   Future<void> _loadExercises(LoadExercises event, Emitter<ExerciseServState> emit) async {
     try{
-      List<Exercise> exercises = await ExerciseServices.getExercises();
+      List<Exercise> exercises = await ExerciseServerServices.getExercises();
       emit(ExerciseLoaded(exercises: exercises));
     }catch(error){
       emit(ExerciseError(message: "Not possible to get the exercises : $error"));
@@ -29,8 +29,8 @@ class ExerciseServBloc extends Bloc<ExerciseServEvent, ExerciseServState> {
     emit(ExerciseLoading());
     try{
       Exercise newExercise = event.exercise;
-      await ExerciseServices.add(newExercise);
-      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+      await ExerciseServerServices.add(newExercise);
+      emit(ExerciseLoaded(exercises: await ExerciseServerServices.getExercises()));
     }catch(error){
       emit(ExerciseError(message: "Not possible to add the exercise : $error"));
     }
@@ -39,8 +39,8 @@ class ExerciseServBloc extends Bloc<ExerciseServEvent, ExerciseServState> {
     emit(ExerciseLoading());
     try{
       Exercise updatedExercise = event.exercise;
-      await ExerciseServices.modify(updatedExercise);
-      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+      await ExerciseServerServices.modify(updatedExercise);
+      emit(ExerciseLoaded(exercises: await ExerciseServerServices.getExercises()));
     }catch(error){
       emit(ExerciseError(message: "Not possible to modify the exercise : $error"));
     }
@@ -49,8 +49,8 @@ class ExerciseServBloc extends Bloc<ExerciseServEvent, ExerciseServState> {
     emit(ExerciseLoading());
     try{
       String id = event.exercise.id;
-      await ExerciseServices.delete(id);
-      emit(ExerciseLoaded(exercises: await ExerciseServices.getExercises()));
+      await ExerciseServerServices.delete(id);
+      emit(ExerciseLoaded(exercises: await ExerciseServerServices.getExercises()));
     }catch(error){
       emit(ExerciseError(message: "Not possible to delete the exercise : $error"));
     }

@@ -33,14 +33,14 @@ class PopUpDelete extends StatelessWidget {
             SizedBox(height: 18,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: [ButtonPopUp(
+                isConfirmButton: true,
+                text: SourceLangage.baseLangage[23][chooseLangage],
+                exercise: exercise,
+              ),
                 ButtonPopUp(text: SourceLangage.baseLangage[24][chooseLangage],exercise: exercise,),
                 SizedBox(width: 18,),
-                ButtonPopUp(
-                  isConfirmButton: true,
-                  text: SourceLangage.baseLangage[23][chooseLangage],
-                  exercise: exercise,
-                ),
+
               ],
             )
           ],

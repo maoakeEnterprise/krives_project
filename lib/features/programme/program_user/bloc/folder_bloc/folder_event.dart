@@ -9,3 +9,8 @@ final class FolderAdd extends FolderEvent {
   final Folder folder;
   FolderAdd({required this.name,required this.folder});
 }
+final class FolderDelete extends FolderEvent {
+  final String name;
+  final Folder folder;
+  FolderDelete({required this.name,required this.folder});
+}

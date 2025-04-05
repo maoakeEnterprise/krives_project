@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/features/connexion/widget/custom_button1.dart';
 import 'package:krives_project/features/connexion/widget/textfield_theme1.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
@@ -54,17 +54,17 @@ class _ConnexionPageState extends State<ConnexionPage> {
                     children: [
 
                       GestureDetector(
-                        child: Text(SourceLangage.baseLangage[9][chooseLangage], style: ThemesTextStyles.textNormalGreen,),
                         onTap: (){
                           ButtonActionServices.navigateToPage(context, 'sign_up',RouteArgument());
                         },
+                        child: Text(SourceLangage.baseLangage[9][chooseLangage], style: ThemesTextStyles.textNormalGreen,),
                       ),//Sign in ?
 
                       GestureDetector(
-                        child: Text(SourceLangage.baseLangage[10][chooseLangage], style: ThemesTextStyles.textNormalWhite,),
                         onTap: (){
                           ButtonActionServices.navigateToPage(context, 'forgot_password',RouteArgument());
                         },
+                        child: Text(SourceLangage.baseLangage[10][chooseLangage], style: ThemesTextStyles.textNormalWhite,),
                       )//Forget password ?
                     ],
                   ),

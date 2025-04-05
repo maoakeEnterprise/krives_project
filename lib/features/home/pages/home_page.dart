@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
+import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/home/widget/card_custom_home.dart';
 import 'package:krives_project/core/data/repositories/widget_scroll.dart';

@@ -14,9 +14,6 @@ import 'features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'features/graphics/bloc/filter_bloc.dart';
 import 'features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
 import 'features/menu/bloc/side_menu_tile_bloc.dart';
-import 'features/programme/before_playtime_workout/bloc/bloc_like_program/like_program_bloc.dart';
-import 'features/programme/before_playtime_workout/bloc/bloc_menu_widget/menu_widget_bloc.dart';
-import 'features/programme/before_playtime_workout/bloc/register_program/register_program_bloc.dart';
 import 'features/programme/create programme/bloc/edit_bloc.dart';
 import 'features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
 import 'features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
@@ -35,8 +32,6 @@ class AllBlocsProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SwitchEditBloc()),
-        BlocProvider(create: (context) => MenuWidgetBloc()),
-        BlocProvider(create: (context) => LikeProgramBloc()),
         BlocProvider(create: (context) => ActionButtonBloc()),
         BlocProvider(create: (context) => SideMenuTileBloc()),
         BlocProvider(create: (context) => TimerBloc()),
@@ -47,7 +42,6 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => CardTypeSeriesBloc()),
         BlocProvider(create: (context) => SwitchEditAppBarBloc()),
         BlocProvider(create: (context) => SortByBloc()),
-        BlocProvider(create: (context) => RegisterProgramBloc()),
         BlocProvider(create: (context) => FilterBloc()),
         BlocProvider(create: (context) => RadioButtonGenderBloc()),
         BlocProvider(create: (context) => AuthBloc()),

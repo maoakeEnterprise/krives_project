@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/repositories/card_custom_add.dart';
-import 'package:krives_project/core/services_action/button_action_services.dart';
+import 'package:krives_project/features/exercice/services/exercise_action_services.dart';
 
 class CardCustomAddExo extends StatefulWidget {
   const CardCustomAddExo({super.key});
@@ -27,9 +27,7 @@ class _CardCustomAddExoState extends State<CardCustomAddExo> {
     return CardCustomAdd(
       height: 110,
       left: 20,
-      onTap: (){
-        ButtonActionServices.addNewExercise(context, _nameController, _videoController);
-      },
+      onTap: ExerciseActionServices.addNewExercise(context, _nameController, _videoController),
     );
   }
 }
