@@ -20,7 +20,7 @@ class ButtonActionServices{
   ///HomePageActionButton
 
   static VoidCallback navigateInTheProgram(BuildContext context){
-    return () => navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
+    return () => navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true,));
   }
 
   ///ProgramActionServices

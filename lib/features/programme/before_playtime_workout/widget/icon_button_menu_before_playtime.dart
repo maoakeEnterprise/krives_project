@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/bloc/program_before_work_out_bloc/program_before_work_out_bloc.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/services/berfore_playtime_services.dart';
 
 
 class IconButtonMenuBeforePlaytime extends StatelessWidget {
 
 
-
   final MenuButtonProgramType buttonName;
+
   const IconButtonMenuBeforePlaytime({
     required this.buttonName,
     super.key
@@ -14,17 +16,20 @@ class IconButtonMenuBeforePlaytime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int themeChoice=0;
-    int langageChoice=0;
+    int themeChoice = 0;
 
-    return IconButton(
-        onPressed: () => BeforePlaytimeServices.onTapMap[buttonName]!(context,themeChoice,langageChoice),
-        icon: Icon(
-          BeforePlaytimeServices.iconMap[buttonName],
-            color: BeforePlaytimeServices.mapColor[buttonName],
-          size: buttonName != MenuButtonProgramType.play ? 30 : 50,
-        ),
+    return BlocBuilder<ProgramBeforeWorkOutBloc, ProgramBeforeWorkOutState>(
+      builder: (context, state) {
+        print("test2");
+        return IconButton(
+          onPressed: () => BeforePlaytimeServices.onTapMap[buttonName]!(context, themeChoice,state),
+          icon: Icon(
+            BeforePlaytimeServices.iconMap[BeforePlaytimeServices.getTheRightButtonName(state, buttonName)],
+            color: BeforePlaytimeServices.mapColor[BeforePlaytimeServices.getTheRightButtonName(state, buttonName)],
+            size: buttonName != MenuButtonProgramType.play ? 30 : 50,
+          ),
+        );
+      },
     );
-
   }
 }

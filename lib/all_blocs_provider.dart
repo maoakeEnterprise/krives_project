@@ -5,6 +5,7 @@ import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/bloc/program_before_work_out_bloc/program_before_work_out_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/program_bloc/program_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
@@ -52,6 +53,7 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => FolderBloc()),
         BlocProvider(create: (context) => ProgramBloc()),
         BlocProvider(create: (context) => SwitchEditProgramsBloc()),
+        BlocProvider(create: (context) => ProgramBeforeWorkOutBloc())
       ],
       child: child,
     );

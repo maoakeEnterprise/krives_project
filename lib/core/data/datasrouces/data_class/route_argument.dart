@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 class RouteArgument {
   final int? idWordTitle;
   final String? titlePage;
@@ -9,9 +10,11 @@ class RouteArgument {
   final bool isAddingProgramButton;
   final bool isEditProgramsButton;
   final String? nameFileProgram;
+  final Program? program;
   final TextEditingController? controllerNameExercice;
   final TextEditingController? controllerCommentaryExercice;
   RouteArgument({
+    this.program,
     this.idWordTitle,
     this.titlePage,
     this.controllerNameExercice,

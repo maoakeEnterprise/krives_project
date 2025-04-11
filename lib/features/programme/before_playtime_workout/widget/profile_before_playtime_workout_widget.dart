@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/bloc/program_before_work_out_bloc/program_before_work_out_bloc.dart';
+import 'package:krives_project/features/programme/before_playtime_workout/services/berfore_playtime_services.dart';
 
 class ProfileBeforePlaytimeWorkoutWidget extends StatelessWidget {
-  const ProfileBeforePlaytimeWorkoutWidget({super.key});
+  final Program program;
+
+  const ProfileBeforePlaytimeWorkoutWidget({super.key, required this.program});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +27,17 @@ class ProfileBeforePlaytimeWorkoutWidget extends StatelessWidget {
             ),
           ),
           SizedBox(width: 7,),
-          Text("Devon Lane",style: ThemesTextStyles.themes[5][themeChoice],),
+          BlocBuilder<ProgramBeforeWorkOutBloc, ProgramBeforeWorkOutState>(
+            builder: (context, state) {
+              return Text(
+                BeforePlaytimeServices.getTheNameToTheMegaProgramCreator(state),
+                style: ThemesTextStyles.themes[5][themeChoice],
+              );
+            },
+          ),
           SizedBox(width: 28,),
-          Text("2023",style: ThemesTextStyles.themes[0][themeChoice],),
+          Text("${program.date.year}",
+            style: ThemesTextStyles.themes[0][themeChoice],),
         ],
       ),
     );

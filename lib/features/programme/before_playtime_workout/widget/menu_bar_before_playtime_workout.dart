@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/services/berfore_playtime_services.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/icon_button_menu_before_playtime.dart';
 
 class MenuBarBeforePlaytimeWorkout extends StatelessWidget {
-  const MenuBarBeforePlaytimeWorkout({super.key});
+  final Program program;
+  const MenuBarBeforePlaytimeWorkout({super.key, required this.program});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class MenuBarBeforePlaytimeWorkout extends StatelessWidget {
   List<Widget> _getMenuDependUser(BuildContext context) {
     List<Widget> children = [];
 
-    for (var type in BeforePlaytimeServices.listMenu[OwnerOrNot.notOwnerNotRegister]!) {
+    for (var button in BeforePlaytimeServices.getTheRightMenu(program)!) {
       children.add(
-        IconButtonMenuBeforePlaytime(buttonName: type),
+        IconButtonMenuBeforePlaytime(buttonName: button),
       );
     }
     return children;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
 import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
@@ -57,9 +58,9 @@ class ProgramActionServices{
     return state is EditOn && nameFolder != "Utilisateur" && nameFolder != "Enregistrer";
   }
 
-  static VoidCallback actionToGoInProgram(BuildContext context,String nameProgram){
+  static VoidCallback actionToGoInProgram(BuildContext context,Program program){
     return (){
-      ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: nameProgram));
+      ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: program.name, program: program));
     };
   }
 

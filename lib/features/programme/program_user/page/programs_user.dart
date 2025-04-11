@@ -62,6 +62,7 @@ class _ProgramsUserState extends State<ProgramsUser> {
     return BlocConsumer<ProgramBloc, ProgramState>(
       listener: (context, state) {
         // TODO: implement listener
+        state is ProgramsError ? debugPrint(state.message) : null;
       },
       builder: (context, state) {
         if(state is ProgramsLoading){

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/features/programme/program_user/services/program_action_services.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
@@ -13,17 +14,17 @@ enum TileType{
   program,
   createFolder,
   createProgram,
-  addProgramInFolder
+  addProgramInFolder,
 }
 
 abstract class TileUsedForProgram{
   Widget build(BuildContext context);
-  factory TileUsedForProgram(TileType type,String name,Folder folder){
+  factory TileUsedForProgram(TileType type,String name,Folder folder,Program program){
     switch(type){
       case TileType.folder:
         return TileFolder(name,folder);
       case TileType.program:
-        return TileProgram(name);
+        return TileProgram(program);
       case TileType.createFolder:
         return TileCreateFolder();
       case TileType.createProgram:
@@ -59,14 +60,14 @@ class TileFolder implements TileUsedForProgram{
   }
 }
 class TileProgram implements TileUsedForProgram{
-  final String name;
+  final Program program;
   int themeChoice = 0;
-  TileProgram(this.name);
+  TileProgram(this.program);
   @override
   Widget build(BuildContext context){
     return ListTile(
       leading: Icon(Icons.sticky_note_2_sharp,color: ThemesColor.themes[3][themeChoice],),
-      title: Text(name,
+      title: Text(program.name,
         style: ThemesTextStyles.themes[3][themeChoice],),
 
       trailing: BlocBuilder<SwitchEditProgramsBloc, SwitchEditProgramsState>(
@@ -77,7 +78,7 @@ class TileProgram implements TileUsedForProgram{
           : SizedBox.shrink();
           },),
 
-      onTap: ProgramActionServices.actionToGoInProgram(context,name),
+      onTap: ProgramActionServices.actionToGoInProgram(context,program),
     );
   }
 }

@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
 
 class Program {
   String id;
@@ -7,7 +8,7 @@ class Program {
   String name;
   DateTime date;
   List<String> inFolder;
-  List<Map<String, dynamic>> registeredIn;
+  Map<String, List<String>> registeredIn;
   List<String> idLiked;
   List<String> idSeries;
 
@@ -29,7 +30,7 @@ class Program {
       name: 'Programme',
       date: DateTime.now(),
       inFolder: ['Utilisateur', 'Enregistrer'],
-      registeredIn: [],
+      registeredIn: {},
       idLiked: [],
       idSeries: [],
     );
@@ -44,7 +45,7 @@ class Program {
       name: map['name'],
       date: timestamp.toDate(),
       inFolder: List<String>.from(map['inFolder']),
-      registeredIn: List<Map<String, dynamic>>.from(map['registeredIn']),
+      registeredIn: convertToMapStringList(map['registeredIn']),
       idLiked: List<String>.from(map['idLiked']),
       idSeries: List<String>.from(map['idSeries']),
     );
@@ -61,5 +62,37 @@ class Program {
       'idLiked': program.idLiked,
       'idSeries': program.idSeries,
     };
+  }
+  
+  static List<String> convertDynamicStringList(dynamic value){
+    if(value is List){
+      return value.map((item) => item.toString()).toList();
+    }
+    else if(value is String){
+      return [value];
+    }
+    else {
+      return [value.toString()];
+    }
+  }
+
+  static Map<String, List<String>> convertToMapStringList(Map<String,dynamic> map){
+    Map<String, List<String>> newMap = {};
+    map.forEach((key, value) {
+      newMap[key] = convertDynamicStringList(value);
+    });
+    return newMap;
+  }
+
+  static Program updateLike(Program program, KrivesUser user){
+    program.idLiked.contains(user.id) ? program.idLiked.remove(user.id) : program.idLiked.add(user.id);
+    return program;
+  }
+  static Program updateRegister(Program program, KrivesUser user){
+    program.registeredIn.keys.contains(user.id) ?
+    program.registeredIn.remove(user.id)
+        :
+    {program.registeredIn[user.id] = []};
+    return program;
   }
 }
