@@ -29,9 +29,9 @@ class ProgramFunctionServices {
   static TileUsedForProgram getTheRightTilesInFolder(Folder folder, FolderState state,int index){
     int length = state is FolderLoaded ? state.folder.folders.length : 0;
     if(index < length){
-      return TileUsedForProgram(TileType.folder,folder.folders[index],folder,Program.initClass());
+      return TileUsedForProgram(TileType.folder,folder.folders[index],folder,Program.initClass(),'');
     }
-    return TileUsedForProgram(TileType.createFolder,"",folder,Program.initClass());
+    return TileUsedForProgram(TileType.createFolder,"",folder,Program.initClass(),'');
   }
 
   static TileUsedForProgram getTheRightTilesInProgram(ProgramState state, int index){
@@ -51,17 +51,17 @@ class ProgramFunctionServices {
       diff = finalLength - index;
 
       /// print the Tile CreateProgram if we are not in the folder register or if we are are in the folder user.
-      if( diff == 1 && ( !isInRegisterFolder || isInUserFolder) ){return TileUsedForProgram(TileType.createProgram,"",Folder.initClass(),Program.initClass());}
+      if( diff == 1 && ( !isInRegisterFolder || isInUserFolder) ){return TileUsedForProgram(TileType.createProgram,"",Folder.initClass(),Program.initClass(),state.nameFolder);}
 
       ///print the Tile Add a Program in a Folder if we are not in the folder register or if we are are in the folder user.
-      else if(diff == 2 && !isInRegisterOrUserFolder){return TileUsedForProgram(TileType.addProgramInFolder,"",Folder.initClass(),Program.initClass());}
+      else if(diff == 2 && !isInRegisterOrUserFolder){return TileUsedForProgram(TileType.addProgramInFolder,"",Folder.initClass(),Program.initClass(),state.nameFolder);}
       /// print the Tile Program for every program who exist in the folder.
       else{
-        return TileUsedForProgram(TileType.program, state.programs[index].name,Folder.initClass(),state.programs[index]);
+        return TileUsedForProgram(TileType.program, state.programs[index].name,Folder.initClass(),state.programs[index],state.nameFolder);
       }
     }
     ///just here to return a program so its okay
-    return TileUsedForProgram(TileType.createProgram,"",Folder.initClass(),Program.initClass());
+    return TileUsedForProgram(TileType.createProgram,"",Folder.initClass(),Program.initClass(),'');
   }
 
 }

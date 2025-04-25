@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
-import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'package:krives_project/features/appbar/widget/action_button.dart';
 import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
@@ -9,7 +7,8 @@ import 'package:krives_project/features/programme/program_user/bloc/switch_edit_
 class AppBarFunctionServices {
 
   static Map<String, Icon> iconMap = {
-    "edit": Icon(Icons.edit),
+    "edit_folder_program": Icon(Icons.edit),
+    "edit_exercise": Icon(Icons.edit),
     "edit_programs": Icon(Icons.edit),
     "back": Icon(Icons.arrow_back_ios_new),
     "check_program": Icon(Icons.check_circle,color: ThemesColor.green1,size: 30,),
@@ -17,33 +16,21 @@ class AppBarFunctionServices {
     "check_series": Icon(Icons.check_circle,color: ThemesColor.green1,size: 30,),
   };
 
-  static String getTheRightNameButton(ActionButtonState state){
-    if(state is ActionButtonEdit) {return 'edit';}
-    else if(state is ActionButtonDelete) {return 'delete';}
-    else if(state is ActionButtonValidate) {return 'check';}
-    return 'null';
-
-  }
-
-  static List<Widget> getTheRightActionButton(BuildContext context,bool isCreateExoButton,bool isCreateSeriesButton,bool isProgramButton,bool isEditProgramsButton){
+  static List<Widget> getTheRightActionButton(BuildContext context,bool isCheckExoButton,bool isCheckSeriesButton,bool isCheckProgramButton,bool isEditProgramsButton, bool isEditFolderProgram, bool isEditExercise){
 
     List<Widget> actions = [
-      if(isCreateSeriesButton)
+      if(isCheckSeriesButton)
         ActionButton(iconName: 'check_series',),
-      if(isCreateExoButton)
+      if(isCheckExoButton)
         ActionButton(iconName: 'check_exercice',),
-      if(isProgramButton)
+      if(isCheckProgramButton)
         ActionButton(iconName: 'check_program',),
       if(isEditProgramsButton)
         ActionButton(iconName: 'edit_programs',),
-      if(!isCreateExoButton && !isCreateSeriesButton && !isEditProgramsButton)
-        BlocBuilder<ActionButtonBloc, ActionButtonState>(
-          builder: (context, state) {
-            String buttonName;
-            buttonName = getTheRightNameButton(state);
-            return buttonName != 'null' ? ActionButton(iconName: buttonName,) : Container();
-          },
-        ),
+      if(isEditFolderProgram)
+        ActionButton(iconName: 'edit_folder_program',),
+      if(isEditExercise)
+        ActionButton(iconName: 'edit_exercise',),
     ];
     return actions;
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/features/appbar/bloc/action_button/action_button_bloc.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/page/exercice_page.dart';
 import 'package:krives_project/features/graphics/page/graphics_page.dart';
@@ -32,7 +31,6 @@ class MenuFunctionServices {
     (BuildContext context,int index){},
     ///homePage where you can see your favorite programs and the last programs you did and the programs of some user of the community
     (BuildContext context,int index){
-      noActionButtonOnTheLeftOfTheApp(context);
       colorTheRightButtonMenuPressed(context, index);
     },
     ///Page who contains all your program created or register
@@ -43,7 +41,6 @@ class MenuFunctionServices {
     ///Page setting or profile whatever its the page where you manage your profile : data / settings
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
     },
     ///Page with your exercise created by the user
     (BuildContext context,int index){
@@ -53,23 +50,19 @@ class MenuFunctionServices {
     ///Page who contains the programs of the community the print will be calculate with an algorithm
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
       context.read<SortByBloc>().add(SortByEventInitial());/// A bloc to initial the sort by when the user search a certain type of program
     },
     ///Its a page with an Nutrition AI
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
     },
     ///Its a page with an AI who create some sport program
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
     },
     ///Its a page where you can back tracking your perf
     (BuildContext context,int index){
       initPageMenuFunction(context, index);
-      noActionButtonOnTheLeftOfTheApp(context);
     },
   ];
 
@@ -81,9 +74,6 @@ class MenuFunctionServices {
     context.read<SideMenuTileBloc>().add(SideMenuTilePressed(index));
   }
 
-  static void noActionButtonOnTheLeftOfTheApp(BuildContext context){
-    context.read<ActionButtonBloc>().add(ActionButtonPressed());
-  }
 
 
   static void initPageMenuFunction(BuildContext context,int index){
@@ -92,11 +82,9 @@ class MenuFunctionServices {
   }
 
   static void initButtonAppBarEditExercise(BuildContext context){
-    context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());///To send a state to the appBar to print the right button
     context.read<SwitchEditAppBarBloc>().add(InitEventEdit());///Init the bloc with the switch edit state in the appBar
   }
   static void initButtonAppBarEditProgramsFolders(BuildContext context){
-    context.read<ActionButtonBloc>().add(ActionButtonExercicePressed());///To send a state to the appBar to print the right button
     context.read<SwitchEditAppBarBloc>().add(InitEventEdit());///Init the bloc with the switch edit state in the appBar
   }
 

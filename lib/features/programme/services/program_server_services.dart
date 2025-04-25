@@ -91,8 +91,6 @@ class ProgramServerServices{
     return programs;
   }
 
-
-
   static Future<void> addProgram(Program program) async {
     String idUser = _auth.currentUser!.uid;
     program.idUser = idUser;
@@ -104,12 +102,40 @@ class ProgramServerServices{
   }
 
   static Future<void> addProgramInFolder(Program program,String nameFolder) async {
+    String idUser = _auth.currentUser!.uid;
+    program.idUser = idUser;
+    
+    final batch = _fireStore.batch();
+    final docRef = _fireStore.collection('programs').doc(program.id);
 
+    if(program.idUser == idUser){
+      program.inFolder.add(nameFolder);
+      batch.update(docRef, {'inFolder' : program.inFolder});
+    }
+    else{
+      program.registeredIn[idUser]!.add(nameFolder);
+      batch.update(docRef, {'registeredIn' : program.registeredIn});
+    }
+    await batch.commit();
   }
 
-  static Future<void> deleteProgram(String idProgram) async {
-    final docRef = _fireStore.collection('programs').doc(idProgram);
-    await docRef.delete();
+  static Future<void> deleteProgram(Program program,String nameFolder) async {
+    String idUser = _auth.currentUser!.uid;
+    final docRef = _fireStore.collection('programs').doc(program.id);
+    final batch = _fireStore.batch();
+
+    if(nameFolder == "Utilisateur"){
+      await docRef.delete();
+    }
+    else if(idUser == program.idUser){
+      program.inFolder.remove(nameFolder);
+      batch.update(docRef, {'inFolder' : program.inFolder});
+    }
+    else{
+      program.registeredIn[idUser]!.remove(nameFolder);
+      batch.update(docRef, {'registeredIn' : program.registeredIn});
+    }
+    await batch.commit();
   }
 
 
@@ -119,5 +145,7 @@ class ProgramServerServices{
     Map<String, dynamic> map = Program.toMap(program);
     await docRef.update(map);
   }
+
+  ///#2.1 Faire une requete pour créer un programme à l"état initiale  avec l'id user
 
 }

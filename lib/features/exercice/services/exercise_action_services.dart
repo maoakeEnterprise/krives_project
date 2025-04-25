@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/muscle.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
@@ -20,7 +20,7 @@ class ExerciseActionServices {
       context.read<SwitchEditAppBarBloc>().add(InitEventEdit());///we send order to he SwitchEditAppBarBloc to put his state in mode Edit and not in mode Delete
       context.read<ExerciseBloc>().add(NewExercise());///we set up in the ExerciseBloc to create a create a new exercise : Exercise.initExercise()
       ButtonActionServices.navigateToPage(context, 'exercise', /// and with set up finish we navigate to page who will create the new exercise.
-          RouteArgument(titlePage: "Exercise",isCreateExoButton: true,
+          RouteArgument(titlePage: "Exercise",isCheckExerciseButton: true,
               controllerNameExercice: name,
               controllerCommentaryExercice: video));
     };
@@ -55,7 +55,7 @@ class ExerciseActionServices {
           'exercise',
           RouteArgument(
             titlePage: exercise.name,
-            isCreateExoButton: true,
+            isCheckExerciseButton: true,
             controllerNameExercice: name,
             controllerCommentaryExercice: video,
           ));

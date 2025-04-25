@@ -4,18 +4,22 @@ import 'package:krives_project/core/theme/theme.dart';
 
 class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   final String title;///this is the title of the page
-  final bool isCreateExoButton;///this bool is here to confirm if we are in the page Exercise
-  final bool isCreateSeriesButton;///this bool is here to confirm if we are in the page Series
-  final bool isProgramButton;/// this bool is here to confirm if we are the in page program or not
+  final bool isCheckExerciseButton;///this bool is here to confirm if we are in the page Exercise
+  final bool isCheckSeriesButton;///this bool is here to confirm if we are in the page Series
+  final bool isCheckProgramButton;/// this bool is here to confirm if we are the in page program or not
   final bool isEditProgramsButton; /// this bool is here to verify if we are in a folder with programs or not
+  final bool isEditFolderProgram; /// this bool is here to verify if we are in a folder with programs or not
+  final bool isEditExercise; /// this bool is here to verify if we are in a folder with programs or not
 
   const AppBarCustom({
     super.key,
     required this.title,
-    this.isCreateExoButton = false,
-    this.isCreateSeriesButton = false,
-    this.isProgramButton = false,
+    this.isCheckExerciseButton = false,
+    this.isCheckSeriesButton = false,
+    this.isCheckProgramButton = false,
     this.isEditProgramsButton = false,
+    this.isEditFolderProgram=false,
+    this.isEditExercise = false,
   });
 
   @override
@@ -26,7 +30,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       elevation: 5,
       title: Text(title, style: ThemeCustom.textThemes[7][chooseThemes]),
       centerTitle: true,
-      actions: AppBarFunctionServices.getTheRightActionButton(context, isCreateExoButton, isCreateSeriesButton, isProgramButton,isEditProgramsButton),
+      actions: AppBarFunctionServices.getTheRightActionButton(context, isCheckExerciseButton, isCheckSeriesButton, isCheckProgramButton,isEditProgramsButton, isEditFolderProgram, isEditExercise),
     );
   }
   @override

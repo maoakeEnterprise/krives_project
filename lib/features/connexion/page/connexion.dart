@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
 import 'package:krives_project/core/services/button_action_services.dart';

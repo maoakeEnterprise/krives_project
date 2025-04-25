@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/services/function_services.dart';
 import 'package:krives_project/core/theme/theme.dart';
@@ -23,10 +23,12 @@ class BasePage1 extends StatelessWidget {
     return Scaffold(
       appBar: AppBarCustom(
         title: title,
-        isCreateExoButton: arguments.isCreateExoButton,
-        isCreateSeriesButton: arguments.isCreateSeriesButton,
-        isProgramButton: arguments.isProgramButton,
+        isCheckExerciseButton: arguments.isCheckExerciseButton,
+        isCheckSeriesButton: arguments.isCheckSeriesButton,
+        isCheckProgramButton: arguments.isCheckProgramButton,
         isEditProgramsButton: arguments.isEditProgramsButton,
+        isEditFolderProgram: arguments.isEditExerciseButton,
+        isEditExercise: arguments.isEditExerciseButton,
       ),
       backgroundColor: ThemeCustom.colorThemes[1][chooseThemes],
       body: child,

@@ -18,7 +18,6 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     if( iconName == "check_exercice"){
       final arguments = FunctionServices.getArgument(context);
       TextEditingController name = arguments.controllerNameExercice!;
@@ -44,14 +43,12 @@ class ActionButton extends StatelessWidget {
           icon: AppBarFunctionServices.iconMap[iconName]!
       );
     }
-    if(iconName == "edit"){
-      /// its the button edit he is here to put an edit on some object on the page.
-      /// he is here to add the button delete on the card present in the page
+    if(["edit_exercise","edit_folder_program"].contains(iconName)){
       return BlocBuilder<SwitchEditAppBarBloc, SwitchEditAppBarState>(
         builder: (context, state) {
           return IconButton(
-              onPressed: (){AppBarActionServices.onTapMap[iconName]!(context);},
-              icon: AppBarFunctionServices.getTheRightIconEdit(state, iconName),
+            onPressed: (){AppBarActionServices.onTapMap[iconName]!(context);},
+            icon: AppBarFunctionServices.getTheRightIconEdit(state, iconName),
           );
         },
       );
@@ -66,6 +63,7 @@ class ActionButton extends StatelessWidget {
         },
       );
     }
+    ///#2.3 Servira à faire le lien avec le bloc pour créer notre programme
     return IconButton(
         onPressed: (){AppBarActionServices.onTapMap[iconName]!(context);},
         icon: AppBarFunctionServices.iconMap[iconName]!

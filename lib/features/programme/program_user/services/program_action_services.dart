@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
-import 'package:krives_project/features/menu/services/menu_function_services.dart';
+import 'package:krives_project/features/authentification/services/auth_server_services.dart';
 import 'package:krives_project/features/popup_add_prog_folder/page/pop_up_add_folder.dart';
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/program_bloc/program_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
+import 'package:krives_project/features/programme/program_user/widget/draggable_add_program_/bloc/add_prog_pop_bloc.dart';
+import 'package:krives_project/features/programme/program_user/widget/draggable_add_program_/draggable_add_program_page.dart';
+import 'package:krives_project/features/programme/program_user/widget/pop_up_add_prog/window_add_prog.dart';
 
 class ProgramActionServices{
 
@@ -21,6 +24,15 @@ class ProgramActionServices{
           builder: (BuildContext context){
             return PopUpAddFolder();
           });
+  }
+
+  static VoidCallback popUpCreateNewProgramAction(BuildContext context,String nameFolder){
+    return () =>
+        showDialog(context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context){
+              return WindowAddNewProgram(idUser: AuthServerServices.currentUser!.uid,nameFolder: nameFolder,);
+            });
   }
 
   ///launch the function who is in the FolderBloc FolderAdd with parameters the name of the folder and the list of the folders user.
@@ -49,7 +61,7 @@ class ProgramActionServices{
       context.read<SwitchEditProgramsBloc>().add(ProgramsInitEventEdit());
       context.read<ProgramBloc>().add(ProgramInitial(nameFolder: nameFolder));
       context.read<SwitchEditAppBarBloc>().add(InitEventEdit());
-      MenuFunctionServices.noActionButtonOnTheLeftOfTheApp(context);
+
       ButtonActionServices.navigateToPage(context, 'file_program', RouteArgument(titlePage: nameFolder,isEditProgramsButton: true));
     };
   }
@@ -64,17 +76,28 @@ class ProgramActionServices{
     };
   }
 
-  static VoidCallback actionToCreateProgram(BuildContext context){
+  static VoidCallback actionToCreateProgram(BuildContext context,TextEditingController nameProgram,String nameFolder){
     return (){
-      ButtonActionServices.navigateToPage(context, 'program', RouteArgument());
+      Program program = Program.initClassWithName(nameProgram,nameFolder);
+      context.read<ProgramBloc>().add(ProgramAdd(program: program,nameFolder: nameFolder));
+      Navigator.of(context).pop();
+      //ButtonActionServices.navigateToPage(context, 'program', RouteArgument(titlePage: program.name, program: program));
     };
   }
-  static VoidCallback actionToDeleteProgram(BuildContext context){
-    return (){};
+
+  static VoidCallback actionToCancelProgram(BuildContext context){return ()=> Navigator.of(context).pop();}
+
+  static VoidCallback actionToDeleteProgram(BuildContext context,Program program,String nameFolder){
+    return (){
+      context.read<ProgramBloc>().add(ProgramDelete(program: program,nameFolder: nameFolder));
+    };
   }
 
-  static VoidCallback actionToAddProgramInTheActualFolder(BuildContext context){
-    return (){};
+  static VoidCallback actionToAddProgramInTheActualFolder(BuildContext context,String nameFolder){
+    return (){
+      context.read<AddProgPopBloc>().add(PopProgramInitial(nameFolder: nameFolder));
+      ShowDraggableProgram.showDraggableProgram(context, 0,nameFolder);
+    };
   }
 
   static VoidCallback actionToDeleteFolder(BuildContext context, String nameFolder,Folder folder){

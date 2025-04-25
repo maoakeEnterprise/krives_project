@@ -20,7 +20,6 @@ class IconButtonMenuBeforePlaytime extends StatelessWidget {
 
     return BlocBuilder<ProgramBeforeWorkOutBloc, ProgramBeforeWorkOutState>(
       builder: (context, state) {
-        print("test2");
         return IconButton(
           onPressed: () => BeforePlaytimeServices.onTapMap[buttonName]!(context, themeChoice,state),
           icon: Icon(

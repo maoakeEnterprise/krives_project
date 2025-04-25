@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 
 class FunctionServices {
 

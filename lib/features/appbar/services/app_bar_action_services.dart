@@ -7,9 +7,12 @@ class AppBarActionServices {
 
   static Map<String, void Function(BuildContext context)> onTapMap = {
 
-    "edit": (BuildContext context) {
+    "edit_folder_program": (BuildContext context) {
       context.read<SwitchEditAppBarBloc>().add(ButtonEditPressed());
-      },
+    },
+    "edit_exercise": (BuildContext context) {
+      context.read<SwitchEditAppBarBloc>().add(ButtonEditPressed());
+    },
 
     "edit_programs": (BuildContext context){
       context.read<SwitchEditProgramsBloc>().add(ProgramsButtonEditPressed());

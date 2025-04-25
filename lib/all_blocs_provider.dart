@@ -9,7 +9,8 @@ import 'package:krives_project/features/programme/before_playtime_workout/bloc/p
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/program_bloc/program_bloc.dart';
 import 'package:krives_project/features/programme/program_user/bloc/switch_edit_programs_bloc/switch_edit_programs_bloc.dart';
-import 'features/appbar/bloc/action_button/action_button_bloc.dart';
+import 'package:krives_project/features/programme/program_user/widget/draggable_add_program_/bloc/add_prog_pop_bloc.dart';
+import 'package:krives_project/features/programme/s_global_bloc/series/series_bloc.dart';
 import 'features/authentification/widget/bloc/auth_bloc.dart';
 import 'features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
 import 'features/graphics/bloc/filter_bloc.dart';
@@ -33,7 +34,6 @@ class AllBlocsProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SwitchEditBloc()),
-        BlocProvider(create: (context) => ActionButtonBloc()),
         BlocProvider(create: (context) => SideMenuTileBloc()),
         BlocProvider(create: (context) => TimerBloc()),
         BlocProvider(create: (context) => CounterSeriesBloc()),
@@ -53,7 +53,9 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => FolderBloc()),
         BlocProvider(create: (context) => ProgramBloc()),
         BlocProvider(create: (context) => SwitchEditProgramsBloc()),
-        BlocProvider(create: (context) => ProgramBeforeWorkOutBloc())
+        BlocProvider(create: (context) => ProgramBeforeWorkOutBloc()),
+        BlocProvider(create: (context) => SeriesBloc()),
+        BlocProvider(create: (context) => AddProgPopBloc()),
       ],
       child: child,
     );

@@ -19,18 +19,18 @@ enum TileType{
 
 abstract class TileUsedForProgram{
   Widget build(BuildContext context);
-  factory TileUsedForProgram(TileType type,String name,Folder folder,Program program){
+  factory TileUsedForProgram(TileType type,String name,Folder folder,Program program,String nameFolder){
     switch(type){
       case TileType.folder:
         return TileFolder(name,folder);
       case TileType.program:
-        return TileProgram(program);
+        return TileProgram(program,nameFolder);
       case TileType.createFolder:
         return TileCreateFolder();
       case TileType.createProgram:
-        return TileCreateProgram();
+        return TileCreateProgram(nameFolder: nameFolder);
       case TileType.addProgramInFolder:
-        return TileAddProgramInFolder();
+        return TileAddProgramInFolder(nameFolder: nameFolder);
       }
   }
 }
@@ -61,8 +61,9 @@ class TileFolder implements TileUsedForProgram{
 }
 class TileProgram implements TileUsedForProgram{
   final Program program;
+  final String nameFolder;
   int themeChoice = 0;
-  TileProgram(this.program);
+  TileProgram(this.program,this.nameFolder);
   @override
   Widget build(BuildContext context){
     return ListTile(
@@ -73,7 +74,7 @@ class TileProgram implements TileUsedForProgram{
       trailing: BlocBuilder<SwitchEditProgramsBloc, SwitchEditProgramsState>(
         builder: (context, state) {
           return state is ProgramsEditOn ? IconButton(
-            onPressed: ProgramActionServices.actionToDeleteProgram(context),
+            onPressed: ProgramActionServices.actionToDeleteProgram(context,program,nameFolder),
             icon: Icon(Icons.do_not_disturb_on_rounded,color: ThemesColor.themes[5][themeChoice],),)
           : SizedBox.shrink();
           },),
@@ -98,8 +99,11 @@ class TileCreateFolder implements TileUsedForProgram{
 }
 
 class TileCreateProgram implements TileUsedForProgram{
+  final String nameFolder;
   int langageChoice = 0;
   int themeChoice = 0;
+  TileCreateProgram({required this.nameFolder});
+
   @override
   Widget build(BuildContext context){
     return ListTile(
@@ -107,21 +111,23 @@ class TileCreateProgram implements TileUsedForProgram{
       title: Text(
         SourceLangage.titleProgramsUserLangageWithPopUp[4][langageChoice],
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: ProgramActionServices.actionToCreateProgram(context),
+      onTap: ProgramActionServices.popUpCreateNewProgramAction(context,nameFolder),
     );
   }
 }
 
 class TileAddProgramInFolder implements TileUsedForProgram{
+  final String nameFolder;
   int langageChoice = 0;
   int themeChoice = 0;
+  TileAddProgramInFolder({required this.nameFolder});
   @override
   Widget build(BuildContext context){
     return ListTile(
       leading: Icon(Icons.add_box_outlined,color: ThemesColor.themes[3][themeChoice],),
       title: Text(SourceLangage.titleProgramsUserLangageWithPopUp[3][langageChoice],
         style: ThemesTextStyles.themes[3][themeChoice],),
-      onTap: ProgramActionServices.actionToAddProgramInTheActualFolder(context),
+      onTap: ProgramActionServices.actionToAddProgramInTheActualFolder(context,nameFolder),
     );
   }
 }

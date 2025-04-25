@@ -6,15 +6,19 @@ import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class TextFieldCustomProgram extends StatelessWidget {
   final String labelText;
+  final String name;
   const TextFieldCustomProgram({
     super.key,
     required this.labelText,
+    this.name ='',
   });
 
   @override
   Widget build(BuildContext context){
     int chooseLangage = 0;
     int randomIntForTrolling = Random().nextInt(SourceLangage.trollLangage.length);
+
+    TextEditingController controller = TextEditingController(text: name);
 
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
@@ -31,6 +35,7 @@ class TextFieldCustomProgram extends StatelessWidget {
       child: TextField(
         style: ThemesTextStyles.textBigWhite,
         cursorColor: ThemesColor.white,
+        controller: controller,
         decoration: InputDecoration(
           //suffixIcon: const Icon(Icons.clear_rounded),
           //suffixIconColor: Colors.white,

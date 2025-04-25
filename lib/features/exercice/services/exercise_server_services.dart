@@ -12,11 +12,11 @@ class ExerciseServerServices {
     List<Exercise> listExercice = [];
     Exercise exercice;
 
-    final exercicesCollection = await _fireStore.collection('exercices').where('id_user', isEqualTo: idUser).get();
-    List<Map<String, dynamic>> exercises = exercicesCollection.docs.map((doc) => doc.data()).toList();
+    final exercicesCollection = await _fireStore.collection('exercices').where('id_user', isEqualTo: idUser).get(); /// we call the query to get the exercise who match with the IdUser
+    List<Map<String, dynamic>> exercises = exercicesCollection.docs.map((doc) => doc.data()).toList(); /// we put the data in a List of Map<String, dynamic>
 
 
-    for(int i = 0; i < exercises.length; i++){
+    for(int i = 0; i < exercises.length; i++){ /// and we convert this data into a List of Exercise (List<Exercise>) cause the function docs.map do not work properly with the class Exercise cause we have List and Map in the class
       exercice = Exercise.fromMap(exercises[i]);
       listExercice.add(exercice);
     }

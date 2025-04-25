@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/data/repositories/background_color_custom1.dart';
-import 'package:krives_project/features/appbar/page/appbar_custom.dart';
 import 'package:krives_project/core/theme/theme.dart';
 import 'package:krives_project/features/base/bloc/base_page/data_user_bloc.dart';
+import 'package:krives_project/features/base/services/base_page_service.dart';
 import 'package:krives_project/features/menu/services/menu_function_services.dart';
 import 'package:krives_project/features/menu/page/menu_page.dart';
 class BasePage extends StatefulWidget {
@@ -57,7 +57,7 @@ class _BasePageState extends State<BasePage> {
               );
             }
             return Scaffold(
-              appBar: AppBarCustom(title: MenuFunctionServices.mapPages[_selectedPageIndex][titleMenu],),
+              appBar: BasePageService.getTheRightAppBarCustom(MenuFunctionServices.mapPages[_selectedPageIndex][titleMenu],_selectedPageIndex),
               backgroundColor: ThemeCustom.colorThemes[1][_chooseThemes],
               drawer: MenuPage(onPageSelected: _updatePage,userSport: state.user,),
               body: MenuFunctionServices.mapPages[_selectedPageIndex]['body'],

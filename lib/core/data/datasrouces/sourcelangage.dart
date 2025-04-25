@@ -151,6 +151,7 @@ class SourceLangage{
     ["Titre du dossier","Folder title"],//5
     ["Utilisateur","User"],//6
     ["Enregistrer","Register"],//7
+    ["Nom du programme","Program name"],//8"
   ];
 
 }

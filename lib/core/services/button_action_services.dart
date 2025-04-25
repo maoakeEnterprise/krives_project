@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/data/datasrouces/mapping_root.dart';
 
 class ButtonActionServices{
@@ -20,7 +20,7 @@ class ButtonActionServices{
   ///HomePageActionButton
 
   static VoidCallback navigateInTheProgram(BuildContext context){
-    return () => navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true,));
+    return () => navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isCheckProgramButton: true,));
   }
 
   ///ProgramActionServices

@@ -1,13 +1,12 @@
-import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 
 class Series {
   final String idUser;
   final String idProgram;
-  Exercise exercice;
+  final String idExercice;
   int numberSeries;
   String typeSeries;
-  int maxKG;
-  int maxLBS;
+  int maxKG; /// represent the actual weight if the user is in a normal series in KG
+  int maxLBS;/// represent the actual weight if the user is in a normal series in LBS
   int numberRep;
   int diffKG;
   int diffLBS;
@@ -16,7 +15,7 @@ class Series {
   Series({
     required this.idUser,
     required this.idProgram,
-    required this.exercice,
+    required this.idExercice,
     this.numberSeries = 1,
     this.typeSeries = 'Normal',
     this.maxKG = 0,
@@ -27,6 +26,46 @@ class Series {
     this.diffRep=0,
   });
 
+  static Series initSeries(){
+    return Series(
+      idUser: "init",
+      idProgram: "init",
+      idExercice: "init",
+    );
+  }
+
+  static Series fromMap(Map<String, dynamic> map){
+    return Series(
+      idUser: map['idUser'],
+      idProgram: map['idProgram'],
+      idExercice: map['idExercice'],
+      numberSeries: map['numberSeries'],
+      typeSeries: map['typeSeries'],
+      maxKG: map['maxKG'],
+      maxLBS: map['maxLBS'],
+      numberRep: map['numberRep'],
+      diffKG: map['diffKG'],
+      diffLBS: map['diffLBS'],
+      diffRep: map['diffRep'],
+    );
+  }
+
+  static Map<String, dynamic> toMap(Series series){
+    return {
+      'idUser': series.idUser,
+      'idProgram': series.idProgram,
+      'idExercice': series.idExercice,
+      'numberSeries': series.numberSeries,
+      'typeSeries': series.typeSeries,
+      'maxKG': series.maxKG,
+      'maxLBS': series.maxLBS,
+      'numberRep': series.numberRep,
+      'diffKG': series.diffKG,
+      'diffLBS': series.diffLBS,
+      'diffRep': series.diffRep,
+    };
+  }
+
   void convertKgIntoLbs(){
     maxLBS = (maxKG * 2.20462).round();
     diffLBS = (diffKG * 2.20462).round();
@@ -34,33 +73,5 @@ class Series {
   void convertLbsIntoKg(){
     maxKG = (maxLBS / 2.20462).round();
     diffKG = (diffLBS / 2.20462).round();
-  }
-
-  Series copyWith({
-    String? idUser,
-    String? idProgram,
-    Exercise? exercice,
-    int? numberSeries,
-    String? typeSeries,
-    int? maxKG,
-    int? maxLBS,
-    int? numberRep,
-    int? diffKG,
-    int? diffLBS,
-    int? diffRep,
-  }) {
-    return Series(
-      idUser: idUser ?? this.idUser,
-      idProgram: idProgram ?? this.idProgram,
-      exercice: exercice ?? this.exercice,
-      numberSeries: numberSeries ?? this.numberSeries,
-      typeSeries: typeSeries ?? this.typeSeries,
-      maxKG: maxKG ?? this.maxKG,
-      maxLBS: maxLBS ?? this.maxLBS,
-      numberRep: numberRep ?? this.numberRep,
-      diffKG: diffKG ?? this.diffKG,
-      diffLBS: diffLBS ?? this.diffLBS,
-      diffRep: diffRep ?? this.diffRep,
-    );
   }
 }

@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/krives_user.dart';
 
 class Program {
@@ -29,7 +30,20 @@ class Program {
       idUser: '',
       name: 'Programme',
       date: DateTime.now(),
-      inFolder: ['Utilisateur', 'Enregistrer'],
+      inFolder: ['Utilisateur'],
+      registeredIn: {},
+      idLiked: [],
+      idSeries: [],
+    );
+  }
+
+  static Program initClassWithName(TextEditingController nameProgram, String nameInFolder){
+    return Program(
+      id: '',
+      idUser: '',
+      name: nameProgram.text,
+      date: DateTime.now(),
+      inFolder: nameInFolder == 'Utilisateur' ? ['Utilisateur'] : ['Utilisateur',nameInFolder],
       registeredIn: {},
       idLiked: [],
       idSeries: [],

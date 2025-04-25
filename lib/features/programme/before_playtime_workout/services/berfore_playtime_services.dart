@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
-import 'package:krives_project/core/data/datasrouces/data_class/route_argument.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/argument/route_argument.dart';
 import 'package:krives_project/core/services/button_action_services.dart';
 import 'package:krives_project/core/services/function_services.dart';
 import 'package:krives_project/features/authentification/services/auth_server_services.dart';
@@ -101,7 +101,7 @@ class BeforePlaytimeServices {
     },
 
     MenuButtonProgramType.settingsProgram :(context,int themeChoice,ProgramBeforeWorkOutState state){
-      ButtonActionServices.navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isProgramButton: true));
+      ButtonActionServices.navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isCheckProgramButton: true));
     },
 
     MenuButtonProgramType.play :(context,int themeChoice,ProgramBeforeWorkOutState state){
