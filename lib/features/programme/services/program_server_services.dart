@@ -73,7 +73,7 @@ class ProgramServerServices{
 
     final queryUserFolder  = connectionServerDbPrograms.where('idUser', isEqualTo: idUser);
 
-    final queryRegisterFolder = connectionServerDbPrograms.where('registeredIn',arrayContains: mapToFind);
+    final queryRegisterFolder = connectionServerDbPrograms.where('registeredIn.$idUser',arrayContains: "Enregistrer");
 
     if(nameFolder == "Utilisateur"){
       snapshot = await queryUserFolder.get();
@@ -84,7 +84,6 @@ class ProgramServerServices{
       snapshot = await queryAnyFolder.get();
     }
     List<Map<String, dynamic>> listProgramFromData = snapshot.docs.map((doc) => doc.data()).toList();
-
     for (var element in listProgramFromData) {
       programs.add(Program.fromMap(element));
     }
