@@ -1,0 +1,2 @@
+C:/Users/maoak/Desktop/2024-2025/Projet de vie/projects/krives_project/android/app/.cxx/Debug/1u3p583b/x86/CMakeFiles/edit_cache.dir
+C:/Users/maoak/Desktop/2024-2025/Projet de vie/projects/krives_project/android/app/.cxx/Debug/1u3p583b/x86/CMakeFiles/rebuild_cache.dir

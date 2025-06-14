@@ -13,8 +13,11 @@ class RouteArgument {
   final bool isEditProgramsButton; // 1
   final bool isEditFolderProgramButton;
   final Program? program;
+  final bool isInProgram;
+  final String? nameActualInFolder;
   final TextEditingController? controllerNameExercice;
   final TextEditingController? controllerCommentaryExercice;
+  final TextEditingController? controllerNameProgram;
   final ActionBarArgument? actionBarArgument;
   RouteArgument({
     this.program,
@@ -22,12 +25,15 @@ class RouteArgument {
     this.titlePage,
     this.controllerNameExercice,
     this.controllerCommentaryExercice,
+    this.controllerNameProgram,
+    this.nameActualInFolder,
     this.isEditProgramsButton=false,
     this.isEditExerciseButton=false,
     this.isEditFolderProgramButton=false,
     this.isCheckSeriesButton=false,
     this.isCheckProgramButton=false,
     this.isCheckExerciseButton=false,
+    this.isInProgram=false,
     this.actionBarArgument,
   });
 }

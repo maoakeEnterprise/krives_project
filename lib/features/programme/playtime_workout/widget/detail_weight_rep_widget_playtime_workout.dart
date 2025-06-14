@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/card_widget_detail.dart';
 
 class DetailWeightRepWidgetPlaytimeWorkout extends StatelessWidget {
-  const DetailWeightRepWidgetPlaytimeWorkout({super.key});
+  final int maxCharge;
+  final int maxRep;
+  const DetailWeightRepWidgetPlaytimeWorkout({super.key,required this.maxCharge,required this.maxRep});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,8 @@ class DetailWeightRepWidgetPlaytimeWorkout extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CardWidgetDetail(labelText: "15 kg",),
-          CardWidgetDetail(labelText: "20 rep",),
+          CardWidgetDetail(labelText: "$maxCharge kg",),
+          CardWidgetDetail(labelText: "$maxRep rep",),
         ],
       ),
     );

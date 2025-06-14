@@ -14,6 +14,12 @@ class ProgrammeSeries extends StatelessWidget {
   Widget build(BuildContext context) {
     int langageChoice = 0;
     //int themeChoice = 0;
+
+    TextEditingController controllerCharge = TextEditingController();
+    TextEditingController controllerRepeat = TextEditingController();
+    TextEditingController controllerDiffCharge = TextEditingController();
+    TextEditingController controllerDiffRepeat = TextEditingController();
+
     return ListView(
       children: [
         TitleWidgetSeries(title: SourceLangage.titleSeriesPage[0][langageChoice],top: 16,),
@@ -33,7 +39,12 @@ class ProgrammeSeries extends StatelessWidget {
         SizedBox(height: 8,),
         TitleWidgetSeries(title: SourceLangage.titleSeriesPage[3][langageChoice],),
         SizedBox(height: 12,),
-        CardDuringSerieCustom(),
+        CardDuringSerieCustom(
+          controllerCharge: controllerCharge,
+          controllerRepeat: controllerRepeat,
+          controllerDiffCharge: controllerDiffCharge,
+          controllerDiffRepeat: controllerDiffRepeat,
+        ),
         SizedBox(height: 12,),
       ],
     );

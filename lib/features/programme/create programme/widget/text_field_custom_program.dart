@@ -7,9 +7,11 @@ import 'package:krives_project/core/theme/themes_text_styles.dart';
 class TextFieldCustomProgram extends StatelessWidget {
   final String labelText;
   final String name;
+  final TextEditingController controller;
   const TextFieldCustomProgram({
     super.key,
     required this.labelText,
+    required this.controller,
     this.name ='',
   });
 
@@ -18,7 +20,7 @@ class TextFieldCustomProgram extends StatelessWidget {
     int chooseLangage = 0;
     int randomIntForTrolling = Random().nextInt(SourceLangage.trollLangage.length);
 
-    TextEditingController controller = TextEditingController(text: name);
+    controller.text = name;
 
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 9),

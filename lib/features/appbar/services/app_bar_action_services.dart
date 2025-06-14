@@ -27,7 +27,7 @@ class AppBarActionServices {
     },
 
     "check_series": (BuildContext context){
-
+      Navigator.of(context).pop();
     },
 
   };

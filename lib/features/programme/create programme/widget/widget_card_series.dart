@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/series.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/core/data/repositories/card_custom_color1.dart';
 import 'package:krives_project/features/programme/create%20programme/bloc/edit_bloc.dart';
+import 'package:krives_project/features/programme/programme%20series/services/service_series.dart';
 
 class WidgetCardSeries extends StatelessWidget {
   final VoidCallback onTap;
-  const WidgetCardSeries({required this.onTap, super.key});
+  final Series serie;
+  final Exercise exercise;
+  final Program program;
+  const WidgetCardSeries({
+    required this.exercise,
+    required this.onTap,
+    required this.serie,
+    required this.program,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +30,7 @@ class WidgetCardSeries extends StatelessWidget {
     return CardCustomColor1(
       left: 41,
       right: 41,
-      top: 36,
+      bottom: 12,
       width: 0,
       height: 110,
       child: Row(
@@ -28,9 +41,9 @@ class WidgetCardSeries extends StatelessWidget {
             width: 70,
             height: 70,
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(7),
             ),
+            child: Image.asset(exercise.mainMuscle.imageMuscle),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,53 +52,45 @@ class WidgetCardSeries extends StatelessWidget {
                 height: 25,
               ),
               Text(
-                "My Exo name",
+                exercise.name,
                 style: ThemesTextStyles.themes[5][themeChoice],
               ),
               Text(
-                "${SourceLangage.titleProgrammLangage[0][langageChoice]}: 30",
+                "${SourceLangage.titleProgrammLangage[0][langageChoice]}: ${serie.numberSeries}",
                 style: ThemesTextStyles.themes[0][themeChoice],
               ),
               Text(
-                "${SourceLangage.titleProgrammLangage[1][langageChoice]}: 10",
+                "${SourceLangage.titleProgrammLangage[1][langageChoice]}: ${serie.numberRep}",
                 style: ThemesTextStyles.themes[0][themeChoice],
               ),
               Text(
-                "${SourceLangage.titleProgrammLangage[2][langageChoice]}: My cock",
+                "${SourceLangage.titleProgrammLangage[2][langageChoice]}: ${exercise.mainMuscle.nameMuscle[langageChoice]}",
                 style: ThemesTextStyles.themes[0][themeChoice],
               ),
               Text(
-                "${SourceLangage.titleProgrammLangage[3][langageChoice]}: 15kg",
+                "${SourceLangage.titleProgrammLangage[3][langageChoice]}: ${serie.maxKG}",
                 style: ThemesTextStyles.themes[0][themeChoice],
               ),
             ],
           ),
+          Spacer(),
           BlocBuilder<EditBloc, EditState>(
             builder: (context, state) {
               return GestureDetector(
-                onTap: _isOnTapSettingsOrDelete(state,context),
+                onTap: ServiceSeries.theRightActionIsSettingOrDeletingSeries(state,context,onTap,serie,program),
                 child: Container(
                   margin: EdgeInsets.fromLTRB(60, 20, 0, 0),
                   child: Icon(
-                    _isIconSettingsOrDelete(state),
+                    ServiceSeries.isIconSettingsOrDeleting(state),
                     color: ThemesColor.themes[7][themeChoice],
                   ),
                 ),
               );
             },
           ),
+          SizedBox(width: 20,),
         ],
       ),
     );
-  }
-  IconData _isIconSettingsOrDelete(EditState state){
-    return state is EditIconNormal ? Icons.settings : Icons.delete;
-  }
-  VoidCallback _isOnTapSettingsOrDelete(EditState state, BuildContext context){
-    return state is EditIconNormal ? onTap : (){onTapDelete(context);};
-  }
-  
-  void onTapDelete(BuildContext context){
-
   }
 }

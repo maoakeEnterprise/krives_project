@@ -1,4 +1,6 @@
 
+import 'package:flutter/cupertino.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/folder.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/features/programme/program_user/bloc/folder_bloc/folder_bloc.dart';
@@ -25,6 +27,11 @@ class ProgramFunctionServices {
     }
   }
 
+  static Program changeNameProgram(TextEditingController newName,Program program){
+    program.name = newName.text;
+    return program;
+  }
+
   /// get the right tiles for the folders if its the normal tiles with the folder or if its the tile who create a new folder.
   static TileUsedForProgram getTheRightTilesInFolder(Folder folder, FolderState state,int index){
     int length = state is FolderLoaded ? state.folder.folders.length : 0;
@@ -32,6 +39,10 @@ class ProgramFunctionServices {
       return TileUsedForProgram(TileType.folder,folder.folders[index],folder,Program.initClass(),'');
     }
     return TileUsedForProgram(TileType.createFolder,"",folder,Program.initClass(),'');
+  }
+
+  static Exercise getTheRightExerciseViaId(String id,List<Exercise> exercises){
+    return exercises.firstWhere((element) => element.id == id);
   }
 
   static TileUsedForProgram getTheRightTilesInProgram(ProgramState state, int index){

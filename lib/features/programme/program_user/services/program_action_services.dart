@@ -70,9 +70,9 @@ class ProgramActionServices{
     return state is EditOn && nameFolder != "Utilisateur" && nameFolder != "Enregistrer";
   }
 
-  static VoidCallback actionToGoInProgram(BuildContext context,Program program){
+  static VoidCallback actionToGoInProgram(BuildContext context,Program program,String nameFolder){
     return (){
-      ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: program.name, program: program));
+      ButtonActionServices.navigateToPage(context, 'before_workout_playtime', RouteArgument(titlePage: program.name, program: program,nameActualInFolder: nameFolder,isInProgram: true));
     };
   }
 

@@ -1,15 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/programme/playtime_workout/bloc/playtime_series_bloc/playtime_series_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/button_finish_serie_playtime_workout.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/button_remove_widget_timer.dart';
-import 'package:krives_project/features/programme/playtime_workout/widget/circular_timer.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/commentary_exo_widget_playtime_workout.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/count_series_playtime_workout_widget.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/detail_weight_rep_widget_playtime_workout.dart';
+import 'package:krives_project/features/programme/playtime_workout/widget/widget_timer.dart';
 
 class PlaytimeWorkoutPage extends StatefulWidget {
   const PlaytimeWorkoutPage({super.key});
@@ -22,37 +21,46 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
   @override
   Widget build(BuildContext context) {
     int themeChoice = 0;
-    return ListView(
-      children: [
-        SizedBox(height: 24,),
-        Container(
-            margin: EdgeInsets.fromLTRB(13, 0, 0, 0),
-            child: Text(
-              "Nom exercice", style: ThemesTextStyles.themes[5][themeChoice],)
-        ),
-        CountSeriesPlaytimeWorkoutWidget(),
-        CommentaryExoWidgetPlaytimeWorkout(),
-        DetailWeightRepWidgetPlaytimeWorkout(),
-        BlocBuilder<TimerBloc, TimerState>(
-          builder: (context, state) {
-            return state is TimerIsNotDisplayed ?ButtonFinishSeriePlaytimeWorkout() : ButtonRemoveWidgetTimer();
-          },
-        ),
-        BlocBuilder<TimerBloc, TimerState>(
-          builder: (context, state) {
-            return _isTimerWidgetDisplayed(context, state);
-          },
-        ),
-      ],
+    return BlocBuilder<PlaytimeSeriesBloc, PlaytimeSeriesState>(
+      builder: (context, state) {
+        if(state is PlaytimeSeriesLoading){
+          return CircularProgressIndicator();
+        }
+        if(state is PlaytimeSeriesLoaded){
+          return ListView(
+            children: [
+              SizedBox(height: 24,),
+              Container(
+                  margin: EdgeInsets.fromLTRB(13, 0, 0, 0),
+                  child: Text(
+                    state.completeSeries[0].exercise.name,
+                    style: ThemesTextStyles.themes[5][themeChoice],)
+              ),
+              CountSeriesPlaytimeWorkoutWidget(numberMaxSeries: state.completeSeries[0].series.numberSeries, numberCounter: state.tmpNbSeries+1),
+              CommentaryExoWidgetPlaytimeWorkout(),
+              DetailWeightRepWidgetPlaytimeWorkout(
+                maxCharge: state.completeSeries[0].series.maxKG,
+                maxRep: state.completeSeries[0].series.numberRep,
+              ),
+              BlocBuilder<TimerBloc, TimerState>(
+                builder: (context, state) {
+                  return state is TimerIsNotDisplayed
+                      ? ButtonFinishSeriePlaytimeWorkout()
+                      : ButtonRemoveWidgetTimer();
+                },
+              ),
+              WidgetTimer(tmpNbSeries: state.tmpNbSeries, completeSeries: state.completeSeries, program: state.program),
+            ],
+          );
+        }
+        if(state is PlaytimeSeriesFinish){
+          Navigator.pop(context);
+        }
+        return Container();
+
+      },
     );
   }
 
-  Widget _isTimerWidgetDisplayed(BuildContext context, TimerState state) {
-    return state is TimerIsDisplayed ?
-    CircularTimer(
-      initialDuration: 10,
-      color: ThemesColor.green1,
-      backgroundColor: ThemesColor.green1.withAlpha(10),
-    ) : Container();
-  }
+
 }

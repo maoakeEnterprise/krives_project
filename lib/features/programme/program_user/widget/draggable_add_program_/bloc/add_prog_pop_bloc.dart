@@ -20,6 +20,7 @@ class AddProgPopBloc extends Bloc<AddProgPopEvent, AddProgPopState> {
     try{
       List<Program> programs = await ProgramServerServices.getDataPrograms("Utilisateur");
       List<Program> programRegister = await ProgramServerServices.getDataPrograms("Enregistrer");
+      programs.addAll(programRegister);
       List<Program> programsInFolder = [];
       String idUser = AuthServerServices.currentUser!.uid;
       for (var val in programs) {

@@ -8,6 +8,7 @@ import 'package:krives_project/features/authentification/services/auth_server_se
 import 'package:krives_project/features/comment/page/comment_page.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/bloc/program_before_work_out_bloc/program_before_work_out_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
+import 'package:krives_project/features/programme/playtime_workout/bloc/playtime_series_bloc/playtime_series_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
 
 enum MenuButtonProgramType {
@@ -82,31 +83,35 @@ class BeforePlaytimeServices {
   };
 
   ///its a map where there is all the onPressed function for eachButton like/comment/share/bookmark/settingsProgram/play
-  static Map<MenuButtonProgramType,void Function(BuildContext,int,ProgramBeforeWorkOutState)> onTapMap = {
-    MenuButtonProgramType.like : (context,int themeChoice,ProgramBeforeWorkOutState state){
+  static Map<MenuButtonProgramType,void Function(BuildContext,int,ProgramBeforeWorkOutState,TextEditingController controllerNameProgram)> onTapMap = {
+    MenuButtonProgramType.like : (context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
       state is ProgramBeforeWorkOutLoaded ?
       context.read<ProgramBeforeWorkOutBloc>().add(ButtonLikePressed(user: state.currentUser, program: state.program, userOwnerProgram: state.userOwnerProgram)) : null;
     },
 
-    MenuButtonProgramType.comment :(context,int themeChoice,ProgramBeforeWorkOutState state){
+    MenuButtonProgramType.comment :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
       showComment(context, themeChoice, 0);
     },
 
-    MenuButtonProgramType.share :(context,int themeChoice,ProgramBeforeWorkOutState state){
+    MenuButtonProgramType.share :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
 
     },
 
-    MenuButtonProgramType.bookmark :(context,int themeChoice,ProgramBeforeWorkOutState state){
+    MenuButtonProgramType.bookmark :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
       ///context.read<RegisterProgramBloc>().add(RegisterProgramPressed());
     },
 
-    MenuButtonProgramType.settingsProgram :(context,int themeChoice,ProgramBeforeWorkOutState state){
-      ButtonActionServices.navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isCheckProgramButton: true));
+    MenuButtonProgramType.settingsProgram :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
+      final arguments = FunctionServices.getArgument(context);
+      ButtonActionServices.navigateToPage(context, 'program', RouteArgument(idWordTitle: 7,isCheckProgramButton: true,controllerNameProgram: controllerNameProgram,nameActualInFolder: arguments.nameActualInFolder));
     },
 
-    MenuButtonProgramType.play :(context,int themeChoice,ProgramBeforeWorkOutState state){
-      ButtonActionServices.navigateToPage(context, 'workout_playtime', RouteArgument(titlePage: "Nom Programme"));
+    MenuButtonProgramType.play :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
+      ButtonActionServices.navigateToPage(context, 'workout_playtime',
+          RouteArgument(titlePage: state is ProgramBeforeWorkOutLoaded ? state.program.name : 'Unknow error',
+            program: state is ProgramBeforeWorkOutLoaded ? state.program : null,));
       context.read<CounterSeriesBloc>().add(CounterSerieReset());
+      state is ProgramBeforeWorkOutLoaded ? context.read<PlaytimeSeriesBloc>().add(InitWorkout(program: state.program)) : null;
       context.read<TimerBloc>().add(TimerFinishedSeriesPressed());
     },
 

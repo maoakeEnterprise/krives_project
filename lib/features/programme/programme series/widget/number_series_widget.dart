@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
-import 'package:krives_project/features/programme/programme%20series/bloc/number_series_widget/number_series_widget_bloc.dart';
+import 'package:krives_project/features/programme/programme%20series/bloc/create_series_bloc/create_series_bloc.dart';
+import 'package:krives_project/features/programme/programme%20series/services/service_series.dart';
 
 class NumberSeriesWidget extends StatelessWidget {
   const NumberSeriesWidget({super.key});
@@ -9,7 +10,7 @@ class NumberSeriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int themeChoice = 0;
-    return BlocBuilder<NumberSeriesWidgetBloc, NumberSeriesWidgetState>(
+    return BlocBuilder<CreateSeriesBloc, CreateSeriesState>(
       builder: (context, state) {
         return Container(
           padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
@@ -20,33 +21,23 @@ class NumberSeriesWidget extends StatelessWidget {
           child: DropdownButtonHideUnderline(
             child: DropdownButton<int>(
               dropdownColor: ThemesColor.themes[2][themeChoice],
-              value: _getNumberSeries(state),
+              value: ServiceSeries.getNumberOfSeries(state),
               icon: Icon(Icons.arrow_drop_down,
                 color: ThemesColor.themes[7][themeChoice],),
               iconSize: 24,
               elevation: 16,
               style: TextStyle(color: ThemesColor.themes[7][themeChoice]),
-              onChanged: (int? newValue) {
-                //print("$newValue");
-              },
+              onChanged: (int? newValue) {},
               items: List.generate(19, (index) =>
                   DropdownMenuItem<int>(
-                    value: index+1,
+                    value: ServiceSeries.getTheRightIndexNumberSeries(index),///we need to increment +1 to the index cause we start to 1 when we do a series
+                    onTap: ServiceSeries.updateNumberOfSeries(state, context, ServiceSeries.getTheRightIndexNumberSeries(index)),
                     child: Text('${index+1}'),
-                    onTap: () {
-                      context.read<NumberSeriesWidgetBloc>().add(NumberSeriesWidgetPressed(index));
-                    },
                   ),),
             ),
           ),
         );
       },
     );
-  }
-  int _getNumberSeries(NumberSeriesWidgetState state){
-    if(state is NumberSeriesWidgetNumberSelected){
-      return state.numberSelected+1;
-    }
-    return 1;
   }
 }

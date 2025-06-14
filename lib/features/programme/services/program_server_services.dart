@@ -50,6 +50,13 @@ class ProgramServerServices{
     await doc.delete();
   }
 
+  static Future<Program> getOnlyOneProgram(String idProgram) async {
+    final DocumentReference  doc =  _fireStore.collection('programs').doc(idProgram);
+    final DocumentSnapshot snapshot = await doc.get();
+    Program program = Program.fromMap(snapshot.data() as Map<String, dynamic>);
+    return program;
+  }
+
 
   ///Functions for the programs services who do the request to the DB server
 
@@ -59,7 +66,6 @@ class ProgramServerServices{
     List<Program> programs = [];
     String idUser = _auth.currentUser!.uid;
     QuerySnapshot<Map<String, dynamic>> snapshot;
-    Map<String, String> mapToFind = {"idUser" : idUser};
     final  connectionServerDbPrograms =  _fireStore.collection('programs');
 
     final queryAnyFolder = connectionServerDbPrograms.where(
@@ -68,7 +74,7 @@ class ProgramServerServices{
           Filter('idUser', isEqualTo: idUser),
           Filter('inFolder', arrayContains: nameFolder),
         ),
-        Filter('registeredIn', arrayContains: mapToFind),
+        Filter('registeredIn.$idUser',arrayContains: nameFolder),
     ),);
 
     final queryUserFolder  = connectionServerDbPrograms.where('idUser', isEqualTo: idUser);
@@ -102,7 +108,6 @@ class ProgramServerServices{
 
   static Future<void> addProgramInFolder(Program program,String nameFolder) async {
     String idUser = _auth.currentUser!.uid;
-    program.idUser = idUser;
     
     final batch = _fireStore.batch();
     final docRef = _fireStore.collection('programs').doc(program.id);
@@ -137,14 +142,11 @@ class ProgramServerServices{
     await batch.commit();
   }
 
-
   static Future<void> updateProgram(Program program) async {
     String idProgram = program.id;
     final docRef = _fireStore.collection('programs').doc(idProgram);
     Map<String, dynamic> map = Program.toMap(program);
     await docRef.update(map);
   }
-
-  ///#2.1 Faire une requete pour créer un programme à l"état initiale  avec l'id user
 
 }

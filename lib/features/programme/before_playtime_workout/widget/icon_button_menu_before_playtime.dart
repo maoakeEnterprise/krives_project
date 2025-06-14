@@ -20,8 +20,9 @@ class IconButtonMenuBeforePlaytime extends StatelessWidget {
 
     return BlocBuilder<ProgramBeforeWorkOutBloc, ProgramBeforeWorkOutState>(
       builder: (context, state) {
+        TextEditingController controllerNameProgram = TextEditingController();
         return IconButton(
-          onPressed: () => BeforePlaytimeServices.onTapMap[buttonName]!(context, themeChoice,state),
+          onPressed: () => BeforePlaytimeServices.onTapMap[buttonName]!(context, themeChoice,state,controllerNameProgram),
           icon: Icon(
             BeforePlaytimeServices.iconMap[BeforePlaytimeServices.getTheRightButtonName(state, buttonName)],
             color: BeforePlaytimeServices.mapColor[BeforePlaytimeServices.getTheRightButtonName(state, buttonName)],

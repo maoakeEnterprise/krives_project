@@ -24,6 +24,17 @@ class ExerciseServerServices {
     return listExercice;
   }
 
+  static Future<Exercise> getOneExercise(String id) async {
+    Exercise exercise;
+
+    final exerciseCollection = await _fireStore.collection('exercices').doc(id).get();
+    Map<String, dynamic> map = exerciseCollection.data()!;
+    exercise = Exercise.fromMap(map);
+
+    return exercise;
+
+  }
+
   static Future<void> add(Exercise exercice) async {
     final docRef = _fireStore.collection('exercices').doc();
     exercice.idUser = _auth.currentUser!.uid;

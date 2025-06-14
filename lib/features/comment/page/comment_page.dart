@@ -44,7 +44,12 @@ class CommentPage extends StatelessWidget {
               )
           ),
           Divider(color: ThemesColor.themes[3][themeChoice],),
-          CommentTextField(),
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom
+            ),
+            child: CommentTextField(),
+          ),
           SizedBox(height: 12,),
         ],
       );

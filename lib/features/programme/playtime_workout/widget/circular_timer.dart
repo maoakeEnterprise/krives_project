@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/circular_timer_painter.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/complete_series.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/counter_series_bloc/counter_series_bloc.dart';
+import 'package:krives_project/features/programme/playtime_workout/bloc/playtime_series_bloc/playtime_series_bloc.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
 import 'button_widget_timer.dart';
 
@@ -9,12 +12,18 @@ class CircularTimer extends StatefulWidget {
   final int initialDuration; // Timer duration in seconds
   final Color color;
   final Color backgroundColor;
+  final Program program;
+  final List<CompleteSeries> completeSeries;
+  final int tmpNbSeries;
 
   const CircularTimer({
     super.key,
     required this.initialDuration,
     this.color = Colors.blue,
     this.backgroundColor = Colors.grey,
+    required this.program,
+    required this.completeSeries,
+    required this.tmpNbSeries,
   });
 
   @override
@@ -25,10 +34,12 @@ class CircularTimerState extends State<CircularTimer>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late int _remainingDuration;
+  late PlaytimeSeriesBloc _timerBloc;
 
   @override
   void initState() {
     super.initState();
+    _timerBloc =context.read<PlaytimeSeriesBloc>();
     _remainingDuration = widget.initialDuration;
     _controller = AnimationController(
       vsync: this,
@@ -37,6 +48,7 @@ class CircularTimerState extends State<CircularTimer>
       setState(() {
         int seconds  = _remainingDuration * (1 - _controller.value).ceil();
         if(seconds == 0){
+          _timerBloc.add(EndSerie(completeSeries: widget.completeSeries, tmpNbSeries: widget.tmpNbSeries, program: widget.program));
           context.read<CounterSeriesBloc>().add(CounterSerieIncremented());
           context.read<TimerBloc>().add(TimerFinishedSeriesPressed());
         }

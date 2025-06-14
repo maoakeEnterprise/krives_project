@@ -1,8 +1,10 @@
 
 class Series {
+  String id;
   final String idUser;
   final String idProgram;
-  final String idExercice;
+  int orderNumber;
+  String idExercice;
   int numberSeries;
   String typeSeries;
   int maxKG; /// represent the actual weight if the user is in a normal series in KG
@@ -13,11 +15,13 @@ class Series {
   int diffRep;
 
   Series({
+    required this.id,
     required this.idUser,
     required this.idProgram,
     required this.idExercice,
+    required this.orderNumber,
     this.numberSeries = 1,
-    this.typeSeries = 'Normal',
+    this.typeSeries = 'normal',
     this.maxKG = 0,
     this.maxLBS = 0,
     this.numberRep = 0,
@@ -26,16 +30,19 @@ class Series {
     this.diffRep=0,
   });
 
-  static Series initSeries(){
+  static Series initSeries(String idProgram,String idUser,int orderNumber){
     return Series(
-      idUser: "init",
-      idProgram: "init",
+      id: "init",
+      idUser: idUser,
+      idProgram: idProgram,
       idExercice: "init",
+      orderNumber: orderNumber,
     );
   }
 
   static Series fromMap(Map<String, dynamic> map){
     return Series(
+      id: map['id'],
       idUser: map['idUser'],
       idProgram: map['idProgram'],
       idExercice: map['idExercice'],
@@ -47,11 +54,13 @@ class Series {
       diffKG: map['diffKG'],
       diffLBS: map['diffLBS'],
       diffRep: map['diffRep'],
+      orderNumber: map['orderNumber'],
     );
   }
 
   static Map<String, dynamic> toMap(Series series){
     return {
+      'id': series.id,
       'idUser': series.idUser,
       'idProgram': series.idProgram,
       'idExercice': series.idExercice,
@@ -63,6 +72,7 @@ class Series {
       'diffKG': series.diffKG,
       'diffLBS': series.diffLBS,
       'diffRep': series.diffRep,
+      'orderNumber' : series.orderNumber,
     };
   }
 

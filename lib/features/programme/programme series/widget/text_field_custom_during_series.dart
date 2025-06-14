@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/programme/programme%20series/bloc/create_series_bloc/create_series_bloc.dart';
+import 'package:krives_project/features/programme/programme%20series/services/service_series.dart';
 
 class TextFieldCustomDuringSeries extends StatelessWidget {
-  const TextFieldCustomDuringSeries({super.key});
+  final TextEditingController controller;
+  final String textDefinitionTextField;
+
+  const TextFieldCustomDuringSeries({
+    super.key,
+    required this.controller,
+    required this.textDefinitionTextField,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +27,34 @@ class TextFieldCustomDuringSeries extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         color: ThemesColor.themes[2][themeChoice],
       ),
-      child: TextField(
-        keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-        ],
-        maxLength: 6,
-        cursorHeight: 14,
-        style: ThemesTextStyles.themes[3][themeChoice],
-        cursorColor: ThemesColor.themes[7][themeChoice],
-        decoration: InputDecoration(
-          counterText: "",
-          filled: true,
-          fillColor: ThemesColor.themes[2][themeChoice],
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(22),
-            borderSide: BorderSide.none,
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          alignLabelWithHint: true,
-        ),
+      child: BlocBuilder<CreateSeriesBloc, CreateSeriesState>(
+        builder: (context, state) {
+          return TextField(
+            onChanged: (value) {
+              ServiceSeries.updateTextFieldDataSeries(state, context, textDefinitionTextField, value);
+            },
+            controller: controller,
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+            ],
+            maxLength: 6,
+            cursorHeight: 14,
+            style: ThemesTextStyles.themes[3][themeChoice],
+            cursorColor: ThemesColor.themes[7][themeChoice],
+            decoration: InputDecoration(
+              counterText: "",
+              filled: true,
+              fillColor: ThemesColor.themes[2][themeChoice],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(22),
+                borderSide: BorderSide.none,
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              alignLabelWithHint: true,
+            ),
+          );
+        },
       ),
     );
   }

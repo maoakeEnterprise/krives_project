@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/series.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_card_exo_before_playtime_workout.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/widget/mini_widget_card_exercice_before_playtime_workout.dart';
+import 'package:krives_project/features/programme/services/services_program.dart';
 
 class CardExerciceBeforePlaytimeWorkoutWidget extends StatelessWidget {
-  const CardExerciceBeforePlaytimeWorkoutWidget({super.key});
+  final Series series;
+  final List<Exercise> exerciseList;
+  const CardExerciceBeforePlaytimeWorkoutWidget({super.key, required this.series,required this.exerciseList});
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +44,21 @@ class CardExerciceBeforePlaytimeWorkoutWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MiniCardExoBeforePlaytimeWorkout(width: 70, height: 70,marginRight: 12,),
-                  MiniWidgetCardExerciceBeforePlaytimeWorkout(),
+
+                  MiniCardExoBeforePlaytimeWorkout(
+                    width: 70,
+                    height: 70,
+                    marginRight: 12,
+                      muscle: ServicesProgram.getTheRightExercise(exerciseList, series.idExercice).mainMuscle,),
+                  MiniWidgetCardExerciceBeforePlaytimeWorkout(exercise: ServicesProgram.getTheRightExercise(exerciseList, series.idExercice)),
                   Spacer(),
-                  Text("${SourceLangage.titleProgrammLangage[3][langageChoice]} : 15kg",style: ThemesTextStyles.themes[3][themeChoice],),
+                  Text("${SourceLangage.titleProgrammLangage[3][langageChoice]} : ${series.maxKG}kg",style: ThemesTextStyles.themes[3][themeChoice],),
                   SizedBox(width: 20,),
                 ],
               ),
-              Text("${SourceLangage.titleProgrammLangage[5][langageChoice]} : 4",style: ThemesTextStyles.themes[3][themeChoice],),
-              Text("${SourceLangage.titleProgrammLangage[6][langageChoice]} : 13",style: ThemesTextStyles.themes[3][themeChoice],),
-              Text("${SourceLangage.titleProgrammLangage[7][langageChoice]} : Normal",style: ThemesTextStyles.themes[3][themeChoice],),
+              Text("${SourceLangage.titleProgrammLangage[5][langageChoice]} : ${series.numberSeries}",style: ThemesTextStyles.themes[3][themeChoice],),
+              Text("${SourceLangage.titleProgrammLangage[6][langageChoice]} : ${series.numberRep}",style: ThemesTextStyles.themes[3][themeChoice],),
+              Text("${SourceLangage.titleProgrammLangage[7][langageChoice]} : ${series.typeSeries}",style: ThemesTextStyles.themes[3][themeChoice],),
             ],
           ),
         ),

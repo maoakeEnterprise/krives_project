@@ -14,7 +14,6 @@ final class ProgramBeforeWorkOutLoaded extends ProgramBeforeWorkOutState {
     required this.userOwnerProgram,
     required this.currentUser,
     required this.program,
-
   });
 }
 

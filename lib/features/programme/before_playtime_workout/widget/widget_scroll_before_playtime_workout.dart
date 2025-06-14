@@ -29,7 +29,7 @@ class WidgetScrollBeforePlaytimeWorkout extends StatelessWidget {
               child: ListView.builder(
                 itemCount: state.series.length,
                 itemBuilder: (context, index) =>
-                    CardExerciceBeforePlaytimeWorkoutWidget(),
+                    CardExerciceBeforePlaytimeWorkoutWidget(series: state.series[index],exerciseList: state.exercises,),
               )
           );
         }

@@ -79,7 +79,7 @@ class TileProgram implements TileUsedForProgram{
           : SizedBox.shrink();
           },),
 
-      onTap: ProgramActionServices.actionToGoInProgram(context,program),
+      onTap: ProgramActionServices.actionToGoInProgram(context,program,nameFolder),
     );
   }
 }
