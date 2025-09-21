@@ -27,6 +27,7 @@ class CommentTextField extends StatelessWidget {
             ),
           ),
         ),
+        IconButton(onPressed: (){}, icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],))
       ],
     );
   }

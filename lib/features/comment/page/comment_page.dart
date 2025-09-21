@@ -29,17 +29,6 @@ class CommentPage extends StatelessWidget {
               child: ListView(
                 children: [
                   CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
-                  CommentSectionWidget(),
                 ],
               )
           ),
