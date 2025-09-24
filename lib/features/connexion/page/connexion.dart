@@ -19,6 +19,16 @@ class _ConnexionPageState extends State<ConnexionPage> {
   int chooseLangage = 0;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  Map<String, TextEditingController> controllers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    controllers = {
+      'email': _emailController,
+      'password': _passwordController
+    };
+  }
 
   @override
   void dispose() {
@@ -30,11 +40,6 @@ class _ConnexionPageState extends State<ConnexionPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    Map<String,TextEditingController> controllers = {
-      'email': _emailController,
-      'password': _passwordController
-    };
 
     return Scaffold(
         body: BackgroundColorCustom1(

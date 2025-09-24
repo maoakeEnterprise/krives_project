@@ -13,10 +13,12 @@ class CustomButton1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ConnexionActionServices.connexionOrResetPassword(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+        ConnexionActionServices.connexionOrResetPassword(
           textEditingController.map((key, value) => MapEntry(key, value.text)),
           context
-      ),
+      );},
       child: Ink(
         child: Container(
           margin: EdgeInsets.fromLTRB(41, 0, 41, 0),

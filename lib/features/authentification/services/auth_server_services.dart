@@ -58,7 +58,7 @@ class AuthServerServices {
   }
 
   static bool verifEmptyTextField(String text) {
-    return text.trim().isEmpty || text.contains(RegExp(r'\s+')) ? false : true;
+    return text.trim().isEmpty|| text.contains(RegExp(r'\s+')) ? false : true;
   }
 
   static Future<KrivesUser> getUserData() async {

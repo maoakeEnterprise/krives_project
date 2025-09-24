@@ -9,13 +9,11 @@ class ConnexionActionServices{
   ///the map is here to see if the map we send is with the email and the password or if its with juste the email.
   ///if its the email with password the function will recognize : user trying to connect to his account.
   ///if its just the email the function will recognize : user forgot his password so he want to reset this.
-  static VoidCallback connexionOrResetPassword(Map<String,String> map, BuildContext context){
-    return (){
-      if(map.length == 2){
-        context.read<AuthBloc>().add(AuthSignedIn(email: map['email']!, password: map['password']!,));
-      }else{
-        context.read<AuthBloc>().add(AuthResetEmail(email: map['email']!,context: context));
-      }
-    };
+  static void connexionOrResetPassword(Map<String,String> map, BuildContext context){
+    if(map.length == 2){
+      context.read<AuthBloc>().add(AuthSignedIn(email: map['email']!, password: map['password']!,));
+    }else{
+      context.read<AuthBloc>().add(AuthResetEmail(email: map['email']!,context: context));
+    }
   }
 }
