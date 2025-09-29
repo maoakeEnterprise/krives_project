@@ -11,6 +11,7 @@ class CommentTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     int themeChoice = 0;
     int langageChoice = 0;
+    TextEditingController controller = TextEditingController();
     return Row(
       children: [
         SizedBox(width: 12,),
@@ -18,6 +19,7 @@ class CommentTextField extends StatelessWidget {
         SizedBox(width: 12,),
         Expanded(
           child: TextField(
+            controller: controller,
             style: ThemesTextStyles.themes[7][themeChoice],
             cursorColor: ThemesColor.themes[7][themeChoice],
             decoration: InputDecoration(
@@ -27,7 +29,10 @@ class CommentTextField extends StatelessWidget {
             ),
           ),
         ),
-        IconButton(onPressed: (){}, icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],))
+        IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
+            ))
       ],
     );
   }

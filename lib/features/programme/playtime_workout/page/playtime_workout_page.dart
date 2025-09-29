@@ -27,7 +27,8 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
           return CircularProgressIndicator();
         }
         if(state is PlaytimeSeriesLoaded){
-          return ListView(
+
+          return state.completeSeries.isNotEmpty ? ListView(
             children: [
               SizedBox(height: 24,),
               Container(
@@ -51,7 +52,7 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
               ),
               WidgetTimer(tmpNbSeries: state.tmpNbSeries, completeSeries: state.completeSeries, program: state.program),
             ],
-          );
+          ) : Container();
         }
         if(state is PlaytimeSeriesFinish){
           Navigator.pop(context);
