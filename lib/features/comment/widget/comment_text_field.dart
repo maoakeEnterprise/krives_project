@@ -5,7 +5,8 @@ import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/comment/widget/comment_photo_user_widget.dart';
 
 class CommentTextField extends StatelessWidget {
-  const CommentTextField({super.key});
+  final String idProgram;
+  const CommentTextField({super.key, required this.idProgram});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,11 @@
 class Commentary {
   String commentary;
-  String order;
   String underCommentaryId;
   String id;
   String idUser;
-  final String dateCreation;
+  final DateTime dateCreation;
   final String idProgram;
-  String idResponseCommentary;
+  String idAnswerCommentary;
   List<String> idUserLiked;
 
   Commentary({
@@ -14,10 +13,9 @@ class Commentary {
     required this.idUser,
     required this.dateCreation,
     required this.commentary,
-    required this.order,
     required this.id,
     required this.idProgram,
-    required this.idResponseCommentary,
+    required this.idAnswerCommentary,
     this.idUserLiked = const [],
   });
 
@@ -26,11 +24,10 @@ class Commentary {
       underCommentaryId: underCommentaryId,
       idUser: idUser,
       commentary: commentary,
-      order: "1",
       id: "1",
       idProgram: idProgram,
-      idResponseCommentary: idResponseCommentary,
-      dateCreation: DateTime.now().toString(),
+      idAnswerCommentary: idResponseCommentary,
+      dateCreation: DateTime.now(),
     );
   }
 
@@ -40,10 +37,9 @@ class Commentary {
       'id_user': idUser,
       'date_creation': dateCreation,
       'commentary': commentary,
-      'order': order,
       'id': id,
       'id_program': idProgram,
-      'id_response_commentary': idResponseCommentary,
+      'id_response_commentary': idAnswerCommentary,
       'id_user_liked': idUserLiked,
     };
   }
@@ -54,10 +50,9 @@ class Commentary {
       idUser: map['id_user'],
       dateCreation: map['date_creation'],
       commentary: map['commentary'],
-      order: map['order'],
       id: map['id'],
       idProgram: map['id_program'],
-      idResponseCommentary: map['id_response_commentary'],
+      idAnswerCommentary: map['id_response_commentary'],
       idUserLiked: map['id_user_liked'],
     );
   }

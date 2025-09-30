@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/comment/widget/comment_section_widget.dart';
@@ -7,7 +8,8 @@ import 'package:krives_project/features/comment/widget/stick_widget.dart';
 import 'package:krives_project/features/comment/widget/title_widget.dart';
 
 class CommentPage extends StatelessWidget {
-  const CommentPage({super.key});
+  final Program program;
+  const CommentPage({super.key, required this.program});
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +27,16 @@ class CommentPage extends StatelessWidget {
           TitleWidget(),
           SizedBox(height: 12,),
           Divider(color: ThemesColor.themes[3][themeChoice],),
-          Expanded(
-              child: ListView(
-                children: [
-                  CommentSectionWidget(),
-                ],
-              )
+          Expanded(child: ListView.builder(
+              itemCount: 28,
+              itemBuilder: (context,index) => CommentSectionWidget()),
           ),
           Divider(color: ThemesColor.themes[3][themeChoice],),
           Padding(
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom
             ),
-            child: CommentTextField(),
+            child: CommentTextField(idProgram: program.id,),
           ),
           SizedBox(height: 12,),
         ],
@@ -46,7 +45,7 @@ class CommentPage extends StatelessWidget {
   }
 }
 
-void showComment(BuildContext context, int themesChoice,int langageChoice) {
+void showComment(BuildContext context, int themesChoice,int langageChoice, Program program) {
   showModalBottomSheet(
       context: context,
       backgroundColor: ThemesColor.themes[0][themesChoice],
@@ -56,6 +55,6 @@ void showComment(BuildContext context, int themesChoice,int langageChoice) {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context){
-        return CommentPage();
+        return CommentPage(program: program,);
       });
 }

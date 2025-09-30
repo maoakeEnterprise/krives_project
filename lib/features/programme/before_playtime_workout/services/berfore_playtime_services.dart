@@ -90,7 +90,8 @@ class BeforePlaytimeServices {
     },
 
     MenuButtonProgramType.comment :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
-      showComment(context, themeChoice, 0);
+      state is ProgramBeforeWorkOutLoaded ?
+      showComment(context, themeChoice, 0, state.program) : null;
     },
 
     MenuButtonProgramType.share :(context,int themeChoice,ProgramBeforeWorkOutState state,TextEditingController controllerNameProgram){
