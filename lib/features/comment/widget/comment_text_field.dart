@@ -24,6 +24,7 @@ class CommentTextField extends StatelessWidget {
             controller: controller,
             style: ThemesTextStyles.themes[7][themeChoice],
             cursorColor: ThemesColor.themes[7][themeChoice],
+            onSubmitted: (value) => CommentActionServices.addCommentOnSubmit(value, idProgram, context),
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: SourceLangage.baseLangage[27][langageChoice],
@@ -32,6 +33,7 @@ class CommentTextField extends StatelessWidget {
           ),
         ),
         IconButton(
+            ///onPressed: (){FocusScope.of(context).unfocus();},
             onPressed: CommentActionServices.addComment(controller, idProgram, context),
             icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
             ))

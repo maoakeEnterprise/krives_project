@@ -6,8 +6,13 @@ class CommentActionServices {
   static VoidCallback addComment(TextEditingController comment, String idProgram, BuildContext context){
     return (){
       String commentText;
+      FocusScope.of(context).unfocus();
       commentText = comment.text;
       context.read<CommentBloc>().add(NewComment(comment: commentText, idProgram: idProgram));
     };
+  }
+
+  static void addCommentOnSubmit(String comment, String idProgram, BuildContext context){
+    context.read<CommentBloc>().add(NewComment(comment: comment, idProgram: idProgram));
   }
 }
