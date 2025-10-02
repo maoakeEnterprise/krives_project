@@ -32,7 +32,7 @@ class CommentTextField extends StatelessWidget {
           ),
         ),
         IconButton(
-            onPressed: CommentActionServices.addComment(controller.text, idProgram, context),
+            onPressed: CommentActionServices.addComment(controller, idProgram, context),
             icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
             ))
       ],
