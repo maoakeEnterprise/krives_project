@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/comment/services/comment_action_services.dart';
 import 'package:krives_project/features/comment/widget/comment_photo_user_widget.dart';
 
 class CommentTextField extends StatelessWidget {
@@ -31,7 +32,7 @@ class CommentTextField extends StatelessWidget {
           ),
         ),
         IconButton(
-            onPressed: (){},
+            onPressed: CommentActionServices.addComment(controller.text, idProgram, context),
             icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
             ))
       ],
