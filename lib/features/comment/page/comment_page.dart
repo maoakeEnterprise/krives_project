@@ -53,7 +53,6 @@ class _CommentPageState extends State<CommentPage> {
                   );
                 }
               if(state is CommentError){
-                print(state.errorMessages);
               }
               return Container();
             },
