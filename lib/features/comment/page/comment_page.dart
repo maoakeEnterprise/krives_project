@@ -43,20 +43,25 @@ class _CommentPageState extends State<CommentPage> {
           TitleWidget(),
           SizedBox(height: 12,),
           Divider(color: ThemesColor.themes[3][themeChoice],),
-          BlocBuilder<CommentBloc, CommentState>(
-            builder: (context, state) {
-              if(state is CommentLoaded)
+          Expanded(
+            child: BlocConsumer<CommentBloc, CommentState>(
+              listener: (context, state) {
+                // TODO: implement listener
+                if(state is CommentError){
+                }
+              },
+              builder: (context, state) {
+                if(state is CommentLoaded)
                 {
-                  return Expanded(child: ListView.builder(
+                  return ListView.builder(
                       itemCount: state.commentaries.getLength(),
-                      itemBuilder: (context, index) => CommentSectionWidget(commentary: state.commentaries.getCommentary(index),)),
+                      itemBuilder: (context, index) => CommentSectionWidget(commentary: state.commentaries.getCommentary(index),)
                   );
                 }
-              if(state is CommentError){
-              }
-              return Container();
-            },
+                return Container();
+  },
 ),
+          ),
           Divider(color: ThemesColor.themes[3][themeChoice],),
           Padding(
             padding: EdgeInsets.only(

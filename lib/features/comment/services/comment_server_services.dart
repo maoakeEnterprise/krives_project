@@ -1,5 +1,4 @@
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
@@ -28,5 +27,15 @@ class CommentServerServices {
     comment.id = docRef.id;
     Map<String, dynamic> map = comment.toMap();
     await docRef.set(map);
+  }
+
+  static Future<String> getPseudoName(String idUser) async {
+    String pseudo = '';
+    final docRef = _fireStore.collection('users').doc(idUser);
+    final snapshot = await docRef.get();
+    if (snapshot.exists) {
+      pseudo = snapshot.data()?['pseudo'] ?? '';
+    }
+    return pseudo;
   }
 }

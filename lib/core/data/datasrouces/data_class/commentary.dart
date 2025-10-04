@@ -59,4 +59,48 @@ class Commentary {
     );
   }
 
+  int getTimeWhenPosted(){
+    DateTime now = DateTime.now();
+    DateTime date = dateCreation;
+    int diffDay = now.difference(date).inDays;
+    int diffHour = now.difference(date).inHours;
+    int diffMinute = now.difference(date).inMinutes;
+    int diffSecond = now.difference(date).inSeconds;
+    if(diffDay > 0){
+      return diffDay > 28 ? diffDay ~/ 29 : diffDay;
+    }
+    else if(diffHour > 0){
+      return diffHour;
+    }
+    else if(diffMinute > 0){
+      return diffMinute;
+    }
+    else if(diffSecond > 0){
+      return diffSecond;
+    }
+    return 0;
+  }
+
+  String getTheRightTime(){
+    DateTime now = DateTime.now();
+    DateTime date = dateCreation;
+    int diffDay = now.difference(date).inDays;
+    int diffHour = now.difference(date).inHours;
+    int diffMinute = now.difference(date).inMinutes;
+    int diffSecond = now.difference(date).inSeconds;
+    if(diffDay > 0){
+      return diffDay > 28 ? "m" : "j";
+    }
+    else if(diffHour > 0){
+      return "h";
+    }
+    else if(diffMinute > 0){
+      return "min";
+    }
+    else if(diffSecond > 0){
+      return "s";
+    }
+    return "";
+  }
+
 }
