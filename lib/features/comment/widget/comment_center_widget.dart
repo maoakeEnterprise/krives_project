@@ -4,7 +4,8 @@ import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class CommentCenterWidget extends StatelessWidget {
-  const CommentCenterWidget({super.key});
+  final String commentary;
+  const CommentCenterWidget({super.key, required this.commentary});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class CommentCenterWidget extends StatelessWidget {
           children: [
             SizedBox(width: 7,),
             Flexible(
-              child: Text("SDSJDKSDJSKDJSKJCKSJDKSJD zefzefzefezfzezff Co m mentaire",
+              child: Text(commentary,
                 softWrap: true,
                 maxLines: 400,
                 overflow: TextOverflow.clip,

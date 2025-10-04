@@ -18,4 +18,11 @@ class Commentaries {
       commentaries.commentaries.sort((a, b) => b.dateCreation.compareTo(a.dateCreation)) : null;
     return commentaries;
   }
+
+  int getLength(){
+    return commentaries.length;
+  }
+  Commentary getCommentary(int index){
+    return commentaries[index];
+  }
 }

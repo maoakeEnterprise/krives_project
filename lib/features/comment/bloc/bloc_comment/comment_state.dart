@@ -12,6 +12,6 @@ final class CommentError extends CommentState {
 }
 
 final class CommentLoaded extends CommentState {
-  final List<Commentary> commentaries;
+  final Commentaries commentaries;
   CommentLoaded({required this.commentaries});
 }

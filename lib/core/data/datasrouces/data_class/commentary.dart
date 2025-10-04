@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Commentary {
   String commentary;
   String underCommentaryId;
@@ -48,12 +50,12 @@ class Commentary {
     return Commentary(
       underCommentaryId: map['under_commentary_id'],
       idUser: map['id_user'],
-      dateCreation: map['date_creation'],
+      dateCreation: (map['date_creation'] as Timestamp).toDate(),
       commentary: map['commentary'],
       id: map['id'],
       idProgram: map['id_program'],
       idAnswerCommentary: map['id_response_commentary'],
-      idUserLiked: map['id_user_liked'],
+      idUserLiked: List<String>.from(map['id_user_liked'] as List),
     );
   }
 

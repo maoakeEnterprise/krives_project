@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
 import 'package:krives_project/features/comment/widget/comment_center_widget.dart';
 import 'package:krives_project/features/comment/widget/comment_like_widget.dart';
 import 'package:krives_project/features/comment/widget/comment_photo_user_widget.dart';
 
 class CommentSectionWidget extends StatelessWidget {
-  const CommentSectionWidget({super.key});
+  final Commentary commentary;
+  const CommentSectionWidget({super.key, required this.commentary});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CommentSectionWidget extends StatelessWidget {
         children: [
           SizedBox(width: 18,),
           CommentPhotoUserWidget(),
-          Expanded(child: CommentCenterWidget()),
+          Expanded(child: CommentCenterWidget(commentary: commentary.commentary,)),
           SizedBox(width: 7,),
           CommentLikeWidget(),
           SizedBox(width: 18,),
