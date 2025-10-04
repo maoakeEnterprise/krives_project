@@ -13,5 +13,6 @@ final class CommentError extends CommentState {
 
 final class CommentLoaded extends CommentState {
   final Commentaries commentaries;
-  CommentLoaded({required this.commentaries});
+  final Map<String, String> pseudo;
+  CommentLoaded({required this.commentaries, required this.pseudo});
 }

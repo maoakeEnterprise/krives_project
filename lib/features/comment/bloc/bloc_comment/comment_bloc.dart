@@ -16,12 +16,17 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   Future<void> _newComment(NewComment event, Emitter<CommentState> emit) async {
     List<Commentary> listCommentaries = [];
     Commentaries commentaries;
+    Map<String, String> pseudo = {};
     try{
       await CommentServerServices.add(event.comment, event.idProgram);
       listCommentaries = await CommentServerServices.getComments(event.idProgram);
       commentaries = Commentaries.initCommentaries(listCommentaries);
       commentaries = Commentaries.sortCommentaries(commentaries);
-      emit(CommentLoaded(commentaries: commentaries));
+      for(int i = 0; i < commentaries.getLength(); i++){
+        pseudo[commentaries.commentaries[i].idUser] =
+        await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
+      }
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }
@@ -29,12 +34,17 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
 
   Future<void> _loadComments(CommentLoad event, Emitter<CommentState> emit) async {
     List<Commentary> listCommentaries = [];
+    Map<String, String> pseudo = {};
     Commentaries commentaries;
     try{
       listCommentaries = await CommentServerServices.getComments(event.idProgram);
       commentaries = Commentaries.initCommentaries(listCommentaries);
       commentaries = Commentaries.sortCommentaries(commentaries);
-      emit(CommentLoaded(commentaries: commentaries));
+      for(int i = 0; i < commentaries.getLength(); i++){
+        pseudo[commentaries.commentaries[i].idUser] =
+        await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
+      }
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }

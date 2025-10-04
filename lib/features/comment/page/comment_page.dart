@@ -55,7 +55,9 @@ class _CommentPageState extends State<CommentPage> {
                 {
                   return ListView.builder(
                       itemCount: state.commentaries.getLength(),
-                      itemBuilder: (context, index) => CommentSectionWidget(commentary: state.commentaries.getCommentary(index),)
+                      itemBuilder: (context, index) =>
+                          CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
+                            pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,)
                   );
                 }
                 return Container();

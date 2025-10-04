@@ -100,7 +100,7 @@ class Commentary {
     else if(diffSecond > 0){
       return "s";
     }
-    return "";
+    return "s";
   }
 
 }

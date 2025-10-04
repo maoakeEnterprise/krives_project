@@ -6,7 +6,8 @@ import 'package:krives_project/features/comment/widget/comment_photo_user_widget
 
 class CommentSectionWidget extends StatelessWidget {
   final Commentary commentary;
-  const CommentSectionWidget({super.key, required this.commentary});
+  final String pseudo;
+  const CommentSectionWidget({super.key, required this.commentary, required this.pseudo});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CommentSectionWidget extends StatelessWidget {
         children: [
           SizedBox(width: 18,),
           CommentPhotoUserWidget(),
-          Expanded(child: CommentCenterWidget(commentary: commentary,)),
+          Expanded(child: CommentCenterWidget(commentary: commentary,pseudo: pseudo,)),
           SizedBox(width: 7,),
           CommentLikeWidget(),
           SizedBox(width: 18,),
