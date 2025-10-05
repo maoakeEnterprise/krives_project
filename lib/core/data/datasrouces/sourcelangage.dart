@@ -154,5 +154,13 @@ class SourceLangage{
     ["Nom du programme","Program name"],//8"
   ];
 
+  static var baseCommentPageLangage = [
+    ["s","s"],//0
+    ["m","m"],//1
+    ["h","h"],//2
+    ["j","d"],//3
+    ["mois","months"],//4
+    ["a","y"],//5
+  ];
 }
 

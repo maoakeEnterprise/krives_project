@@ -22,7 +22,7 @@ class CommentSectionWidget extends StatelessWidget {
           CommentPhotoUserWidget(),
           Expanded(child: CommentCenterWidget(commentary: commentary,pseudo: pseudo,)),
           SizedBox(width: 7,),
-          CommentLikeWidget(),
+          CommentLikeWidget(commentary: commentary),
           SizedBox(width: 18,),
         ],
       ),

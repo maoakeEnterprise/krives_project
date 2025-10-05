@@ -21,7 +21,7 @@ class CommentCenterWidget extends StatelessWidget {
               SizedBox(width: 7,),
               Text(pseudo,style: ThemesTextStyles.themes[5][themeChoice],),
               SizedBox(width: 14,),
-              Text("${commentary.getTimeWhenPosted()} ${commentary.getTheRightTime()}",style: ThemesTextStyles.themes[4][themeChoice],),
+              Text("${commentary.getTimeWhenPosted()} ${commentary.getTheRightTime(langageChoice)}",style: ThemesTextStyles.themes[4][themeChoice],),
             ]),
         SizedBox(height: 7,),
         Row(

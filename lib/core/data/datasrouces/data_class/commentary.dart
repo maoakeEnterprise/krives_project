@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 
 class Commentary {
   String commentary;
@@ -81,7 +82,7 @@ class Commentary {
     return 0;
   }
 
-  String getTheRightTime(){
+  String getTheRightTime(int langageChoice){
     DateTime now = DateTime.now();
     DateTime date = dateCreation;
     int diffDay = now.difference(date).inDays;
@@ -89,18 +90,30 @@ class Commentary {
     int diffMinute = now.difference(date).inMinutes;
     int diffSecond = now.difference(date).inSeconds;
     if(diffDay > 0){
-      return diffDay > 28 ? "m" : "j";
+      return diffDay > 28 ? SourceLangage.baseCommentPageLangage[4][langageChoice]///month
+          :
+      SourceLangage.baseCommentPageLangage[3][langageChoice];///day
     }
     else if(diffHour > 0){
-      return "h";
+      return SourceLangage.baseCommentPageLangage[2][langageChoice];///hour
     }
     else if(diffMinute > 0){
-      return "min";
+      return SourceLangage.baseCommentPageLangage[1][langageChoice];///minutes
     }
     else if(diffSecond > 0){
-      return "s";
+      return SourceLangage.baseCommentPageLangage[0][langageChoice];///seconds
     }
-    return "s";
+    return SourceLangage.baseCommentPageLangage[0][langageChoice];///seconds
+  }
+
+  String getLengthLike(){
+    int length;
+    String number = "";
+
+    length = idUserLiked.length;
+    number = length > 0 ? "$length" : number;
+    number = length > 99999 ? "99999+" : number;
+    return number;
   }
 
 }
