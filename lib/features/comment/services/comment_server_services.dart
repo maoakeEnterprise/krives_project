@@ -38,4 +38,14 @@ class CommentServerServices {
     }
     return pseudo;
   }
+
+  static Future<void> addRemoveLike(Commentary commentary) async {
+    final docRed = _fireStore.collection('comments').doc(commentary.id);
+    String idUser = _auth.currentUser!.uid;
+    commentary.idUserLiked.contains(idUser) ? commentary.idUserLiked.remove(idUser) : commentary.idUserLiked.add(idUser);
+    Map<String, dynamic> map = commentary.toMap();
+    await docRed.update(map);
+  }
+
+
 }

@@ -51,13 +51,19 @@ class _CommentPageState extends State<CommentPage> {
                 }
               },
               builder: (context, state) {
+                if(state is CommentLoading){
+                  return Center(child: CircularProgressIndicator());
+                }
                 if(state is CommentLoaded)
                 {
                   return ListView.builder(
                       itemCount: state.commentaries.getLength(),
                       itemBuilder: (context, index) =>
                           CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
-                            pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,)
+                            pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
+                            commentaries: state.commentaries,
+                            listPseudo: state.pseudo,
+                          )
                   );
                 }
                 return Container();

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/commentaries.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
-import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/comment/services/comment_action_services.dart';
+import 'package:krives_project/features/comment/services/comment_services.dart';
 
 class CommentLikeWidget extends StatelessWidget {
   final Commentary commentary;
-  const CommentLikeWidget({super.key, required this.commentary});
+  final Map<String, String> pseudo;
+  final Commentaries commentaries;
+  const CommentLikeWidget({super.key, required this.commentary, required this.pseudo, required this.commentaries});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,10 @@ class CommentLikeWidget extends StatelessWidget {
         children: [
           SizedBox(height: 10,),
           IconButton(
-            onPressed: (){},
-            icon: Icon(Icons.favorite_border,
-              color: ThemesColor.themes[3][themeChoice],
+            onPressed: CommentActionServices.isLikedAction(context, commentary, commentaries, pseudo),
+            icon: Icon(
+              CommentServices.isLikedCommentIcons(commentary),
+              color: CommentServices.isLikedCommentColoration(commentary, themeChoice),
               size: 18,
             ),
           ),

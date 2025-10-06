@@ -11,6 +11,8 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   CommentBloc() : super(CommentLoading()) {
     on<NewComment>(_newComment);
     on<CommentLoad>(_loadComments);
+    on<IsLikedComment>(_isLikedComment);
+    on<NewCommentUnderComment>(_newCommentUnderComment);
   }
 
   Future<void> _newComment(NewComment event, Emitter<CommentState> emit) async {
@@ -33,6 +35,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   }
 
   Future<void> _loadComments(CommentLoad event, Emitter<CommentState> emit) async {
+    emit(CommentLoading());
     List<Commentary> listCommentaries = [];
     Map<String, String> pseudo = {};
     Commentaries commentaries;
@@ -45,6 +48,23 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
       }
       emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
+    }catch(error){
+      emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
+    }
+  }
+
+  Future<void> _isLikedComment(IsLikedComment event, Emitter<CommentState> emit) async {
+    try{
+      await CommentServerServices.addRemoveLike(event.commentary);
+      emit(CommentLoaded(commentaries: event.commentaries, pseudo: event.pseudo));
+    }catch(error){
+      emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
+    }
+  }
+
+  Future<void> _newCommentUnderComment(NewCommentUnderComment event, Emitter<CommentState> emit) async {
+    try{
+
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }

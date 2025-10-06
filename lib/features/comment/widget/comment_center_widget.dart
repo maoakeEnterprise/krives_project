@@ -41,7 +41,10 @@ class CommentCenterWidget extends StatelessWidget {
         Row(
           children: [
             SizedBox(width: 7,),
-            Text(SourceLangage.baseLangage[26][langageChoice],style: ThemesTextStyles.themes[12][themeChoice],),
+            InkWell(
+                child: Text(SourceLangage.baseLangage[26][langageChoice],style: ThemesTextStyles.themes[12][themeChoice],),
+              onTap: (){},
+            ),
           ],
         ),
         SizedBox(height: 7,),
