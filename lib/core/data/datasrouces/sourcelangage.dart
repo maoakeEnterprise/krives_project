@@ -161,6 +161,9 @@ class SourceLangage{
     ["j","d"],//3
     ["mois","months"],//4
     ["a","y"],//5
+    ["Voir","See"],//6
+    ["réponse","answer"],//7
+    ["autres réponses","others answers"],//8
   ];
 }
 

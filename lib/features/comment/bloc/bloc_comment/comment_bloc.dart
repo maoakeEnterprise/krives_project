@@ -63,8 +63,19 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   }
 
   Future<void> _newCommentUnderComment(NewCommentUnderComment event, Emitter<CommentState> emit) async {
+    List<Commentary> listCommentaries = [];
+    Commentaries commentaries;
+    Map<String, String> pseudo = {};
     try{
-
+      await CommentServerServices.addUnderCommentary(event.comment, event.idProgram,event.idUnderCommentary);
+      listCommentaries = await CommentServerServices.getComments(event.idProgram);
+      commentaries = Commentaries.initCommentaries(listCommentaries);
+      commentaries = Commentaries.sortCommentaries(commentaries);
+      for(int i = 0; i < commentaries.getLength(); i++){
+        pseudo[commentaries.commentaries[i].idUser] =
+        await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
+      }
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }

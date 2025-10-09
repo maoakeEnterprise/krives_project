@@ -10,7 +10,8 @@ class CommentSectionWidget extends StatelessWidget {
   final Commentaries commentaries;
   final Commentary commentary;
   final String pseudo;
-  const CommentSectionWidget({super.key, required this.commentary, required this.pseudo, required this.commentaries, required this.listPseudo});
+  final FocusNode focusNode;
+  const CommentSectionWidget({super.key, required this.commentary, required this.pseudo, required this.commentaries, required this.listPseudo, required this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class CommentSectionWidget extends StatelessWidget {
         children: [
           SizedBox(width: 18,),
           CommentPhotoUserWidget(),
-          Expanded(child: CommentCenterWidget(commentary: commentary,pseudo: pseudo,)),
+          Expanded(child: CommentCenterWidget(commentary: commentary,pseudo: pseudo,commentaries: commentaries, focusNode: focusNode,)),
           SizedBox(width: 7,),
           CommentLikeWidget(commentary: commentary, pseudo: listPseudo, commentaries: commentaries,),
           SizedBox(width: 18,),

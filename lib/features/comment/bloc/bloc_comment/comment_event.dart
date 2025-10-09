@@ -17,8 +17,8 @@ class CommentLoad extends CommentEvent {
 class NewCommentUnderComment extends CommentEvent {
   final String comment;
   final String idProgram;
-  final String idCommentary;
-  NewCommentUnderComment({required this.comment, required this.idProgram, required this.idCommentary});
+  final String idUnderCommentary;
+  NewCommentUnderComment({required this.comment, required this.idProgram, required this.idUnderCommentary});
 }
 
 class IsLikedComment extends CommentEvent {

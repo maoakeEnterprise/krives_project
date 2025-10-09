@@ -20,11 +20,17 @@ class CommentPage extends StatefulWidget {
 }
 
 class _CommentPageState extends State<CommentPage> {
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
     context.read<CommentBloc>().add(CommentLoad(idProgram: widget.program.id));
+  }
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,6 +69,7 @@ class _CommentPageState extends State<CommentPage> {
                             pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
                             commentaries: state.commentaries,
                             listPseudo: state.pseudo,
+                            focusNode: _focusNode,
                           )
                   );
                 }
@@ -75,7 +82,7 @@ class _CommentPageState extends State<CommentPage> {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom
             ),
-            child: CommentTextField(idProgram: widget.program.id,),
+            child: CommentTextField(idProgram: widget.program.id, focusNode: _focusNode,),
           ),
           SizedBox(height: 12,),
         ],

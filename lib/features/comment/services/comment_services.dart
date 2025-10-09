@@ -1,7 +1,9 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/commentaries.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
+import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 
 class CommentServices {
@@ -20,4 +22,18 @@ class CommentServices {
   static IconData isLikedCommentIcons(Commentary commentary){
     return isLikedComment(commentary) ? Icons.favorite : Icons.favorite_border;
   }
+
+  ///decide which text he will print (the text : See X other answer)
+  static String getRightTextForOtherAnswer(Commentary commentary, Commentaries commentaries, int langageChoice){
+    String text =
+        "${SourceLangage.baseCommentPageLangage[6][langageChoice]} "
+        "${commentaries.getLengthSubCommentaries(commentary.id)}"
+        " ${SourceLangage.baseCommentPageLangage[commentaries.getLengthSubCommentaries(commentary.id) > 1 ? 8 : 7][langageChoice]}";
+    return text;
+  }
+
+  static bool thereIsOtherAnswer(Commentary commentary, Commentaries commentaries){
+    return commentaries.getLengthSubCommentaries(commentary.id) > 0 ? true : false;
+  }
+
 }

@@ -21,4 +21,13 @@ class CommentActionServices {
   static void addCommentOnSubmit(String comment, String idProgram, BuildContext context){
     context.read<CommentBloc>().add(NewComment(comment: comment, idProgram: idProgram));
   }
+
+  static VoidCallback actionAnswerUnderComment(BuildContext context, FocusNode focusNode){
+    return (){
+      FocusScope.of(context).unfocus();
+      focusNode.requestFocus();
+    };
+
+  }
+
 }

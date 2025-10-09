@@ -29,6 +29,16 @@ class CommentServerServices {
     await docRef.set(map);
   }
 
+  static Future<void> addUnderCommentary(String commentary, String idProgram, String idUnderCommentary) async {
+    final docRef = _fireStore.collection('comments').doc();
+    String idUser = _auth.currentUser!.uid;
+    Commentary comment;
+    comment = Commentary.initCommentary(commentary: commentary, idProgram: idProgram, idUser: idUser,idResponseCommentary: idUnderCommentary);
+    comment.id = docRef.id;
+    Map<String, dynamic> map = comment.toMap();
+    await docRef.set(map);
+  }
+
   static Future<String> getPseudoName(String idUser) async {
     String pseudo = '';
     final docRef = _fireStore.collection('users').doc(idUser);

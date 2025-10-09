@@ -1,3 +1,4 @@
+import 'package:krives_project/core/crypting/weighting/relevance_score_comment.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
 
 class Commentaries {
@@ -15,8 +16,23 @@ class Commentaries {
   }
   static Commentaries sortCommentaries(Commentaries commentaries){
     commentaries.commentaries.length > 1 ?
-      commentaries.commentaries.sort((a, b) => b.dateCreation.compareTo(a.dateCreation)) : null;
+      commentaries.commentaries.sort((a, b) =>
+        RelevanceScoreComment.
+        getRelevanceScore(b.idUserLiked.length, commentaries.getLengthSubCommentaries(b.id), b.dateCreation).
+        compareTo(RelevanceScoreComment.
+        getRelevanceScore(a.idUserLiked.length, commentaries.getLengthSubCommentaries(a.id), a.dateCreation)))
+        :
+        null;
     return commentaries;
+  }
+  int getLengthSubCommentaries(String idCompare){
+    int length = 0;
+    for(int i = 0; i < getLength(); i++){
+      if(getCommentary(i).idAnswerCommentary == idCompare){
+        length++;
+      }
+    }
+    return length;
   }
 
   int getLength(){

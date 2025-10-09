@@ -7,7 +7,8 @@ import 'package:krives_project/features/comment/widget/comment_photo_user_widget
 
 class CommentTextField extends StatelessWidget {
   final String idProgram;
-  const CommentTextField({super.key, required this.idProgram});
+  final FocusNode focusNode;
+  const CommentTextField({super.key, required this.idProgram, required this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class CommentTextField extends StatelessWidget {
         Expanded(
           child: TextField(
             controller: controller,
+            focusNode: focusNode,
             style: ThemesTextStyles.themes[7][themeChoice],
             cursorColor: ThemesColor.themes[7][themeChoice],
             onSubmitted: (value) => CommentActionServices.addCommentOnSubmit(value, idProgram, context),
