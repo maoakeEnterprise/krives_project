@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/features/base/bloc/base_page/data_user_bloc.dart';
+import 'package:krives_project/features/comment/bloc/bloc_answer_comment/bloc_answer_comment_bloc.dart';
 import 'package:krives_project/features/comment/bloc/bloc_comment/comment_bloc.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
@@ -56,6 +57,7 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => AddProgPopBloc()),
         BlocProvider(create: (context) => PlaytimeSeriesBloc()),
         BlocProvider(create: (context) => CommentBloc()),
+        BlocProvider(create: (context) => AnswerCommentBloc()),
       ],
       child: child,
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentaries.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
+import 'package:krives_project/features/comment/bloc/bloc_answer_comment/bloc_answer_comment_bloc.dart';
 import 'package:krives_project/features/comment/bloc/bloc_comment/comment_bloc.dart';
 
 class CommentActionServices {
@@ -12,6 +13,10 @@ class CommentActionServices {
       commentText = comment.text;
       context.read<CommentBloc>().add(NewComment(comment: commentText, idProgram: idProgram));
     };
+  }
+
+  static bool sendRightActionComment(AnswerCommentState state){
+    return state is AnswerToTheComment ? true : false;
   }
 
   static VoidCallback isLikedAction(BuildContext context, Commentary commentary, Commentaries commentaries, Map<String, String> pseudo){
