@@ -29,6 +29,7 @@ class CommentActionServices {
 
   static VoidCallback actionAnswerUnderComment(BuildContext context, FocusNode focusNode){
     return (){
+      context.read<AnswerCommentBloc>().add(AnswerUnderComment());
       FocusScope.of(context).unfocus();
       focusNode.requestFocus();
     };
