@@ -11,7 +11,7 @@ class AnswerCommentBloc extends Bloc<AnswerCommentEvent, AnswerCommentState> {
   }
 
   void _answerComment(AnswerUnderComment event, Emitter<AnswerCommentState> emitter){
-    emitter(AnswerToTheComment());
+    emitter(AnswerToTheComment(idCommentary: event.idCommentary));
   }
 
   void _answerProgram(AnswerProgram event, Emitter<AnswerCommentState> emitter) {

@@ -48,7 +48,7 @@ class CommentCenterWidget extends StatelessWidget {
             SizedBox(width: 7,),
             InkWell(
               radius: 0,
-              onTap: CommentActionServices.actionAnswerUnderComment(context, focusNode),
+              onTap: CommentActionServices.actionAnswerUnderComment(context, focusNode, commentary.id),
               child: Text(SourceLangage.baseLangage[26][langageChoice],style: ThemesTextStyles.themes[12][themeChoice],),
             ),
           ],

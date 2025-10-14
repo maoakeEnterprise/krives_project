@@ -30,7 +30,7 @@ class CommentTextField extends StatelessWidget {
                 focusNode: focusNode,
                 style: ThemesTextStyles.themes[7][themeChoice],
                 cursorColor: ThemesColor.themes[7][themeChoice],
-                onSubmitted: (value) => CommentActionServices.addCommentOnSubmit(value, idProgram, context),
+                onSubmitted: (value) => CommentActionServices.isUnderCommentOnSubmit(state, context, value, idProgram, state is AnswerToTheComment ? state.idCommentary : ""),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: SourceLangage.baseLangage[27][langageChoice],
@@ -43,7 +43,7 @@ class CommentTextField extends StatelessWidget {
         BlocBuilder<AnswerCommentBloc, AnswerCommentState>(
           builder: (context, state) {
             return IconButton(
-                onPressed: CommentActionServices.addComment(controller, idProgram, context), 
+                onPressed: CommentActionServices.isUnderCommentAction(state, context, controller, idProgram, state is AnswerToTheComment ? state.idCommentary : ""),
                 icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
                 ));
             },
