@@ -23,7 +23,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       await CommentServerServices.add(event.comment, event.idProgram);
       listCommentaries = await CommentServerServices.getComments(event.idProgram);
       commentaries = Commentaries.initCommentaries(listCommentaries);
-      commentaries = Commentaries.sortCommentaries(commentaries);
+      commentaries = Commentaries.sortCommentariesByRelevance(commentaries);
       for(int i = 0; i < commentaries.getLength(); i++){
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
@@ -42,7 +42,8 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     try{
       listCommentaries = await CommentServerServices.getComments(event.idProgram);
       commentaries = Commentaries.initCommentaries(listCommentaries);
-      commentaries = Commentaries.sortCommentaries(commentaries);
+      commentaries = Commentaries.sortCommentariesByRelevance(commentaries);
+      commentaries = Commentaries.sortCommentariesByUnderComm(commentaries);
       for(int i = 0; i < commentaries.getLength(); i++){
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
@@ -70,7 +71,8 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       await CommentServerServices.addUnderCommentary(event.comment, event.idProgram,event.idUnderCommentary);
       listCommentaries = await CommentServerServices.getComments(event.idProgram);
       commentaries = Commentaries.initCommentaries(listCommentaries);
-      commentaries = Commentaries.sortCommentaries(commentaries);
+      commentaries = Commentaries.sortCommentariesByRelevance(commentaries);
+      commentaries = Commentaries.sortCommentariesByUnderComm(commentaries);
       for(int i = 0; i < commentaries.getLength(); i++){
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);

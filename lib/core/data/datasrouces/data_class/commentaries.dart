@@ -14,7 +14,7 @@ class Commentaries {
     stock = Commentaries(commentaries: commentaries);
     return stock;
   }
-  static Commentaries sortCommentaries(Commentaries commentaries){
+  static Commentaries sortCommentariesByRelevance(Commentaries commentaries){
     commentaries.commentaries.length > 1 ?
       commentaries.commentaries.sort((a, b) =>
         RelevanceScoreComment.
@@ -25,6 +25,32 @@ class Commentaries {
         null;
     return commentaries;
   }
+
+  static Commentaries sortCommentariesByUnderComm(Commentaries commentaries){
+    int j = 0;
+    List<Commentary> tmpList = [];
+    if (commentaries.getLength() > 1){
+      for (int i = 0; i < commentaries.commentaries.length; i++) {
+        if (commentaries.commentaries[i].idAnswerCommentary != "1"){
+          tmpList.add(commentaries.commentaries[i]);
+        }
+      }
+      for (int i =0; i < tmpList.length; i++) {
+        j = 0;
+        while (commentaries.commentaries[j].id != tmpList[i].idAnswerCommentary){
+          j++;
+        }
+        commentaries.commentaries.remove(tmpList[i]);
+        commentaries.commentaries.insert(j, tmpList[i]);
+      }
+    }
+    return commentaries;
+  }
+
+  static void subSortCommentariesByRelevance(Commentaries commentaries){
+    
+  }
+
   int getLengthSubCommentaries(String idCompare){
     int length = 0;
     for(int i = 0; i < getLength(); i++){
