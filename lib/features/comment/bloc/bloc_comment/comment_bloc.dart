@@ -44,6 +44,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
       commentaries = Commentaries.initCommentaries(listCommentaries);
       commentaries = Commentaries.sortCommentariesByRelevance(commentaries);
       commentaries = Commentaries.sortCommentariesByUnderComm(commentaries);
+      commentaries = Commentaries.subSortCommentariesByRelevance(commentaries);
       for(int i = 0; i < commentaries.getLength(); i++){
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);

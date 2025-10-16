@@ -26,6 +26,5 @@ class RelevanceScoreComment{
   }
   static getRelevanceScore(int likes, int nbComments, DateTime date){
     return getRelevanceDate(date) * wDate + (getRelevanceComment(nbComments) + getRelevanceLikes(likes)) * (wComments + wLikes);
-
   }
 }

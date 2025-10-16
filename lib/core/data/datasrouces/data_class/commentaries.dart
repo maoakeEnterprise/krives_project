@@ -25,6 +25,14 @@ class Commentaries {
         null;
     return commentaries;
   }
+  static List<Commentary> sortSubCommentByRelevance(List<Commentary> commentaries){
+    commentaries.sort((a, b) =>
+        RelevanceScoreComment.
+        getRelevanceScore(b.idUserLiked.length, 0, b.dateCreation).
+        compareTo(RelevanceScoreComment.
+        getRelevanceScore(a.idUserLiked.length, 0, a.dateCreation)));
+    return commentaries;
+  }
 
   static Commentaries sortCommentariesByUnderComm(Commentaries commentaries){
     int j = 0;
@@ -47,8 +55,30 @@ class Commentaries {
     return commentaries;
   }
 
-  static void subSortCommentariesByRelevance(Commentaries commentaries){
-    
+  static Commentaries subSortCommentariesByRelevance(Commentaries commentaries){
+    List<Commentary> tmpList = [];
+    int j;
+    for (int i = 0; i < commentaries.getLength(); i++){
+      j = i + 1;
+      if (j < commentaries.getLength()) {
+        if (commentaries.commentaries[i].id == commentaries.commentaries[j].idAnswerCommentary){
+          tmpList = extractSubCommentaries(commentaries, i, j);
+          tmpList = sortSubCommentByRelevance(tmpList);
+          commentaries.commentaries.replaceRange(i+1, i+tmpList.length+1, tmpList);
+          i += tmpList.length;
+        }
+      }
+    }
+    return commentaries;
+  }
+
+  static List<Commentary> extractSubCommentaries(Commentaries commentaries, int i, int j) {
+    List<Commentary> tmpList = [];
+    while (commentaries.commentaries[i].id == commentaries.commentaries[j].idAnswerCommentary && j < commentaries.getLength()){
+      tmpList.add(commentaries.commentaries[j]);
+      j++;
+    }
+    return tmpList;
   }
 
   int getLengthSubCommentaries(String idCompare){
