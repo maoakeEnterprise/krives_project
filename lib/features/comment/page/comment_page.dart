@@ -4,6 +4,7 @@ import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/features/comment/bloc/bloc_comment/comment_bloc.dart';
+import 'package:krives_project/features/comment/services/comment_services.dart';
 import 'package:krives_project/features/comment/widget/comment_section_widget.dart';
 import 'package:krives_project/features/comment/widget/comment_text_field.dart';
 import 'package:krives_project/features/comment/widget/stick_widget.dart';
@@ -65,12 +66,16 @@ class _CommentPageState extends State<CommentPage> {
                   return ListView.builder(
                       itemCount: state.commentaries.getLength(),
                       itemBuilder: (context, index) =>
-                          CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
-                            pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
-                            commentaries: state.commentaries,
-                            listPseudo: state.pseudo,
-                            focusNode: _focusNode,
-                          )
+                          CommentServices.didWePrintTheCommentary(
+                              CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
+                                pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
+                                commentaries: state.commentaries,
+                                listPseudo: state.pseudo,
+                                focusNode: _focusNode,
+                                idPrintSubComment: state.idPrintSubComment,
+                              )
+                              , state.commentaries.getCommentary(index), state.idPrintSubComment),
+
                   );
                 }
                 return Container();
@@ -82,7 +87,16 @@ class _CommentPageState extends State<CommentPage> {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom
             ),
-            child: CommentTextField(idProgram: widget.program.id, focusNode: _focusNode,),
+            child: BlocBuilder<CommentBloc, CommentState>(
+              buildWhen: (previous, current){
+                if(previous is CommentLoaded && current is CommentLoaded){
+                  return previous.idPrintSubComment != current.idPrintSubComment;
+                }
+                return false;
+              },
+              builder: (context, state) {
+                return CommentTextField(idProgram: widget.program.id, focusNode: _focusNode, idPrintSubComment: state is CommentLoaded ? state.idPrintSubComment : [],);
+                },),
           ),
           SizedBox(height: 12,),
         ],

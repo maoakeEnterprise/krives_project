@@ -10,7 +10,8 @@ import 'package:krives_project/features/comment/widget/comment_photo_user_widget
 class CommentTextField extends StatelessWidget {
   final String idProgram;
   final FocusNode focusNode;
-  const CommentTextField({super.key, required this.idProgram, required this.focusNode});
+  final List<String> idPrintSubComment;
+  const CommentTextField({super.key, required this.idProgram, required this.focusNode, required this.idPrintSubComment});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class CommentTextField extends StatelessWidget {
                 focusNode: focusNode,
                 style: ThemesTextStyles.themes[7][themeChoice],
                 cursorColor: ThemesColor.themes[7][themeChoice],
-                onSubmitted: (value) => CommentActionServices.isUnderCommentOnSubmit(state, context, value, idProgram, state is AnswerToTheComment ? state.idCommentary : ""),
+                onSubmitted: (value) => CommentActionServices.isUnderCommentOnSubmit(state, context, value, idProgram, state is AnswerToTheComment ? state.idCommentary : "", idPrintSubComment),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: SourceLangage.baseLangage[27][langageChoice],
@@ -43,7 +44,7 @@ class CommentTextField extends StatelessWidget {
         BlocBuilder<AnswerCommentBloc, AnswerCommentState>(
           builder: (context, state) {
             return IconButton(
-                onPressed: CommentActionServices.isUnderCommentAction(state, context, controller, idProgram, state is AnswerToTheComment ? state.idCommentary : ""),
+                onPressed: CommentActionServices.isUnderCommentAction(state, context, controller, idProgram, state is AnswerToTheComment ? state.idCommentary : "", idPrintSubComment),
                 icon: Icon(Icons.send,color: ThemesColor.themes[7][themeChoice],
                 ));
             },

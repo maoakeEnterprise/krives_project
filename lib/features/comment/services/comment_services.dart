@@ -5,6 +5,7 @@ import 'package:krives_project/core/data/datasrouces/data_class/commentaries.dar
 import 'package:krives_project/core/data/datasrouces/data_class/commentary.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/features/comment/widget/comment_section_widget.dart';
 
 class CommentServices {
 
@@ -32,8 +33,24 @@ class CommentServices {
     return text;
   }
 
-  static bool thereIsOtherAnswer(Commentary commentary, Commentaries commentaries){
-    return commentaries.getLengthSubCommentaries(commentary.id) > 0 ? true : false;
+  static bool thereIsOtherAnswer(Commentary commentary, Commentaries commentaries, List<String> idPrintSubComment){
+    return commentaries.getLengthSubCommentaries(commentary.id) > 0 && !idPrintSubComment.contains(commentary.id) ? true : false;
+  }
+
+  static Widget didWePrintTheCommentary(CommentSectionWidget widgetToSend, Commentary comment, List<String> idPrintSubComment){
+    if ( idPrintSubComment.contains(comment.idAnswerCommentary) || comment.idAnswerCommentary == "1") {
+      return widgetToSend;
+    }
+    return Container();
+  }
+
+  static Widget isASubCommentPrintingForAddSPace(List<String> idPrintSubComment, Commentary comment){
+
+    if(idPrintSubComment.contains(comment.idAnswerCommentary))
+    {
+      return SizedBox(width: 35,);
+    }
+    return Container();
   }
 
 }

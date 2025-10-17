@@ -13,6 +13,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
     on<CommentLoad>(_loadComments);
     on<IsLikedComment>(_isLikedComment);
     on<NewCommentUnderComment>(_newCommentUnderComment);
+    on<PrintSubComment>(_printSubComment);
   }
 
   Future<void> _newComment(NewComment event, Emitter<CommentState> emit) async {
@@ -28,7 +29,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
       }
-      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo, idPrintSubComment: event.idPrintSubComment));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }
@@ -49,7 +50,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
       }
-      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo, idPrintSubComment: []));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }
@@ -58,7 +59,7 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
   Future<void> _isLikedComment(IsLikedComment event, Emitter<CommentState> emit) async {
     try{
       await CommentServerServices.addRemoveLike(event.commentary);
-      emit(CommentLoaded(commentaries: event.commentaries, pseudo: event.pseudo));
+      emit(CommentLoaded(commentaries: event.commentaries, pseudo: event.pseudo, idPrintSubComment: event.idPrintSubComment));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }
@@ -78,9 +79,13 @@ class CommentBloc extends Bloc<CommentEvent, CommentState> {
         pseudo[commentaries.commentaries[i].idUser] =
         await CommentServerServices.getPseudoName(commentaries.commentaries[i].idUser);
       }
-      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo));
+      emit(CommentLoaded(commentaries: commentaries, pseudo: pseudo, idPrintSubComment: event.idPrintSubComment));
     }catch(error){
       emit(CommentError(errorMessages: "Something is wrong when we try to add a commentary : $error"));
     }
+  }
+
+  Future<void> _printSubComment(PrintSubComment event, Emitter<CommentState> emit) async {
+    emit(CommentLoaded(commentaries: event.commentaries, pseudo: event.pseudo, idPrintSubComment: event.idPrintSubComment));
   }
 }

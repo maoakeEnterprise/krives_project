@@ -9,7 +9,8 @@ class CommentLikeWidget extends StatelessWidget {
   final Commentary commentary;
   final Map<String, String> pseudo;
   final Commentaries commentaries;
-  const CommentLikeWidget({super.key, required this.commentary, required this.pseudo, required this.commentaries});
+  final List<String> idPrintSubComment;
+  const CommentLikeWidget({super.key, required this.commentary, required this.pseudo, required this.commentaries, required this.idPrintSubComment});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CommentLikeWidget extends StatelessWidget {
         children: [
           SizedBox(height: 10,),
           IconButton(
-            onPressed: CommentActionServices.isLikedAction(context, commentary, commentaries, pseudo),
+            onPressed: CommentActionServices.isLikedAction(context, commentary, commentaries, pseudo, idPrintSubComment),
             icon: Icon(
               CommentServices.isLikedCommentIcons(commentary),
               color: CommentServices.isLikedCommentColoration(commentary, themeChoice),
