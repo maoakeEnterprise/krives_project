@@ -44,6 +44,10 @@ class CommentServices {
     return Container();
   }
 
+  static bool canGetTheButtonAnswerOnSubComment(Commentary commentary){
+    return commentary.idAnswerCommentary == "1" ? true : false;
+  }
+
   static Widget isASubCommentPrintingForAddSPace(List<String> idPrintSubComment, Commentary comment){
 
     if(idPrintSubComment.contains(comment.idAnswerCommentary))

@@ -49,11 +49,12 @@ class CommentCenterWidget extends StatelessWidget {
         Row(
           children: [
             SizedBox(width: 7,),
+            CommentServices.canGetTheButtonAnswerOnSubComment(commentary) ?
             InkWell(
               radius: 0,
               onTap: CommentActionServices.actionAnswerUnderComment(context, focusNode, commentary.id),
               child: Text(SourceLangage.baseLangage[26][langageChoice],style: ThemesTextStyles.themes[12][themeChoice],),
-            ),
+            ) : Container(),
           ],
         ),
         SizedBox(height: 7,),
