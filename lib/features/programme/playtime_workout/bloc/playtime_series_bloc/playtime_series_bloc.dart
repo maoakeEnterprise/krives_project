@@ -4,6 +4,7 @@ import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/series.dart';
 import 'package:krives_project/features/exercice/services/exercise_server_services.dart';
+import 'package:krives_project/features/programme/playtime_workout/services/playtime_workout_server_service.dart';
 import 'package:krives_project/features/programme/services/series_server_services.dart';
 import 'package:krives_project/features/programme/services/services_program.dart';
 import 'package:meta/meta.dart';
@@ -36,6 +37,7 @@ class PlaytimeSeriesBloc extends Bloc<PlaytimeSeriesEvent, PlaytimeSeriesState> 
       int tmp;
       int tmpMaxSerie = event.completeSeries[0].series.numberSeries;
       tmp = ServicesProgram.addValidateSeries(event.tmpNbSeries, event.completeSeries[0].series.numberSeries);
+      await PlaytimeWorkoutServerService.addStatSeriesBackTracking(event.completeSeries[0].series);
       listCompleteSeries =  ServicesProgram.isEjectTheSerieInTheList(event.completeSeries, event.tmpNbSeries);
       if(tmp == tmpMaxSerie) {
         tmp = 0;

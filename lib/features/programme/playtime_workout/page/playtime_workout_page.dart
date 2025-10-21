@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/programme/playtime_workout/bloc/playtime_series_bloc/playtime_series_bloc.dart';
-import 'package:krives_project/features/programme/playtime_workout/bloc/timer_bloc/timer_bloc.dart';
-import 'package:krives_project/features/programme/playtime_workout/widget/button_finish_serie_playtime_workout.dart';
-import 'package:krives_project/features/programme/playtime_workout/widget/button_remove_widget_timer.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/commentary_exo_widget_playtime_workout.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/count_series_playtime_workout_widget.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/detail_weight_rep_widget_playtime_workout.dart';
+import 'package:krives_project/features/programme/playtime_workout/widget/is_button_finish_or_remove.dart';
 import 'package:krives_project/features/programme/playtime_workout/widget/widget_timer.dart';
 
 class PlaytimeWorkoutPage extends StatefulWidget {
@@ -43,13 +41,7 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
                 maxCharge: state.completeSeries[0].series.maxKG,
                 maxRep: state.completeSeries[0].series.numberRep,
               ),
-              BlocBuilder<TimerBloc, TimerState>(
-                builder: (context, state) {
-                  return state is TimerIsNotDisplayed
-                      ? ButtonFinishSeriePlaytimeWorkout()
-                      : ButtonRemoveWidgetTimer();
-                },
-              ),
+              IsButtonFinishOrRemove(tmpNbSeries: state.tmpNbSeries, completeSeries: state.completeSeries, program: state.program),
               WidgetTimer(tmpNbSeries: state.tmpNbSeries, completeSeries: state.completeSeries, program: state.program),
             ],
           ) : Container();

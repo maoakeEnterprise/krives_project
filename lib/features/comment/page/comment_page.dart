@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/program.dart';
 import 'package:krives_project/core/data/datasrouces/sourcelangage.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/features/comment/bloc/bloc_answer_comment/bloc_answer_comment_bloc.dart';
 import 'package:krives_project/features/comment/bloc/bloc_comment/comment_bloc.dart';
 import 'package:krives_project/features/comment/services/comment_services.dart';
 import 'package:krives_project/features/comment/widget/comment_section_widget.dart';
@@ -37,71 +38,78 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     int themeChoice=0;
-    return DraggableScrollableSheet(
-        initialChildSize: 1,
-        maxChildSize: 1,
-        minChildSize: 0.2,
-        builder: (context, scrollController){
-      return Column(
-        children: [
-          SizedBox(height: 7,),
-          StickWidget(),
-          SizedBox(height: 12,),
-          TitleWidget(),
-          SizedBox(height: 12,),
-          Divider(color: ThemesColor.themes[3][themeChoice],),
-          Expanded(
-            child: BlocConsumer<CommentBloc, CommentState>(
-              listener: (context, state) {
-                // TODO: implement listener
-                if(state is CommentError){
-                }
-              },
-              builder: (context, state) {
-                if(state is CommentLoading){
-                  return Center(child: CircularProgressIndicator());
-                }
-                if(state is CommentLoaded)
-                {
-                  return ListView.builder(
-                      itemCount: state.commentaries.getLength(),
-                      itemBuilder: (context, index) =>
-                          CommentServices.didWePrintTheCommentary(
-                              CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
-                                pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
-                                commentaries: state.commentaries,
-                                listPseudo: state.pseudo,
-                                focusNode: _focusNode,
-                                idPrintSubComment: state.idPrintSubComment,
-                              )
-                              , state.commentaries.getCommentary(index), state.idPrintSubComment),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: (){
+        context.read<AnswerCommentBloc>().add(AnswerProgram());
+        FocusScope.of(context).unfocus();
+      },
+      child: DraggableScrollableSheet(
+          initialChildSize: 1,
+          maxChildSize: 1,
+          minChildSize: 0.2,
+          builder: (context, scrollController){
+        return Column(
+          children: [
+            SizedBox(height: 7,),
+            StickWidget(),
+            SizedBox(height: 12,),
+            TitleWidget(),
+            SizedBox(height: 12,),
+            Divider(color: ThemesColor.themes[3][themeChoice],),
+            Expanded(
+              child: BlocConsumer<CommentBloc, CommentState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                  if(state is CommentError){
+                  }
+                },
+                builder: (context, state) {
+                  if(state is CommentLoading){
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if(state is CommentLoaded)
+                  {
+                    return ListView.builder(
+                        itemCount: state.commentaries.getLength(),
+                        itemBuilder: (context, index) =>
+                            CommentServices.didWePrintTheCommentary(
+                                CommentSectionWidget(commentary: state.commentaries.getCommentary(index),
+                                  pseudo: state.pseudo[state.commentaries.getCommentary(index).idUser]!,
+                                  commentaries: state.commentaries,
+                                  listPseudo: state.pseudo,
+                                  focusNode: _focusNode,
+                                  idPrintSubComment: state.idPrintSubComment,
+                                )
+                                , state.commentaries.getCommentary(index), state.idPrintSubComment),
 
-                  );
-                }
-                return Container();
-  },
-),
-          ),
-          Divider(color: ThemesColor.themes[3][themeChoice],),
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom
+                    );
+                  }
+                  return Container();
+        },
+      ),
             ),
-            child: BlocBuilder<CommentBloc, CommentState>(
-              buildWhen: (previous, current){
-                if(previous is CommentLoaded && current is CommentLoaded){
-                  return previous.idPrintSubComment != current.idPrintSubComment;
-                }
-                return false;
-              },
-              builder: (context, state) {
-                return CommentTextField(idProgram: widget.program.id, focusNode: _focusNode, idPrintSubComment: state is CommentLoaded ? state.idPrintSubComment : [],);
-                },),
-          ),
-          SizedBox(height: 12,),
-        ],
-      );
-    });
+            Divider(color: ThemesColor.themes[3][themeChoice],),
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom
+              ),
+              child: BlocBuilder<CommentBloc, CommentState>(
+                buildWhen: (previous, current){
+                  if(previous is CommentLoaded && current is CommentLoaded){
+                    return previous.idPrintSubComment != current.idPrintSubComment;
+                  }
+                  return false;
+                },
+                builder: (context, state) {
+                  return CommentTextField(idProgram: widget.program.id, focusNode: _focusNode, idPrintSubComment: state is CommentLoaded ? state.idPrintSubComment : [],);
+                  },),
+            ),
+            SizedBox(height: 12,),
+          ],
+        );
+      }),
+    );
   }
 }
 
