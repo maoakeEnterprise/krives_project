@@ -34,23 +34,23 @@ class _GraphWidgetState extends State<GraphWidget> {
               axisNameSize: 20,
               axisNameWidget: Text(""),
             ),
-            bottomTitles: AxisTitles(
+            bottomTitles: AxisTitles(///Axis y
               sideTitles: SideTitles(
-                  reservedSize: 50,
+                  reservedSize:50,
                   showTitles: true,
                   getTitlesWidget: (test, value) {
                     return Container(margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: Text("1", style: ThemesTextStyles.themes[5][themeChoice]));
+                        child: Text(value.formattedValue, style: ThemesTextStyles.themes[5][themeChoice]));
                   }
               )
             ),
-            leftTitles: AxisTitles(
+            leftTitles: AxisTitles(///Axis y
                 sideTitles: SideTitles(
                     reservedSize: 50,
                     showTitles: true,
                     getTitlesWidget: (_, value) {
                       return Container(margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                          child: Text("1", style: ThemesTextStyles.themes[5][themeChoice]));
+                          child: Text(value.formattedValue, style: ThemesTextStyles.themes[5][themeChoice]));
                     }
                 )
             ),
@@ -58,7 +58,7 @@ class _GraphWidgetState extends State<GraphWidget> {
           ),
           gridData: ThemesGraphic.gridData,
           borderData: FlBorderData(show: false),
-          minY: -1,
+          minY: 0,
           maxY: 6,
           lineBarsData: [
             LineChartBarData(
@@ -74,8 +74,14 @@ class _GraphWidgetState extends State<GraphWidget> {
               barWidth: 1,
               isStrokeCapRound: true,
               belowBarData: BarAreaData(
-                show: false,
-                color: ThemesColor.green1.withValues(alpha: 0.01),
+                show: true,
+                gradient: LinearGradient(colors: [
+                  ThemesColor.green1.withValues(alpha: 0.2),
+                  ThemesColor.green1.withValues(alpha: 0.01)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.01, 0.8],
+                ),
               )
             )
           ]

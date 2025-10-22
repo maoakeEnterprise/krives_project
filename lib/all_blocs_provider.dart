@@ -17,7 +17,6 @@ import 'package:krives_project/features/programme/programme%20series/bloc/create
 import 'package:krives_project/features/programme/s_global_bloc/series/series_bloc.dart';
 import 'features/authentification/widget/bloc/auth_bloc.dart';
 import 'features/appbar/bloc/switch_edit_app_bar/switch_edit_app_bar_bloc.dart';
-import 'features/graphics/bloc/filter_bloc.dart';
 import 'features/hub_communautaire/bloc/sort_by/sort_by_bloc.dart';
 import 'features/menu/bloc/side_menu_tile_bloc.dart';
 import 'features/programme/create programme/bloc/edit_bloc.dart';
@@ -41,7 +40,6 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => EditBloc()),
         BlocProvider(create: (context) => SwitchEditAppBarBloc()),
         BlocProvider(create: (context) => SortByBloc()),
-        BlocProvider(create: (context) => FilterBloc()),
         BlocProvider(create: (context) => RadioButtonGenderBloc()),
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(create: (context) => PopDeleteAccountBloc()),
