@@ -34,8 +34,9 @@ class _GraphWidgetState extends State<GraphWidget> {
               axisNameSize: 20,
               axisNameWidget: Text(""),
             ),
-            bottomTitles: AxisTitles(///Axis y
+            bottomTitles: AxisTitles(///Axis X
               sideTitles: SideTitles(
+                  interval: 1,
                   reservedSize:50,
                   showTitles: true,
                   getTitlesWidget: (test, value) {
@@ -44,7 +45,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                   }
               )
             ),
-            leftTitles: AxisTitles(///Axis y
+            leftTitles: AxisTitles(///Axis Y
                 sideTitles: SideTitles(
                     reservedSize: 50,
                     showTitles: true,
@@ -60,6 +61,7 @@ class _GraphWidgetState extends State<GraphWidget> {
           borderData: FlBorderData(show: false),
           minY: 0,
           maxY: 6,
+          minX: 0,
           lineBarsData: [
             LineChartBarData(
               spots: [
