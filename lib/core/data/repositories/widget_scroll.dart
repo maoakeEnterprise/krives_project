@@ -26,7 +26,7 @@ class WidgetScroll extends StatelessWidget {
         itemCount: itemCount,
           padding: padding,
           itemBuilder: (context, index){
-            return CardExoWidgetGraphics();
+            return cardCustom;
       }),
     );
   }
