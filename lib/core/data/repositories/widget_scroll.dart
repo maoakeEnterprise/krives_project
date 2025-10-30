@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:krives_project/features/graphics/widget/card_exo_widget_graphics.dart';
 
 class WidgetScroll extends StatelessWidget {
   static const EdgeInsets _defaultPadding = EdgeInsets.fromLTRB(0, 0, 0, 0);
@@ -8,11 +7,13 @@ class WidgetScroll extends StatelessWidget {
   final double height;
   final int itemCount;
   final Widget cardCustom;
+  final Map<String, dynamic> arguments;
 
   const WidgetScroll({
     super.key,
     this.padding = _defaultPadding,
     this.itemCount =5,
+    this.arguments = const {},
     required this.height,
     required this.cardCustom,
   });

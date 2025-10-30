@@ -19,7 +19,12 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
   @override
   Widget build(BuildContext context) {
     int themeChoice = 0;
-    return BlocBuilder<PlaytimeSeriesBloc, PlaytimeSeriesState>(
+    return BlocConsumer<PlaytimeSeriesBloc, PlaytimeSeriesState>(
+      listener: (context, state) {
+        if(state is PlaytimeSeriesFinish){
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) {
         if(state is PlaytimeSeriesLoading){
           return CircularProgressIndicator();
@@ -45,9 +50,6 @@ class _PlaytimeWorkoutPageState extends State<PlaytimeWorkoutPage> {
               WidgetTimer(tmpNbSeries: state.tmpNbSeries, completeSeries: state.completeSeries, program: state.program),
             ],
           ) : Container();
-        }
-        if(state is PlaytimeSeriesFinish){
-          Navigator.pop(context);
         }
         return Container();
 

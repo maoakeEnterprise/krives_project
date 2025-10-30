@@ -5,6 +5,7 @@ import 'package:krives_project/features/comment/bloc/bloc_answer_comment/bloc_an
 import 'package:krives_project/features/comment/bloc/bloc_comment/comment_bloc.dart';
 import 'package:krives_project/features/exercice/create%20exercice/bloc/exercise_bloc.dart';
 import 'package:krives_project/features/exercice/exercice_main/bloc/bloc_exercise_services/exercise_serv_bloc.dart';
+import 'package:krives_project/features/graphics/bloc/graphics_bloc/graphics_data_bloc.dart';
 import 'package:krives_project/features/home/bloc/switch_edit_bloc.dart';
 import 'package:krives_project/features/profil/pop_up_dialog/pop_up_delete_account/bloc/pop_delete_account_bloc.dart';
 import 'package:krives_project/features/programme/before_playtime_workout/bloc/program_before_work_out_bloc/program_before_work_out_bloc.dart';
@@ -56,6 +57,7 @@ class AllBlocsProvider extends StatelessWidget {
         BlocProvider(create: (context) => PlaytimeSeriesBloc()),
         BlocProvider(create: (context) => CommentBloc()),
         BlocProvider(create: (context) => AnswerCommentBloc()),
+        BlocProvider(create: (context) => GraphicsDataBloc()),
       ],
       child: child,
     );
