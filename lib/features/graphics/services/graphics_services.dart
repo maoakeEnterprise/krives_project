@@ -1,5 +1,9 @@
 
+import 'package:flutter/material.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/backtracking__exercise.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
+import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/features/graphics/bloc/graphics_bloc/graphics_data_bloc.dart';
 
 class GraphicsServices {
 
@@ -8,5 +12,20 @@ class GraphicsServices {
     listBackTracking.sort((a, b) => b.dateTime.compareTo(a.dateTime));
     return listBackTracking;
   }
+
+  static Border isTheExerciseIsSelected(String idExercise, String idExerciseSelected, int themeChoice){
+    if(idExercise == idExerciseSelected){
+      return Border.all(
+        color: ThemesColor.themes[4][themeChoice],
+        width: 1,
+      );
+    }
+    return Border();
+  }
+
+  static int  getLengthExercise(GraphicsDataLoaded state) => state.listExercise.length;
+  static String getExerciseSelected(GraphicsDataLoaded state) => state.idExerciseSelected;
+  static List<Exercise> getExercise(GraphicsDataLoaded state) => state.listExercise;
+  static String getErrorMessage(GraphicsDataError state) => state.errorMessages;
 
 }

@@ -18,7 +18,8 @@ class GraphicsDataBloc extends Bloc<GraphicsDataEvent, GraphicsDataState> {
     emit(GraphicsDataLoading());
     try{
       List<Exercise> listExercises;
-      List<BackTrackingExercice> listBackTracking;
+      List<BackTrackingExercice> listBackTracking = [];
+
       listExercises = await ExerciseServerServices.getExercises();
       listBackTracking = await GraphicsServerServices.getBacktrackingData(listExercises[0].id);
       emit(GraphicsDataLoaded(idExerciseSelected: listExercises[0].id, listExercise: listExercises, listBackTracking: listBackTracking));
@@ -28,6 +29,14 @@ class GraphicsDataBloc extends Bloc<GraphicsDataEvent, GraphicsDataState> {
   }
 
   Future<void> _getOneBackTrackExercise(GetOneBackTrackExercise event, Emitter<GraphicsDataState> emit) async {
+    try {
+      List<BackTrackingExercice> listBackTracking;
 
+      listBackTracking = await GraphicsServerServices.getBacktrackingData(event.idExerciseSelected);
+      emit(GraphicsDataLoaded(idExerciseSelected: event.idExerciseSelected, listExercise: event.listExercise, listBackTracking: listBackTracking));
+    }
+    catch(error){
+      emit(GraphicsDataError(errorMessages: "Not possible to get the graphics data : $error"));
+    }
   }
 }

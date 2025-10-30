@@ -10,19 +10,22 @@ class GraphicsServerServices {
   static Future<List<BackTrackingExercice>> getBacktrackingData(String idExercise) async {
     String idUser = _auth.currentUser!.uid;
     List<BackTrackingExercice> listBackTracking = [];
-    BackTrackingExercice backTrackingExercice;
 
-    final exercicesCollection = await _fireStore.collection('back_tracking').
-    where('idUser', isEqualTo: idUser).
-    where('idExercise', isEqualTo: idExercise).
-    orderBy('dateTime', descending: true).
-    get();
-    List<Map<String, dynamic>> mapBackTrackingExercices = exercicesCollection.docs.map((doc) => doc.data()).toList();
+    try {
+      final exercicesCollection = await _fireStore.collection('back_tracking').
+      where('idUser', isEqualTo: idUser).
+      where('idExercise', isEqualTo: idExercise).
+      orderBy('dateTime', descending: true).
+      get();
 
-    for (int i = 0; i < mapBackTrackingExercices.length; i++){
-      backTrackingExercice = BackTrackingExercice.fromMap(mapBackTrackingExercices[i]);
-      listBackTracking.add(backTrackingExercice);
+      listBackTracking = exercicesCollection.docs
+          .map((doc) => BackTrackingExercice.fromMap(doc.data()))
+          .toList();
     }
+    catch(error){
+      return listBackTracking;
+    }
+
     return listBackTracking;
   }
 
