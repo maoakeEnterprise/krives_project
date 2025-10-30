@@ -23,6 +23,17 @@ class GraphicsServices {
     return Border();
   }
 
+  static int  getTheMaxChargeForTheGraph(List<BackTrackingExercice> list){
+    int max = 0;
+    for(int i = 0; i < list.length; i++){
+      if(list[i].maxKg > max){
+        max = list[i].maxKg;
+      }
+    }
+    return max;
+  }
+  static List<BackTrackingExercice> getBackTracking(GraphicsDataState state) => state is GraphicsDataLoaded ? state.listBackTracking : [];
+  static bool thereIsDataOnBackTracking(GraphicsDataState state) => state is GraphicsDataLoaded  && state.listBackTracking.length > 1 ? true : false;
   static int  getLengthExercise(GraphicsDataLoaded state) => state.listExercise.length;
   static String getExerciseSelected(GraphicsDataLoaded state) => state.idExerciseSelected;
   static List<Exercise> getExercise(GraphicsDataLoaded state) => state.listExercise;

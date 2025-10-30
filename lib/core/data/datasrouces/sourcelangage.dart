@@ -31,6 +31,7 @@ class SourceLangage{
     ["Ajouter un commentaire...","Add a comment..."],//27
     ["Valider la série ?","Confirm the serie ?"],//28
     ["Entrer votre mot de passe","Enter your password"],//29
+    ["Il n'y a aucune donnée à afficher l'ami", "There is no Data to Show buddy"],//30
   ];
 
   static var titleHeaderPageLangage = [

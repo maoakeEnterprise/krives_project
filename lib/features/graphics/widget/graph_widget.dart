@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:krives_project/core/data/datasrouces/data_class/backtracking__exercise.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_graphic.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
 
 class GraphWidget extends StatefulWidget {
-  const GraphWidget({super.key});
+  final List<BackTrackingExercice> backTracking;
+  const GraphWidget({
+    super.key,
+    required this.backTracking,
+  });
 
   @override
   State<GraphWidget> createState() => _GraphWidgetState();
@@ -23,7 +28,9 @@ class _GraphWidgetState extends State<GraphWidget> {
         gradient: ThemesColor.themesGradient[2][themeChoice],
         ),
       child: LineChart(
-        LineChartData(
+        duration: const Duration(milliseconds: 750),
+          curve: Curves.easeInOutCubic,
+          LineChartData(
           titlesData: FlTitlesData(
             show: true,
             rightTitles: AxisTitles(

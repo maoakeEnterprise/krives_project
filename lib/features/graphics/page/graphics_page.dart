@@ -8,6 +8,7 @@ import 'package:krives_project/features/graphics/widget/time_select_widget_graph
 import 'package:krives_project/features/graphics/widget/title_left_widget.dart';
 import 'package:krives_project/features/graphics/widget/title_top_widget.dart';
 import 'package:krives_project/features/graphics/widget/title_widget_graphics.dart';
+import 'package:krives_project/features/graphics/widget/widget_no_graph.dart';
 import 'package:krives_project/features/graphics/widget/widget_scroll_graphics.dart';
 
 class GraphicsPage extends StatefulWidget {
@@ -33,21 +34,27 @@ class _GraphicsPageState extends State<GraphicsPage> {
     return ListView(
       children: [
         TitleTopWidget(),
-        GraphWidget(),
+        BlocBuilder<GraphicsDataBloc, GraphicsDataState>(
+          builder: (context, state) {
+            return GraphicsServices.thereIsDataOnBackTracking(state) ?
+            GraphWidget(backTracking: GraphicsServices.getBackTracking(state)) : WidgetNoGraph();
+          },
+        ),
         TitleLeftWidget(),
         SizedBox(height: 15,),
         BlocConsumer<GraphicsDataBloc, GraphicsDataState>(
           listener: (context, state) {
-            if(state is GraphicsDataError){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(GraphicsServices.getErrorMessage(state))));
+            if (state is GraphicsDataError) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(GraphicsServices.getErrorMessage(state))));
             }
           },
           builder: (context, state) {
-            if(state is GraphicsDataLoaded) {
-                return WidgetScrollGraphics(
-                  exercises: GraphicsServices.getExercise(state),
-                  exerciseSelected: GraphicsServices.getExerciseSelected(state),
-                );
+            if (state is GraphicsDataLoaded) {
+              return WidgetScrollGraphics(
+                exercises: GraphicsServices.getExercise(state),
+                exerciseSelected: GraphicsServices.getExerciseSelected(state),
+              );
             }
             return Container();
           },
