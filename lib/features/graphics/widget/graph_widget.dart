@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:intl/intl.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/backtracking__exercise.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_graphic.dart';
 import 'package:krives_project/core/theme/themes_text_styles.dart';
+import 'package:krives_project/features/graphics/services/graphics_services.dart';
 
 class GraphWidget extends StatefulWidget {
   final List<BackTrackingExercice> backTracking;
@@ -43,12 +45,18 @@ class _GraphWidgetState extends State<GraphWidget> {
             ),
             bottomTitles: AxisTitles(///Axis X
               sideTitles: SideTitles(
-                  interval: 1,
+                  interval: GraphicsServices.getTheGapBetweenOneDay().toDouble(),
                   reservedSize:50,
                   showTitles: true,
-                  getTitlesWidget: (test, value) {
+                  getTitlesWidget: (v, value) {
+                    int date;
+                    DateTime time;
+                    String formatDate;
+                    date = v.toInt();
+                    time = DateTime.fromMillisecondsSinceEpoch(date);
+                    formatDate = DateFormat('dd/MM').format(time);
                     return Container(margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: Text(value.formattedValue, style: ThemesTextStyles.themes[5][themeChoice]));
+                        child: Text(formatDate, style: ThemesTextStyles.themes[5][themeChoice]));
                   }
               )
             ),
@@ -67,16 +75,12 @@ class _GraphWidgetState extends State<GraphWidget> {
           gridData: ThemesGraphic.gridData,
           borderData: FlBorderData(show: false),
           minY: 0,
-          maxY: 6,
-          minX: 0,
+          maxY: GraphicsServices.getTheMaxChargeForTheGraph(widget.backTracking),
+          minX: GraphicsServices.getTheFirstItemBackTrackInMilliseconds(widget.backTracking).toDouble(),
           lineBarsData: [
             LineChartBarData(
-              spots: [
-                FlSpot(0, 3),
-                FlSpot(1, 1),
-                FlSpot(2, 4),
-                FlSpot(3, 2),
-              ],
+              curveSmoothness: 0.15,
+              spots: GraphicsServices.getTheFlSpotExercise(widget.backTracking),
               dotData: FlDotData(show: false),
               isCurved: true,
               color: ThemesColor.green1,
