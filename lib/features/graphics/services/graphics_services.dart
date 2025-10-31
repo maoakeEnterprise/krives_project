@@ -97,8 +97,6 @@ class GraphicsServices {
       else {
         listFlSpot.add(flSpot);
       }
-      print("Date : ${list[i].dateTime.millisecondsSinceEpoch} // Max : ${list[i].maxKg}");
-      print("${listFlSpot[listFlSpot.length-1].x} // place i : ${listFlSpot.length-1} // y : ${listFlSpot[listFlSpot.length-1].y}");
     }
     return listFlSpot;
   }
