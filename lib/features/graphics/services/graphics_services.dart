@@ -1,9 +1,11 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/backtracking__exercise.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/exercise.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
+import 'package:krives_project/core/theme/themes_text_styles.dart';
 import 'package:krives_project/features/graphics/bloc/graphics_bloc/graphics_data_bloc.dart';
 
 class GraphicsServices {
@@ -70,8 +72,6 @@ class GraphicsServices {
     return date1.difference(date2).inMilliseconds;
   }
 
-
-
   static List<FlSpot>  getTheFlSpotExercise(List<BackTrackingExercice> list) {
     List<FlSpot> listFlSpot;
     int twelveHourGap;
@@ -99,6 +99,22 @@ class GraphicsServices {
       }
     }
     return listFlSpot;
+  }
+
+  static Container getDescriptionAxeX(double value, int themeChoice) {
+    int date;
+    DateTime time;
+    String formatDate;
+
+    if (value % (3 * getTheGapBetweenOneDay()) == 0)
+    {
+      date = value.toInt();
+      time = DateTime.fromMillisecondsSinceEpoch(date);
+      formatDate = DateFormat('dd/MM').format(time);
+      return Container(margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+          child: Text(formatDate, style: ThemesTextStyles.themes[5][themeChoice]));
+    }
+    return Container();
   }
 
   static List<BackTrackingExercice> getBackTracking(GraphicsDataState state) => state is GraphicsDataLoaded ? state.listBackTracking : [];

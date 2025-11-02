@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart';
 import 'package:krives_project/core/data/datasrouces/data_class/backtracking__exercise.dart';
 import 'package:krives_project/core/theme/themes_color.dart';
 import 'package:krives_project/core/theme/themes_graphic.dart';
@@ -49,14 +48,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                   reservedSize:50,
                   showTitles: true,
                   getTitlesWidget: (v, value) {
-                    int date;
-                    DateTime time;
-                    String formatDate;
-                    date = v.toInt();
-                    time = DateTime.fromMillisecondsSinceEpoch(date);
-                    formatDate = DateFormat('dd/MM').format(time);
-                    return Container(margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                        child: Text(formatDate, style: ThemesTextStyles.themes[5][themeChoice]));
+                    return GraphicsServices.getDescriptionAxeX(v, themeChoice);
                   }
               )
             ),
