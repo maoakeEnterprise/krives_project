@@ -21,6 +21,7 @@ class GraphicsDataBloc extends Bloc<GraphicsDataEvent, GraphicsDataState> {
       List<BackTrackingExercice> listBackTracking = [];
 
       listExercises = await ExerciseServerServices.getExercises();
+      listExercises = await GraphicsServerServices.getExercisesFromBackTracking(listExercises);
       listBackTracking = await GraphicsServerServices.getBacktrackingData(listExercises[0].id);
       emit(GraphicsDataLoaded(idExerciseSelected: listExercises[0].id, listExercise: listExercises, listBackTracking: listBackTracking));
     }catch(error){
